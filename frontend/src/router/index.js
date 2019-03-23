@@ -1,15 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import profile from '../components/profile'
-import info from '../components/info'
-import records from '../components/records'
-import home from '../components/home'
-import list from '../components/list'
 import Login from '../components/Login'
 import App from '../App'
 import HelloWorld from '../components/HelloWorld'
 import Register from '../components/Register'
 import ItemInfo from '../components/ItemInfo'
+import psinfo from '../components/info'
+import records from '../components/records'
+import commodity from '../components/commodity'
+import sold from '../components/sold'
+import onsale from '../components/onsale'
+import home from '../components/home'
+import list from '../components/list'
 
 Vue.use(Router)
 
@@ -39,15 +42,31 @@ export default new Router({
         },
         {
           path: '/profile',
-          component: profile
-        },
-        {
-          path: '/info',
-          component: info
-        },
-        {
-          path: '/records',
-          component: records
+          component: profile,
+          children: [
+            {
+              path: '/psinfo',
+              component: psinfo
+            },
+            {
+              path: '/records',
+              component: records
+            },
+            {
+              path: '/commodity',
+              component: commodity,
+              children: [
+                {
+                  path: '/sold',
+                  component: sold
+                },
+                {
+                  path: '/onsale',
+                  component: onsale
+                }
+              ]
+            }
+          ]
         },
         {
           path: '/register',
@@ -60,4 +79,38 @@ export default new Router({
       ]
     }
   ]
+})
+var routes = [
+  {
+    path: '/psinfo',
+    component: {template: '#psinfo'}
+  },
+  {
+    path: '/records',
+    component: {template: '#records'}
+  },
+  {
+    path: '/commodity',
+    component: {template: '#commodity'},
+    children: [
+      {
+        path: '/sold',
+        component: {template: '#sold'}
+      },
+      {
+        path: '/onsale',
+        component: {template: '#onsale'}
+      }
+    ]
+  }
+]
+// 定义路由组件
+var router = new Router({
+  routes
+})
+// 定义路由
+/* eslint-disable no-new */
+new Vue({
+  el: '#profile-box',
+  router
 })

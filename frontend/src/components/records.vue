@@ -1,4 +1,4 @@
-<template>
+<template id="records">
   <div class="container">
     <div class="row clearfix">
       <div class="col-md-12 column">
@@ -8,7 +8,7 @@
           <div class="col-md-10 column">
             <div class="row clearfix">
               <div class="col-md-2 column">
-                <img alt="140x140" src="" />
+                <img alt="140x140" src="../assets/logo.png" />
               </div>
               <div class="col-md-10 column">
                 <h2>

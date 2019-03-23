@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<div class="container" id="profile-box">
   <div class="row clearfix">
     <div class="col-md-12 column">
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -38,28 +38,24 @@
           <div class="panel-group" id="panel-260036">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <a class="panel-title" data-toggle="collapse" data-parent="#panel-260036" v-link="{path:'/info'}">个人信息</a>
+                <a class="panel-title" data-toggle="collapse" data-parent="#panel-260036">
+                  <router-link to="/psinfo">个人信息</router-link>
+                </a>
               </div>
 
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <a class="panel-title" data-toggle="collapse" data-parent="#panel-260036" href="#panel-element-157088">购买记录</a>
+                <a class="panel-title" data-toggle="collapse" data-parent="#panel-260036">
+                  <router-link to="/records">购买记录</router-link>
+                </a>
               </div>
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <a class="panel-title" data-toggle="collapse" data-parent="#panel-260036" href="#panel-element-157088">我发布的</a>
-              </div>
-              <div id="panel-element-944712" class="panel-collapse collapse in">
-                <div class="panel-body">
-                  <a href="#">未卖出的</a>
-                </div>
-              </div>
-              <div id="panel-element-944713" class="panel-collapse collapse in">
-                <div class="panel-body">
-                  <a href="#">已卖出的</a>
-                </div>
+                <a class="panel-title" data-toggle="collapse" data-parent="#panel-260036">
+                  <router-link to="/commodity">我发布的</router-link>
+                </a>
               </div>
             </div>
           </div>
