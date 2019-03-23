@@ -11,6 +11,8 @@ import records from '../components/records'
 import commodity from '../components/commodity'
 import sold from '../components/sold'
 import onsale from '../components/onsale'
+import home from '../components/home'
+import list from '../components/list'
 
 Vue.use(Router)
 
@@ -22,6 +24,14 @@ export default new Router({
       name: 'App',
       component: App,
       children: [
+        {
+          path: '/home',
+          component: home
+        },
+        {
+          path: '/list',
+          component: list
+        },
         {
           path: '/Login',
           component: Login
