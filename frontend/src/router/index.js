@@ -1,17 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import home from '../components/home'
-import login from '../components/login'
 import list from '../components/list'
+import Login from '../components/Login'
 import App from '../App'
+import HelloWorld from '../components/HelloWorld'
+import Register from '../components/Register'
+import ItemInfo from '../components/ItemInfo'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history', // 不加'history'的话要在每个路由前加#
   routes: [
     {
       path: '/',
-      name: 'clogin',
+      name: 'App',
       component: App,
       children: [
         {
@@ -19,12 +23,24 @@ export default new Router({
           component: home
         },
         {
-          path: '/login',
-          component: login
-        },
-        {
           path: '/list',
           component: list
+        },
+        {
+          path: '/Login',
+          component: Login
+        },
+        {
+          path: '/hello',
+          component: HelloWorld
+        },
+        {
+          path: '/register',
+          component: Register
+        },
+        {
+          path: '/iteminfo',
+          component: ItemInfo
         }
       ]
     }

@@ -1,4 +1,4 @@
-package com.calendar.controller;
+package com.se.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
