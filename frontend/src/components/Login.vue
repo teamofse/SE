@@ -45,8 +45,11 @@
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-8">
-                  <button type="submit" class="btn btn-default">Sign in</button>
+                <div class="col-sm-offset-1 col-sm-5">
+                  <button type="submit" class="btn btn-default" >登录</button>
+                </div>
+                <div class="col-sm-5">
+                  <button type="submit" class="btn btn-default">注册</button>
                 </div>
               </div>
             </form>

@@ -4,8 +4,13 @@ import login from '../components/login'
 import profile from '../components/profile'
 import info from '../components/info'
 import records from '../components/records'
+import home from '../components/home'
+import list from '../components/list'
+import Login from '../components/Login'
 import App from '../App'
 import HelloWorld from '../components/HelloWorld'
+import Register from '../components/Register'
+import ItemInfo from '../components/ItemInfo'
 
 Vue.use(Router)
 
@@ -18,8 +23,16 @@ export default new Router({
       component: App,
       children: [
         {
-          path: '/login',
-          component: login
+          path: '/home',
+          component: home
+        },
+        {
+          path: '/list',
+          component: list
+        },
+        {
+          path: '/Login',
+          component: Login
         },
         {
           path: '/hello',
@@ -36,6 +49,14 @@ export default new Router({
         {
           path: '/records',
           component: records
+        },
+        {
+          path: '/register',
+          component: Register
+        },
+        {
+          path: '/iteminfo',
+          component: ItemInfo
         }
       ]
     }
