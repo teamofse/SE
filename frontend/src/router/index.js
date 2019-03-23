@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import login from '../components/login'
+import Login from '../components/Login'
 import App from '../App'
 import HelloWorld from '../components/HelloWorld'
-import register from '../components/register'
+import Register from '../components/Register'
+import ItemInfo from '../components/ItemInfo'
 
 Vue.use(Router)
 
@@ -17,7 +18,7 @@ export default new Router({
       children: [
         {
           path: '/login',
-          component: login
+          component: Login
         },
         {
           path: '/hello',
@@ -25,7 +26,11 @@ export default new Router({
         },
         {
           path: '/register',
-          component: register
+          component: Register
+        },
+        {
+          path: '/iteminfo',
+          component: ItemInfo
         }
       ]
     }
