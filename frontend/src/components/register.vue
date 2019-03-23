@@ -1,19 +1,22 @@
 <template>
-  <div class="container clogin">
+  <div class="container">
     <div class="row clearfix">
       <div class="col-md-12 column">
         <div class="row clearfix">
           <div class="col-md-4 column">
           </div>
           <div class="col-md-4 column">
-            <span style="font-size: 100px;color: #ea5445">G</span>
-            <span style="font-size: 100px;color: #5bea4b">K</span>
-            <span style="font-size: 100px;color: #e9ea3f">X</span>
-            <span style="font-size: 100px;color: #0dd4ea">W</span>
+            <span style="font-size: 60px;font-family: 'Microsoft JhengHei'">注</span>
+            <span style=""></span>
+            <span style="font-size: 60px;font-family: 'Microsoft JhengHei'">册</span>
           </div>
           <div class="col-md-4 column">
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-md-12 column">
         <div class="row clearfix">
           <div class="col-md-4 column">
           </div>
@@ -23,7 +26,7 @@
                 <div class="col-sm-1">
                 </div>
                 <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail3" placeholder="Account"/>
+                  <input type="email" class="form-control" id="inputEmail1" placeholder="账号"/>
                 </div>
                 <div class="col-sm-1">
                 </div>
@@ -32,16 +35,27 @@
                 <div class="col-sm-1">
                 </div>
                 <div class="col-sm-10">
-                  <input type="password" class="form-control" id="inputPassword3" placeholder="Password"/>
+                  <input type="email" class="form-control" id="inputEmail2" placeholder="手机号码"/>
                 </div>
                 <div class="col-sm-1">
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-sm-offset-1 col-sm-8">
-                  <div class="checkbox">
-                    <label style="float: left"><input type="checkbox" />Remember me</label>
-                  </div>
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="inputPassword1" placeholder="密码"/>
+                </div>
+                <div class="col-sm-1">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="inputPassword2" placeholder="再次输入密码"/>
+                </div>
+                <div class="col-sm-1">
                 </div>
               </div>
               <div class="form-group">
@@ -64,18 +78,10 @@
 
 <script>
 export default {
+  name: 'register'
 }
-
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
