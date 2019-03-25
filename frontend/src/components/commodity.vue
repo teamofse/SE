@@ -1,7 +1,4 @@
 <template id="commodity">
-  <div class="container">
-    <div class="row clearfix">
-      <div class="col-md-12 column">
         <div class="tabbable" id="tabs-585381">
           <ul class="nav nav-tabs">
             <li class="active">
@@ -24,9 +21,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -36,5 +30,7 @@ export default {
 </script>
 
 <style scoped>
-
+#tabs-585381 {
+  margin-top: 20px;
+}
 </style>
