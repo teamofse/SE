@@ -83,6 +83,10 @@
 
         </nav>
 
+        <!--<div>-->
+          <!--<p>{{routerParams}}</p>-->
+        <!--</div>-->
+
         <!--body-->
         <div class="goods">
           <!--商品列表-->
@@ -278,7 +282,26 @@
 <script>
 export default {
   name: 'list'
+  // data () {
+  //   return {
+  //     // msg: ''
+  //   }
+  // }
+  // methods: {
+  //   getParams () {
+  //     var routerParams = this.$route.params.aaa
+  //     console.log(routerParams)
+  //     // this.msg = routerParams
+  //   }
+  // },
+  // watch: {
+  //   '$route': 'getParams'
+  // }
+  // created () {
+  //   this.aaa = this.$route.params.aaa
+  // }
 }
+
 </script>
 
 <style scoped>
