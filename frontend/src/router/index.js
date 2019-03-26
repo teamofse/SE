@@ -13,6 +13,7 @@ import sold from '../components/sold'
 import onsale from '../components/onsale'
 import home from '../components/home'
 import list from '../components/list'
+import publish from '../components/publish'
 
 Vue.use(Router)
 
@@ -35,6 +36,10 @@ export default new Router({
         {
           path: '/Login',
           component: Login
+        },
+        {
+          path: '/publish',
+          component: publish
         },
         {
           path: '/hello',
