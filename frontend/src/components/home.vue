@@ -4,84 +4,6 @@
       <div class="col-md-12 column">
 
         <!--header-->
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-
-          <!--Brand-->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Brand</a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <!--link1-->
-              <li class="active">
-                <a href="#">Link1</a>
-              </li>
-              <!--link2-->
-              <li>
-                <a href="#">Link2</a>
-              </li>
-              <!--dropdown1-->
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown1<strong class="caret"></strong></a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="#">Action</a>
-                  </li>
-                  <li>
-                    <a href="#">Another action</a>
-                  </li>
-                  <li>
-                    <a href="#">Something else here</a>
-                  </li>
-                  <li class="divider">
-                  </li>
-                  <li>
-                    <a href="#">Separated link</a>
-                  </li>
-                  <li class="divider">
-                  </li>
-                  <li>
-                    <a href="#">One more separated link</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <!--search-->
-            <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" />
-              </div> <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-              <!--link3-->
-              <li>
-                <a href="#">Link3</a>
-              </li>
-              <!--dropdown2-->
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown2<strong class="caret"></strong></a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="#">Action</a>
-                  </li>
-                  <li>
-                    <a href="#">Another action</a>
-                  </li>
-                  <li>
-                    <a href="#">Something else here</a>
-                  </li>
-                  <li class="divider">
-                  </li>
-                  <li>
-                    <a href="#">Separated link</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-
-        </nav>
 
         <!--body-->
         <!--幻灯片-->
@@ -316,10 +238,13 @@
 
         <!--查看更多-->
         <a class="more" align="right">
-          <scan>
-            <p class="more-word">查看更多</p>
-            <img class="more-img" alt="more" src="../assets/more.png" />
-          </scan>
+          <router-link
+            to="/list">
+            <scan>
+              <p class="more-word">查看更多</p>
+              <img class="more-img" alt="more" src="../assets/more.png" />
+            </scan>
+          </router-link>
         </a>
 
         <!--footer-->
@@ -335,6 +260,19 @@
 <script>
 export default {
   name: 'home'
+  // data () {
+  //   return {
+  //     msg: '朱一龙好帅鸭'
+  //   }
+  // },
+  // methods: {
+  //   toList () {
+  //     this.$router.push({
+  //       name: 'list',
+  //       params: {aaa: 2}
+  //     })
+  //   }
+  // }
 }
 </script>
 
