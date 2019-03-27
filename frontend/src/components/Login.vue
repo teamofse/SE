@@ -46,7 +46,7 @@
               </div>
               <div class="form-group">
                 <div class="col-sm-offset-1 col-sm-5">
-                  <button type="submit" class="btn btn-default" >登录</button>
+                  <button id="login" v-on:click="login0" type="submit" class="btn btn-default" >登录</button>
                 </div>
                 <div class="col-sm-5">
                   <button type="submit" class="btn btn-default">注册</button>
@@ -63,9 +63,9 @@
 </template>
 
 <script>
+
 export default {
 }
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
