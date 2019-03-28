@@ -1,31 +1,43 @@
 <template id="publish">
   <div class="container">
-    <div class="row clearfix">
-      <div class="col-md-12 column">
-        <div class="row clearfix">
-          <div class="publish_imag">
-            <div><img src="../assets/publish_1.jpg" /></div>
-            <div><img src="../assets/publish_1.jpg" /></div>
-          </div>
-          <div class="publish_imag">
-            <div><img src="../assets/publish_1.jpg" /></div>
-            <div><img src="../assets/publish_1.jpg" /></div>
-          </div>
-          <div class="right">
-            <div class="discription">
-                <div>
-                   <p>
-                     <span style="font-size:large; "><strong>标题</strong></span>
-                     <span style="font-size: small; ">品类品牌型号都是买家喜欢搜索的</span>
-                   </p>
-                </div>
-                <div><p>宝贝详情：</p></div>
+    <div class="all">
+      <div class="publish_imag">
+        <div><img src="../assets/publish_1.jpg" /></div>
+        <div><img src="../assets/publish_1.jpg" /></div>
+      </div>
+      <div class="right">
+        <div class="discription">
+          <form>
+            <div>
+              <p>
+                <span style="font-size:large; "><strong>标题</strong></span>
+                <br/>
+                <textarea name="reworkmes" cols="40" rows="1"  placeholder="品类品牌型号都是买家喜欢搜索的" style="OVERFLOW:   hidden"></textarea>
+              </p>
+            </div>
+                <p>宝贝类别：</p>
+                <input type="radio" name="checkbok" value="衣服">衣服
+                <input type="radio" name="checkbok" value="衣服">衣服
+                <input type="radio" name="checkbok" value="衣服">衣服
+                <input type="radio" name="checkbok" value="衣服">衣服
+                <input type="radio" name="checkbok" value="衣服">衣服
+                <input type="radio" name="checkbok" value="衣服">衣服
+                <br/>
+                <br/>
+                <p>宝贝详情：</p>
+                <textarea name="reworkmes" cols="40" rows="4" style="OVERFLOW:   hidden"></textarea>
+                <br/>
                 <div><p>价格：</p></div>
-              <div class=".publish">
-                <button type="button" id="modal-140183" href="#modal-container-140183" role="button" class="btn btn-default btn-block" data-toggle="modal">发布完成后点这里显示发布成功</button>
+                <textarea name="reworkmes" cols="40" rows="1" placeholder="                                                               元" style="OVERFLOW:   hidden"></textarea>
+                <br/>
+                <br/>
+              </form>
+              <div class="publish">
+                <button type="button" id="modal-140183" href="#modal-container-140183" role="button" class="btn btn-default btn-block" data-toggle="modal">发布</button>
               </div>
 
               <div class="modal fade" id="modal-container-140183" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="success">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -38,15 +50,18 @@
                       宝贝发布成功！
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">去查看</button>
                     </div>
                   </div>
                 </div>
               </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+    </div>
+    <div class="publish_imag">
+      <div><img src="../assets/publish_1.jpg" /></div>
+      <div><img src="../assets/publish_1.jpg" /></div>
     </div>
   </div>
 </template>
@@ -76,11 +91,12 @@
     margin-right: 50px;
     float: left;
   }
-  .discription div{
-  }
   .right{
-    margin-top: 50px;
+    margin-top:0px;
     margin-right: 70px;
     float: right;
+  }
+  .all{
+    margin-top:30px;
   }
 </style>
