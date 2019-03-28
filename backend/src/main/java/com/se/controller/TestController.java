@@ -18,4 +18,9 @@ public class TestController {
     public List<Test> testQuery() {
         return testService.queryById();
     }
+
+    @RequestMapping("/login")
+    public List<Test> login() {
+        return testService.queryById();
+    }
 }

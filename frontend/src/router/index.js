@@ -35,7 +35,17 @@ export default new Router({
         },
         {
           path: '/Login',
-          component: Login
+          component: Login,
+          meta: {
+            isLogin: false
+          }
+        },
+        {
+          path: '/register',
+          component: Register,
+          meta: {
+            isLogin: false
+          }
         },
         {
           path: '/publish',
@@ -72,10 +82,6 @@ export default new Router({
               ]
             }
           ]
-        },
-        {
-          path: '/register',
-          component: Register
         },
         {
           path: '/iteminfo',

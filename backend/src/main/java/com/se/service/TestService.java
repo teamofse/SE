@@ -16,4 +16,27 @@ public class TestService {
         return testMapper.queryById();
     }
 
+
+    /**
+     * 根据名字查找用户
+     */
+    public Test selectUserByName(String account) {
+        return testMapper.findUserByAccount(account);
+    }
+
+    /**
+     * 插入用户
+     */
+    public void insertService(int id,String account,String password) {
+        testMapper.insertUser(id, account, password);
+    }
+
+    /**
+     * 根据id 删除用户
+     */
+
+    public void deleteService(int id) {
+        testMapper.deleteUser(id);
+    }
+
 }

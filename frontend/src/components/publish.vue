@@ -22,9 +22,8 @@
                 <div><p>宝贝详情：</p></div>
                 <div><p>价格：</p></div>
               <div class=".publish">
-                <button type="button" class="btn btn-default btn-block">确认发布</button>
+                <button type="button" id="modal-140183" href="#modal-container-140183" role="button" class="btn btn-default btn-block" data-toggle="modal">发布完成后点这里显示发布成功</button>
               </div>
-              <a id="modal-140183" href="#modal-container-140183" role="button" class="btn" data-toggle="modal">发布完成后点这里显示发布成功</a>
 
               <div class="modal fade" id="modal-container-140183" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
