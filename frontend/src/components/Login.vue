@@ -23,7 +23,7 @@
                 <div class="col-sm-1">
                 </div>
                 <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail3" placeholder="Account"/>
+                  <input type="text" v-model="loginInfo.account" class="form-control" id="inputEmail3" placeholder="Account"/>
                 </div>
                 <div class="col-sm-1">
                 </div>
@@ -32,7 +32,7 @@
                 <div class="col-sm-1">
                 </div>
                 <div class="col-sm-10">
-                  <input type="password" class="form-control" id="inputPassword3" placeholder="Password"/>
+                  <input type="password" v-model="loginInfo.password" class="form-control" id="inputPassword3" placeholder="Password"/>
                 </div>
                 <div class="col-sm-1">
                 </div>
@@ -46,7 +46,7 @@
               </div>
               <div class="form-group">
                 <div class="col-sm-offset-1 col-sm-5">
-                  <button id="login" v-on:click="login0" type="submit" class="btn btn-default" >登录</button>
+                  <button id="login" v-on:click="login" type="submit" class="btn btn-default" >登录</button>
                 </div>
                 <div class="col-sm-5">
                   <button type="submit" class="btn btn-default">注册</button>
@@ -63,8 +63,34 @@
 </template>
 
 <script>
-
+import qs from 'Qs'
 export default {
+  name: 'Login',
+  data: function () {
+    return {
+      loginInfo: {
+        account: '',
+        password: ''
+      },
+      responseResult: []
+    }
+  },
+  methods: {
+    login () {
+      this.$axios
+        .post('/login', qs.stringify({
+          account: this.loginInfo.account,
+          password: this.loginInfo.password
+        }))
+        .then(successResponse => {
+          this.responseResult = JSON.stringify(successResponse.data)
+          if (successResponse.data.code === 200) {
+            this.$router.replace({path: '/home'})
+          }
+        })
+        .catch(failResponse => {})
+    }
+  }
 }
 </script>
 

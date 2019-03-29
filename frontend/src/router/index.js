@@ -26,6 +26,10 @@ export default new Router({
       component: App,
       children: [
         {
+          path: '/',
+          redirect: '/login'
+        },
+        {
           path: '/home',
           component: home
         },
@@ -34,7 +38,7 @@ export default new Router({
           component: list
         },
         {
-          path: '/Login',
+          path: '/login',
           component: Login,
           meta: {
             isLogin: false
