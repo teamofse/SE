@@ -57,178 +57,22 @@
 
         <div class="goods">
           <!--商品列表-->
-          <div class="row">
-            <div class="col-md-4">
+          <div class="row" v-for="news in newList" :key="news">
+            <div class="col-md-4" v-for="result in news.avalue" :key="result">
               <div class="thumbnail">
                 <img class="image" alt="1" src="../assets/1.jpg" />
                 <div class="intro">
                   <p class="title" align="left">
-                    <strong>张云雷张云雷张云雷张云雷张云雷张云雷</strong>
+                    <strong>{{result.title}}</strong>
                   </p>
                   <span class="money-row">
                     <img class="star" alt="star" src="../assets/star.png" align="left"/>
-                    <p class="money" align="left"><strong>200</strong></p>
+                    <p class="money" align="left"><strong>{{result.star}}</strong></p>
                   </span>
                   <hr class="line" />
                   <span class="name-city-row">
-                    <p class="name" align="left"><strong>孔唐潮孔唐潮孔唐潮孔唐潮孔唐潮</strong></p>
-                    <p class="city" align="right"><strong>威海市威海市威海市威海市威海市</strong></p>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img class="image" alt="2" src="../assets/2.jpg" />
-                <div class="intro">
-                  <p class="title" align="left">
-                    <strong>张云雷</strong>
-                  </p>
-                  <span class="money-row">
-                    <img class="star" alt="star" src="../assets/star.png" align="left"/>
-                    <p class="money" align="left"><strong>200</strong></p>
-                  </span>
-                  <hr class="line" />
-                  <span class="name-city-row">
-                    <p class="name" align="left"><strong>孔唐潮</strong></p>
-                    <p class="city" align="right"><strong>威海市</strong></p>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img class="image" alt="3" src="../assets/3.jpg" />
-                <div class="intro">
-                  <p class="title" align="left">
-                    <strong>张云雷</strong>
-                  </p>
-                  <span class="money-row">
-                    <img class="star" alt="star" src="../assets/star.png" align="left"/>
-                    <p class="money" align="left"><strong>200</strong></p>
-                  </span>
-                  <hr class="line" />
-                  <span class="name-city-row">
-                    <p class="name" align="left"><strong>孔唐潮</strong></p>
-                    <p class="city" align="right"><strong>威海市</strong></p>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img class="image" alt="4" src="../assets/4.jpg" />
-                <div class="intro">
-                  <p class="title" align="left">
-                    <strong>张云雷</strong>
-                  </p>
-                  <span class="money-row">
-                    <img class="star" alt="star" src="../assets/star.png" align="left"/>
-                    <p class="money" align="left"><strong>200</strong></p>
-                  </span>
-                  <hr class="line" />
-                  <span class="name-city-row">
-                    <p class="name" align="left"><strong>孔唐潮</strong></p>
-                    <p class="city" align="right"><strong>威海市</strong></p>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img class="image" alt="5" src="../assets/5.jpg" />
-                <div class="intro">
-                  <p class="title" align="left">
-                    <strong>张云雷</strong>
-                  </p>
-                  <span class="money-row">
-                    <img class="star" alt="star" src="../assets/star.png" align="left"/>
-                    <p class="money" align="left"><strong>200</strong></p>
-                  </span>
-                  <hr class="line" />
-                  <span class="name-city-row">
-                    <p class="name" align="left"><strong>孔唐潮</strong></p>
-                    <p class="city" align="right"><strong>威海市</strong></p>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img class="image" alt="6" src="../assets/6.jpg" />
-                <div class="intro">
-                  <p class="title" align="left">
-                    <strong>张云雷</strong>
-                  </p>
-                  <span class="money-row">
-                    <img class="star" alt="star" src="../assets/star.png" align="left"/>
-                    <p class="money" align="left"><strong>200</strong></p>
-                  </span>
-                  <hr class="line" />
-                  <span class="name-city-row">
-                    <p class="name" align="left"><strong>孔唐潮</strong></p>
-                    <p class="city" align="right"><strong>威海市</strong></p>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img class="image" alt="1" src="../assets/1.jpg" />
-                <div class="intro">
-                  <p class="title" align="left">
-                    <strong>张云雷</strong>
-                  </p>
-                  <span class="money-row">
-                    <img class="star" alt="star" src="../assets/star.png" align="left"/>
-                    <p class="money" align="left"><strong>200</strong></p>
-                  </span>
-                  <hr class="line" />
-                  <span class="name-city-row">
-                    <p class="name" align="left"><strong>孔唐潮</strong></p>
-                    <p class="city" align="right"><strong>威海市</strong></p>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img class="image" alt="2" src="../assets/2.jpg" />
-                <div class="intro">
-                  <p class="title" align="left">
-                    <strong>张云雷</strong>
-                  </p>
-                  <span class="money-row">
-                    <img class="star" alt="star" src="../assets/star.png" align="left"/>
-                    <p class="money" align="left"><strong>200</strong></p>
-                  </span>
-                  <hr class="line" />
-                  <span class="name-city-row">
-                    <p class="name" align="left"><strong>孔唐潮</strong></p>
-                    <p class="city" align="right"><strong>威海市</strong></p>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img class="image" alt="3" src="../assets/3.jpg" />
-                <div class="intro">
-                  <p class="title" align="left">
-                    <strong>张云雷</strong>
-                  </p>
-                  <span class="money-row">
-                    <img class="star" alt="star" src="../assets/star.png" align="left"/>
-                    <p class="money" align="left"><strong>200</strong></p>
-                  </span>
-                  <hr class="line" />
-                  <span class="name-city-row">
-                    <p class="name" align="left"><strong>孔唐潮</strong></p>
-                    <p class="city" align="right"><strong>威海市</strong></p>
+                    <p class="name" align="left"><strong>{{result.name}}</strong></p>
+                    <p class="city" align="right"><strong>{{result.city}}</strong></p>
                   </span>
                 </div>
               </div>
@@ -263,47 +107,58 @@ export default {
   name: 'home',
   data: function () {
     return {
-      // loginInfo: {
-      //   account: '',
-      //   password: ''
-      // },
-      responseResult: []
+      responseResult: [],
+      newList: {}
     }
   },
   created: function () {
     console.log('created')
   },
   beforeMount: function () {
-    console.log('before1')
+    // console.log('before1')
     this.$axios
-      .get('http://localhost:8081/api/queryGoodsById')
-      .then(successResponse => { this.responseResult = successResponse.data })
-      // .then(successResponse => { this.responseResult = JSON.stringify(successResponse.data) })
+      .get('/queryGoodsById')
+      .then(successResponse => {
+        this.responseResult = successResponse.data
+        // console.log(successResponse.data)
+        // console.log(this.responseResult)
+
+        var i
+        var j
+        var index = 0
+        var newListIndex = 0
+        var x = []
+        for (var k = 0; k < Math.ceil(this.responseResult.length / 3); k++) {
+          x[k] = []
+        }
+        // console.log(x)
+        // console.log(this.responseResult.length)
+        for (i = 0; i < Math.ceil(this.responseResult.length / 3); i++) {
+          for (j = 0; j < 3; ++j) {
+            if (index < this.responseResult.length) {
+              x[i][j] = (this.responseResult[index])
+              index++
+            }
+          }
+          this.newList[newListIndex] = {}
+          this.newList[newListIndex].key = 'akey'
+          this.newList[newListIndex].avalue = x[i]
+          newListIndex++
+        }
+        console.log(this.newList)
+      })
       .catch(failResponse => {
       })
-    console.log('before2')
+    // console.log('before2')
   },
   mounted: function () {
-    console.log('mount1')
-    console.log(this.responseResult)
-    console.log('mount2')
+    // console.log('mount1')
+    // console.log(this.responseResult)
+    // console.log(this.successResponse.data)
+    // console.log('mount2')
   },
   methods: {
-    // login () {
-    //   this.$axios
-    //     .post('/login', qs.stringify({
-    //       account: this.loginInfo.account,
-    //       password: this.loginInfo.password
-    //     }))
-    //     .then(successResponse => {
-    //       this.responseResult = JSON.stringify(successResponse.data)
-    //       if (successResponse.data.code === 200) {
-    //         this.$router.replace({path: '/home'})
-    //       }
-    //     })
-    //     .catch(failResponse => {
-    //     })
-    // }
+
   }
 
   // 监听路由，每次进入都要从后台获取新数据。init方法即为每次进入此页面都需要执行的方法，请求数据的方法也在里面。
