@@ -86,6 +86,7 @@ export default {
           this.responseResult = JSON.stringify(successResponse.data)
           if (successResponse.data.code === 200) {
             console.log(successResponse.data.data)
+            console.log(successResponse.data.data)
           }
           console.log(successResponse.data)
         })
