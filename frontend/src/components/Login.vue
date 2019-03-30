@@ -85,8 +85,9 @@ export default {
         .then(successResponse => {
           this.responseResult = JSON.stringify(successResponse.data)
           if (successResponse.data.code === 200) {
-            this.$router.replace({path: '/home'})
+            console.log(successResponse.data.data)
           }
+          console.log(successResponse.data)
         })
         .catch(failResponse => {})
     }

@@ -1,5 +1,7 @@
 package com.se.result;
 
+import com.mysql.cj.Session;
+
 public class Result {
     /**
      * 响应状态码
@@ -13,6 +15,10 @@ public class Result {
      * 响应结果对象
      */
     private Object data;
+
+    //
+
+    private Session session;
 
     Result(int code, String message, Object data) {
         this.code = code;
@@ -44,4 +50,11 @@ public class Result {
         this.data = data;
     }
 
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
 }

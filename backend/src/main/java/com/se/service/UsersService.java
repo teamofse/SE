@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class UsersService {
     @Autowired
     private com.se.mapper.UsersMapper UsersMapper;
-    public Users selectUserByName(String account) {
+    public Users selectUserByAccount(String account) {
         return UsersMapper.findUserByAccount(account);
     }
 
