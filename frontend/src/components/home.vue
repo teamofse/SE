@@ -65,15 +65,15 @@
                   <p class="title" align="left">
                     <strong>张云雷张云雷张云雷张云雷张云雷张云雷</strong>
                   </p>
-                  <scan class="money-row">
+                  <span class="money-row">
                     <img class="star" alt="star" src="../assets/star.png" align="left"/>
                     <p class="money" align="left"><strong>200</strong></p>
-                  </scan>
+                  </span>
                   <hr class="line" />
-                  <scan class="name-city-row">
+                  <span class="name-city-row">
                     <p class="name" align="left"><strong>孔唐潮孔唐潮孔唐潮孔唐潮孔唐潮</strong></p>
                     <p class="city" align="right"><strong>威海市威海市威海市威海市威海市</strong></p>
-                  </scan>
+                  </span>
                 </div>
               </div>
             </div>
@@ -84,15 +84,15 @@
                   <p class="title" align="left">
                     <strong>张云雷</strong>
                   </p>
-                  <scan class="money-row">
+                  <span class="money-row">
                     <img class="star" alt="star" src="../assets/star.png" align="left"/>
                     <p class="money" align="left"><strong>200</strong></p>
-                  </scan>
+                  </span>
                   <hr class="line" />
-                  <scan class="name-city-row">
+                  <span class="name-city-row">
                     <p class="name" align="left"><strong>孔唐潮</strong></p>
                     <p class="city" align="right"><strong>威海市</strong></p>
-                  </scan>
+                  </span>
                 </div>
               </div>
             </div>
@@ -103,15 +103,15 @@
                   <p class="title" align="left">
                     <strong>张云雷</strong>
                   </p>
-                  <scan class="money-row">
+                  <span class="money-row">
                     <img class="star" alt="star" src="../assets/star.png" align="left"/>
                     <p class="money" align="left"><strong>200</strong></p>
-                  </scan>
+                  </span>
                   <hr class="line" />
-                  <scan class="name-city-row">
+                  <span class="name-city-row">
                     <p class="name" align="left"><strong>孔唐潮</strong></p>
                     <p class="city" align="right"><strong>威海市</strong></p>
-                  </scan>
+                  </span>
                 </div>
               </div>
             </div>
@@ -124,15 +124,15 @@
                   <p class="title" align="left">
                     <strong>张云雷</strong>
                   </p>
-                  <scan class="money-row">
+                  <span class="money-row">
                     <img class="star" alt="star" src="../assets/star.png" align="left"/>
                     <p class="money" align="left"><strong>200</strong></p>
-                  </scan>
+                  </span>
                   <hr class="line" />
-                  <scan class="name-city-row">
+                  <span class="name-city-row">
                     <p class="name" align="left"><strong>孔唐潮</strong></p>
                     <p class="city" align="right"><strong>威海市</strong></p>
-                  </scan>
+                  </span>
                 </div>
               </div>
             </div>
@@ -143,15 +143,15 @@
                   <p class="title" align="left">
                     <strong>张云雷</strong>
                   </p>
-                  <scan class="money-row">
+                  <span class="money-row">
                     <img class="star" alt="star" src="../assets/star.png" align="left"/>
                     <p class="money" align="left"><strong>200</strong></p>
-                  </scan>
+                  </span>
                   <hr class="line" />
-                  <scan class="name-city-row">
+                  <span class="name-city-row">
                     <p class="name" align="left"><strong>孔唐潮</strong></p>
                     <p class="city" align="right"><strong>威海市</strong></p>
-                  </scan>
+                  </span>
                 </div>
               </div>
             </div>
@@ -162,15 +162,15 @@
                   <p class="title" align="left">
                     <strong>张云雷</strong>
                   </p>
-                  <scan class="money-row">
+                  <span class="money-row">
                     <img class="star" alt="star" src="../assets/star.png" align="left"/>
                     <p class="money" align="left"><strong>200</strong></p>
-                  </scan>
+                  </span>
                   <hr class="line" />
-                  <scan class="name-city-row">
+                  <span class="name-city-row">
                     <p class="name" align="left"><strong>孔唐潮</strong></p>
                     <p class="city" align="right"><strong>威海市</strong></p>
-                  </scan>
+                  </span>
                 </div>
               </div>
             </div>
@@ -183,15 +183,15 @@
                   <p class="title" align="left">
                     <strong>张云雷</strong>
                   </p>
-                  <scan class="money-row">
+                  <span class="money-row">
                     <img class="star" alt="star" src="../assets/star.png" align="left"/>
                     <p class="money" align="left"><strong>200</strong></p>
-                  </scan>
+                  </span>
                   <hr class="line" />
-                  <scan class="name-city-row">
+                  <span class="name-city-row">
                     <p class="name" align="left"><strong>孔唐潮</strong></p>
                     <p class="city" align="right"><strong>威海市</strong></p>
-                  </scan>
+                  </span>
                 </div>
               </div>
             </div>
@@ -202,15 +202,15 @@
                   <p class="title" align="left">
                     <strong>张云雷</strong>
                   </p>
-                  <scan class="money-row">
+                  <span class="money-row">
                     <img class="star" alt="star" src="../assets/star.png" align="left"/>
                     <p class="money" align="left"><strong>200</strong></p>
-                  </scan>
+                  </span>
                   <hr class="line" />
-                  <scan class="name-city-row">
+                  <span class="name-city-row">
                     <p class="name" align="left"><strong>孔唐潮</strong></p>
                     <p class="city" align="right"><strong>威海市</strong></p>
-                  </scan>
+                  </span>
                 </div>
               </div>
             </div>
@@ -221,15 +221,15 @@
                   <p class="title" align="left">
                     <strong>张云雷</strong>
                   </p>
-                  <scan class="money-row">
+                  <span class="money-row">
                     <img class="star" alt="star" src="../assets/star.png" align="left"/>
                     <p class="money" align="left"><strong>200</strong></p>
-                  </scan>
+                  </span>
                   <hr class="line" />
-                  <scan class="name-city-row">
+                  <span class="name-city-row">
                     <p class="name" align="left"><strong>孔唐潮</strong></p>
                     <p class="city" align="right"><strong>威海市</strong></p>
-                  </scan>
+                  </span>
                 </div>
               </div>
             </div>
@@ -240,10 +240,10 @@
         <a class="more" align="right">
           <router-link
             to="/list">
-            <scan>
+            <span>
               <p class="more-word">查看更多</p>
               <img class="more-img" alt="more" src="../assets/more.png" />
-            </scan>
+            </span>
           </router-link>
         </a>
 
@@ -258,19 +258,64 @@
 </template>
 
 <script>
+// import qs from 'Qs'
 export default {
-  name: 'home'
-  // data () {
-  //   return {
-  //     msg: '朱一龙好帅鸭'
-  //   }
-  // },
-  // methods: {
-  //   toList () {
-  //     this.$router.push({
-  //       name: 'list',
-  //       params: {aaa: 2}
-  //     })
+  name: 'home',
+  data: function () {
+    return {
+      // loginInfo: {
+      //   account: '',
+      //   password: ''
+      // },
+      responseResult: []
+    }
+  },
+  created: function () {
+    console.log('created')
+  },
+  beforeMount: function () {
+    console.log('before1')
+    this.$axios
+      .get('http://localhost:8081/api/queryGoodsById')
+      .then(successResponse => { this.responseResult = successResponse.data })
+      // .then(successResponse => { this.responseResult = JSON.stringify(successResponse.data) })
+      .catch(failResponse => {
+      })
+    console.log('before2')
+  },
+  mounted: function () {
+    console.log('mount1')
+    console.log(this.responseResult)
+    console.log('mount2')
+  },
+  methods: {
+    // login () {
+    //   this.$axios
+    //     .post('/login', qs.stringify({
+    //       account: this.loginInfo.account,
+    //       password: this.loginInfo.password
+    //     }))
+    //     .then(successResponse => {
+    //       this.responseResult = JSON.stringify(successResponse.data)
+    //       if (successResponse.data.code === 200) {
+    //         this.$router.replace({path: '/home'})
+    //       }
+    //     })
+    //     .catch(failResponse => {
+    //     })
+    // }
+  }
+
+  // 监听路由，每次进入都要从后台获取新数据。init方法即为每次进入此页面都需要执行的方法，请求数据的方法也在里面。
+  // watch: {
+  //   "$route": {
+  //     handler(route){
+  //       const that = this
+  //       if(route.name==='home'){
+  //         that.init()
+  //       }
+  //     },
+  //     deep: true
   //   }
   // }
 }

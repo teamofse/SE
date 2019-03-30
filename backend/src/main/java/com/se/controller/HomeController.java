@@ -3,20 +3,21 @@ package com.se.controller;
 import com.se.entity.Goods;
 import com.se.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
 
 @RestController
-
+@RequestMapping("/api")
 public class HomeController {
     @Autowired
     private GoodsService goodsService;
 
+    @CrossOrigin
+    @ResponseBody
     //查询所有商品信息
-    @RequestMapping("/queryGoodsById")
+    @RequestMapping(value="/queryGoodsById", method= RequestMethod.GET, produces="application/json; charset=UTF-8")
     public List<Goods> goodsQueryById(){
         return goodsService.queryByIdService();
     }

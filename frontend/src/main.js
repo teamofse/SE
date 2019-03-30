@@ -20,6 +20,8 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+// 页面跳转时跳转到页面顶部
 router.afterEach((to, from, next) => {
   window.scrollTo(0, 0)
 })
