@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Hashtable;
@@ -28,16 +29,54 @@ public class LoginController {
     @CrossOrigin
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public Result testLogin(HttpServletRequest request) {
+    public Result Login(HttpServletRequest request, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
+        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+        response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
+
         String account=request.getParameter("account");
         String password=request.getParameter("password");
         String sessionId=request.getParameter("sessionId");
         Hashtable hashtable=new Hashtable();//存放要返回的数据
-        HttpSession session=request.getSession();//获取request请求里的session
+        HttpSession session=request.getSession();//获取request请求里的session, 如果是第一次请求, 则会创建一个新的session
 
 
-        if(account==null){
-            String message = String.format("登陆失败，详细信息[用户名为空]。");
+        if(account==null||password==null){
+            String message = String.format("登陆失败，详细信息[用户名或密码为空]。");
+            return ResultFactory.buildFailResult(message);
+        }
+        Users foundUser=usersService.selectUserByAccount(account);
+        //System.out.println("account:"+account+" password:"+password);
+        if (!Objects.equals(foundUser.getPassword(), password)) {
+            String message = String.format("登陆失败，详细信息[用户名、密码信息不正确]。");
+            return ResultFactory.buildFailResult(message);
+        }
+        session.setAttribute("account",account);
+        System.out.println(session.getId());
+        hashtable.put("msg","登陆成功");
+        //hashtable.put("sessionId",session.getId());
+        //hashtable.put("session",session);
+        return ResultFactory.buildSuccessResult(hashtable);
+    }
+    @CrossOrigin
+    @RequestMapping(value = "/register", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public Result Register(HttpServletRequest request, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
+        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+        response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
+
+        String account=request.getParameter("account");
+        String password=request.getParameter("password");
+        String sessionId=request.getParameter("sessionId");
+        Hashtable hashtable=new Hashtable();//存放要返回的数据
+        HttpSession session=request.getSession();//获取request请求里的session, 如果是第一次请求, 则会创建一个新的session
+
+
+        if(account==null||password==null){
+            String message = String.format("登陆失败，详细信息[用户名或密码为空]。");
             return ResultFactory.buildFailResult(message);
         }
         Users foundUser=usersService.selectUserByAccount(account);
@@ -49,9 +88,8 @@ public class LoginController {
         session.setAttribute("account",account);
         session.setAttribute("password",password);
         System.out.println(session.getId());
-        String msg="登陆成功";
-        hashtable.put("msg",msg);
-        hashtable.put("sessionId",session.getId());
+        hashtable.put("msg","登陆成功");
+        //hashtable.put("sessionId",session.getId());
         //hashtable.put("session",session);
         return ResultFactory.buildSuccessResult(hashtable);
     }

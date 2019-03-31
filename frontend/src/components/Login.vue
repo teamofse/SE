@@ -81,11 +81,12 @@ export default {
         .post('/login', qs.stringify({
           account: this.loginInfo.account,
           password: this.loginInfo.password
-        }))
+        }), {headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+      }})
         .then(successResponse => {
           this.responseResult = JSON.stringify(successResponse.data)
           if (successResponse.data.code === 200) {
-            console.log(successResponse.data.data)
             console.log(successResponse.data.data)
           }
           console.log(successResponse.data)

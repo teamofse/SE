@@ -16,9 +16,6 @@ public class Result {
      */
     private Object data;
 
-    //
-
-    private Session session;
 
     Result(int code, String message, Object data) {
         this.code = code;
@@ -50,11 +47,4 @@ public class Result {
         this.data = data;
     }
 
-    public Session getSession() {
-        return session;
-    }
-
-    public void setSession(Session session) {
-        this.session = session;
-    }
 }
