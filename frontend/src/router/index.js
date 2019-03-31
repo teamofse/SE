@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import profile from '../components/profile'
-import Login from '../components/Login'
+import login from '../components/login'
 import App from '../App'
 import HelloWorld from '../components/HelloWorld'
-import Register from '../components/Register'
+import register from '../components/register'
 import ItemInfo from '../components/ItemInfo'
 import psinfo from '../components/psinfo'
 import records from '../components/records'
@@ -39,14 +39,14 @@ export default new Router({
         },
         {
           path: '/login',
-          component: Login,
+          component: login,
           meta: {
             isLogin: false
           }
         },
         {
           path: '/register',
-          component: Register,
+          component: register,
           meta: {
             isLogin: false
           }

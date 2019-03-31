@@ -49,7 +49,7 @@
                   <button id="login" v-on:click="login" type="submit" class="btn btn-default" >登录</button>
                 </div>
                 <div class="col-sm-5">
-                  <button type="submit" class="btn btn-default">注册</button>
+                  <button type="submit" v-on:click="toRegister" class="btn btn-default">注册</button>
                 </div>
               </div>
             </form>
@@ -87,11 +87,14 @@ export default {
         .then(successResponse => {
           this.responseResult = JSON.stringify(successResponse.data)
           if (successResponse.data.code === 200) {
+            this.$router.replace({path: '/home'})
             console.log(successResponse.data.data)
           }
-          console.log(successResponse.data)
         })
         .catch(failResponse => {})
+    },
+    toRegister () {
+      this.$router.replace({path: '/register'})
     }
   }
 }
