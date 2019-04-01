@@ -24,13 +24,13 @@ public class GoodsService {
     }
 
     //插入商品信息
-    public void insertService(int id, String title, int star, String name, String city) {
-        goodsMapper.insertGoods(id, title, star, name, city);
+    public void insertService(int id, String title, int star, String name, String city, int hot) {
+        goodsMapper.insertGoods(id, title, star, name, city, hot);
     }
 
     //根据id修改商品信息
-    public void updateService(int id, String title, int star, String name, String city) {
-        goodsMapper.updateGoods(id, title, star, name, city);
+    public void updateService(int id, String title, int star, String name, String city, int hot) {
+        goodsMapper.updateGoods(id, title, star, name, city, hot);
     }
 
     //根据id删除商品信息
