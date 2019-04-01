@@ -37,6 +37,7 @@ public class LoginController {
 
         String account=request.getParameter("account");
         String password=request.getParameter("password");
+        String sessionId=request.getParameter("sessionId");
         Hashtable hashtable=new Hashtable();//存放要返回的数据
         HttpSession session=request.getSession();//获取request请求里的session, 如果是第一次请求, 则会创建一个新的session
 
@@ -69,22 +70,27 @@ public class LoginController {
 
         String account=request.getParameter("account");
         String password=request.getParameter("password");
-        String telephone=request.getParameter("telephone");
+        String sessionId=request.getParameter("sessionId");
         Hashtable hashtable=new Hashtable();//存放要返回的数据
+        HttpSession session=request.getSession();//获取request请求里的session, 如果是第一次请求, 则会创建一个新的session
 
 
         if(account==null||password==null){
-            String message = String.format("注册失败，详细信息[用户名或密码为空]。");
+            String message = String.format("登陆失败，详细信息[用户名或密码为空]。");
             return ResultFactory.buildFailResult(message);
         }
         Users foundUser=usersService.selectUserByAccount(account);
         //System.out.println("account:"+account+" password:"+password);
-        if (!Objects.equals(foundUser.getAccount(), account)) {
-            String message = String.format("注册失败，详细信息[用户名已存在]。");
+        if (!Objects.equals(foundUser.getPassword(), password)) {
+            String message = String.format("登陆失败，详细信息[用户名、密码信息不正确]。");
             return ResultFactory.buildFailResult(message);
         }
-        usersService.toRegister(account,password,telephone);
-        String message = String.format("注册成功。");
-        return ResultFactory.buildSuccessResult(message);
+        session.setAttribute("account",account);
+        session.setAttribute("password",password);
+        System.out.println(session.getId());
+        hashtable.put("msg","登陆成功");
+        //hashtable.put("sessionId",session.getId());
+        //hashtable.put("session",session);
+        return ResultFactory.buildSuccessResult(hashtable);
     }
 }

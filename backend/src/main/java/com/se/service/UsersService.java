@@ -17,8 +17,4 @@ public class UsersService {
     public Users toLogin(String account, String password){
         return UsersMapper.filterByAccountAndPassword(account, password);
     }
-
-    public void toRegister(String account, String password,String telephone){
-        UsersMapper.insertUserInfoIntoUsers(account, password,telephone);
-    }
 }
