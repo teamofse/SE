@@ -1,4 +1,4 @@
- package com.se;
+package com.se;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
