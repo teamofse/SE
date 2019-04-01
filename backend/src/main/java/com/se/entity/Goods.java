@@ -6,6 +6,7 @@ public class Goods {
     private int star;
     private String name;
     private String city;
+    private int hot;
 
     public int getId() {
         return id;
@@ -45,5 +46,13 @@ public class Goods {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public int getHot() {
+        return hot;
+    }
+
+    public void setHot(int hot) {
+        this.hot = hot;
     }
 }

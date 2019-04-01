@@ -31,14 +31,16 @@ public class HomeController {
     //插入商品信息
     @RequestMapping("/insertGoods")
     public List<Goods> goodsInsert(){
-        goodsService.insertService(3, "朱一龙", 300, "bbb", "ccc");
+        goodsService.insertService(3, "朱一龙", 300, "bbb", "ccc", 5);
         return goodsService.queryByIdService();
     }
 
     //根据id修改商品信息
-    @RequestMapping("/updateGoods")
-    public List<Goods> goodsUpdate() {
-        goodsService.updateService(3, "ddd", 400, "eee", "fff");
+    @CrossOrigin
+    @ResponseBody
+    @RequestMapping(value="/updateGoods", method= RequestMethod.PUT, produces="application/json; charset=UTF-8")
+    public List<Goods> goodsUpdate(int id, String title, int star, String name, String city, int hot) {
+        goodsService.updateService(id, title, star, name, city, hot);
         return goodsService.queryByIdService();
     }
 
