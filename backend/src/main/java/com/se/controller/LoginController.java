@@ -54,8 +54,6 @@ public class LoginController {
         session.setAttribute("account",account);
         System.out.println(session.getId());
         hashtable.put("msg","登陆成功");
-        //hashtable.put("sessionId",session.getId());
-        //hashtable.put("session",session);
         return ResultFactory.buildSuccessResult(hashtable);
     }
     @CrossOrigin
