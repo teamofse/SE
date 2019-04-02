@@ -1,6 +1,6 @@
 package com.se.entity;
 
-public class Order {
+public class Orders {
     private int order_id;
     private int goods_id;
 
