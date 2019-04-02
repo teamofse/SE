@@ -19,8 +19,8 @@ public class ProfileService {
     }
 
     //根据用户id查询交易信息
-    public List<InfoDeal> queryBySoldIdService(int sold_id) {
-        return profileMapper.queryDealBySoldId(sold_id);
+    public List<Goods> queryByBuyIdService(String account) {
+        return profileMapper.queryDealByBuyId(account);
     }
 
     //根据id查询用户信息
@@ -36,6 +36,11 @@ public class ProfileService {
     //根据用户id查询未卖出信息
     public List<Goods> queryByOnSaleStateService(String order_state,String account) {
         return profileMapper.queryGoodByOnSaleStateId(order_state,account);
+    }
+
+    //根据id修改商品信息
+    public void updateAddrService(String account, String user_addr) {
+        profileMapper.updateAddr(account, user_addr);
     }
 
 }

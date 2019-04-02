@@ -24,27 +24,41 @@ public class ProfileController {
     public List<InfoDeal> dealQueryById(){
         return profileService.queryByIdService();
     }
-
+    @CrossOrigin
+    @ResponseBody
     //根据卖家id查询交易信息
-    @RequestMapping("/queryDealBySoldId")
-    public List<InfoDeal> dealQueryBySoldId() {
-        return profileService.queryBySoldIdService(1);
+    @RequestMapping("/queryDealByBuyId")
+    public List<Goods> dealQueryByBuyId() {
+        return profileService.queryByBuyIdService("cyy");
     }
+    @CrossOrigin
+    @ResponseBody
     //根据id查询用户信息
     @RequestMapping("/queryUserById")
     public Users userQueryById() {
         return profileService.queryByUserIdService("cyy");
     }
-
+    @CrossOrigin
+    @ResponseBody
     //根据用户id查询已卖出信息
     @RequestMapping("/queryGoodBySoldId")
     public List<Goods> goodQueryBySoldId() {
         return profileService.queryBySoldStateService("sold","cyy");
     }
-
+    @CrossOrigin
+    @ResponseBody
     //根据用户id查询未卖出信息
     @RequestMapping("/queryGoodByOnSaleId")
     public List<Goods> goodQueryByOnSaleId() {
         return profileService.queryByOnSaleStateService("onsale","cyy");
+    }
+
+    //根据id修改商品信息
+    @CrossOrigin
+    @ResponseBody
+    @RequestMapping(value="/updateAddr", method= RequestMethod.PUT, produces="application/json; charset=UTF-8")
+    public Users addrUpdate(String account, String user_addr) {
+        profileService.updateAddrService(account,user_addr);
+        return profileService.queryByUserIdService(account);
     }
 }

@@ -12,7 +12,7 @@
                 账号
               </dt>
               <dd>
-                dracomalfoy233
+                {{results.account}}
               </dd>
               </div>
               <div id="star">
@@ -20,20 +20,18 @@
                 我的星星
               </dt>
               <dd>
-                200
+                {{results.user_star}}
               </dd>
               </div>
               <div id="address">
               <dt>
                 地址
               </dt>
-              <dd id="add1">
-                山东省 威海市
-              </dd>
-              <dd id="add2">
-                哈尔滨工业大学
-              </dd>
-                <p id="modify"><a>修改地址</a></p>
+              <input id="add1" v-model="results.user_addr" placeholder="请输入地址" :disabled="seen">
+              <!--<dd id="add2">-->
+                <!--哈尔滨工业大学-->
+              <!--</dd>-->
+                <p id="modify"><a v-on:click="changevision" >{{message}}</a></p>
               </div>
             </dl>
           </div>
@@ -45,9 +43,44 @@
 </template>
 
 <script>
-export default {
+  export default {
+    name: 'psinfo',
+    data: function () {
+      return {
+        responseResult: [],
+        results: [],
+        seen: true,
+        message: '修改地址'
+      }
+    },
+    mounted: function () {
+      this.$axios
+        .get('/queryUserById')
+        .then(successResponse => {
+          this.responseResult = successResponse.data
+          this.results = this.responseResult
+          // console.log(this.responseResult)
+          // console.log(this.results)
+        })
+        .catch(failResponse => {
+        })
+    },
+    modifyaddr: function () {
 
-}
+    },
+    methods: {
+      changevision: function () {
+        if (this.message === '修改地址') {
+          this.message = '确定'
+          this.seen = false
+        } else {
+          this.message = '修改地址'
+          this.seen = true
+          console.log(this.results.user_addr)
+        }
+      }
+    }
+  }
 </script>
 
 <style scoped>

@@ -1,16 +1,16 @@
 <template id="sold">
     <div class="itemregion">
       <div class="item">
-        <div class="row clearfix">
+        <div class="row clearfix" v-for="result in results" :key="result">
           <div class="col-md-3 column">
             <img alt="140x140" src="../assets/logo.png" width="140" height="140"/>
           </div>
           <div class="col-md-9 column">
             <h2 class="heading">
-              Heading
+              {{result.title}}
             </h2>
             <p class="detail">
-              哈哈哈哈哈哈哈哈哈哈张云雷张云雷张云雷张云雷
+              {{result.name}}
             </p>
             <p>
               <a class="button" href="#"><span>View details</span></a>
@@ -18,49 +18,33 @@
           </div>
     </div>
       </div>
-      <div class="item">
-    <div class="row clearfix">
-      <div class="col-md-3 column">
-        <img alt="140x140" src="../assets/logo.png" width="140" height="140"/>
-      </div>
-      <div class="col-md-9 column">
-        <h2 class="heading">
-          Heading
-        </h2>
-        <p class="detail">
-          哈哈哈哈哈哈哈哈哈哈张云雷张云雷张云雷张云雷
-        </p>
-        <p>
-          <a class="button" href="#"><span>View details</span></a>
-        </p>
-      </div>
-    </div>
-      </div>
-        <div class="item">
-    <div class="row clearfix">
-      <div class="col-md-3 column">
-        <img alt="140x140" src="../assets/logo.png" width="140" height="140"/>
-      </div>
-      <div class="col-md-9 column">
-        <h2 class="heading">
-          Heading
-        </h2>
-        <p class="detail">
-          哈哈哈哈哈哈哈哈哈哈张云雷张云雷张云雷张云雷
-        </p>
-        <p>
-          <a class="button" href="#"><span>View details</span></a>
-        </p>
-      </div>
-    </div>
-        </div>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+  export default {
+    name: 'sold',
+    data: function () {
+      return {
+        responseResult: [],
+        results: []
+      }
+    },
+    mounted: function () {
+      this.$axios
+        .get('/queryGoodBySoldId')
+        .then(successResponse => {
+          this.responseResult = successResponse.data
+          this.results = this.responseResult
+          console.log(this.responseResult)
+          console.log(this.results)
+        })
+        .catch(failResponse => {
+        })
+    },
+    methods: {
+    }
+  }
 </script>
 
 <style scoped>
