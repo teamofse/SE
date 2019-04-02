@@ -194,8 +194,48 @@
 </template>
 
 <script>
+import qs from 'Qs'
 export default {
-  name: 'ItemInfo'
+  name: 'ItemInfo',
+  data: function () {
+    return {
+      itemInfo: {
+        itemId: ''
+      },
+      styleObject: {
+      },
+      responseResult: []
+    }
+  },
+  mounted: function () {
+    this.$axios
+      .post('/getiteminfopage', qs.stringify({
+        itemId: this.$route.params.itemInfo
+      }), {headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+        }})
+      .then(successResponse => {
+        this.responseResult = JSON.stringify(successResponse.data)
+        if (successResponse.data.code === 200) {
+          alert('注册成功!')
+          this.$router.replace({path: '/login'})
+          console.log(successResponse.data.data)
+        } else if (successResponse.data.code === 400) {
+          if (successResponse.data.data === '注册失败，详细信息[用户名或密码为空]。') {
+            alert(successResponse.data.data)
+          }
+        }
+      })
+      .catch(failResponse => {})
+  },
+  methods: {
+    toLogin () {
+      this.$router.replace({path: '/login'})
+    },
+    toRegister () {
+      this.$router.replace({path: '/register'})
+    }
+  }
 }
 </script>
 

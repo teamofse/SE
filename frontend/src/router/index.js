@@ -5,7 +5,7 @@ import login from '../components/login'
 import App from '../App'
 import HelloWorld from '../components/HelloWorld'
 import register from '../components/register'
-import ItemInfo from '../components/ItemInfo'
+import itemInfo from '../components/itemInfo'
 import psinfo from '../components/psinfo'
 import records from '../components/records'
 import commodity from '../components/commodity'
@@ -89,7 +89,7 @@ export default new Router({
         },
         {
           path: '/iteminfo',
-          component: ItemInfo
+          component: itemInfo
         }
       ]
     }

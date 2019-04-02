@@ -37,4 +37,9 @@ public class GoodsService {
     public void deleteService(int id) {
         goodsMapper.deleteGoods(id);
     }
+
+    //根据id查找商品信息
+    public Goods selectGoodsByItemId(int id) {
+        return goodsMapper.selectGoodsById(id);
+    }
 }
