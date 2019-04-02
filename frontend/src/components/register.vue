@@ -64,7 +64,7 @@
                   <button type="submit" v-on:click="checkForm" class="btn btn-default" >注册</button>
                 </div>
                 <div class="col-sm-5">
-                  <button type="submit" class="btn btn-default">登录</button>
+                  <button type="submit" v-on:click="toLogin" class="btn btn-default">登录</button>
                 </div>
               </div>
             </form>
@@ -128,6 +128,10 @@ export default {
             alert('注册成功!')
             this.$router.replace({path: '/login'})
             console.log(successResponse.data.data)
+          } else if (successResponse.data.code === 400) {
+            if (successResponse.data.data === '注册失败，详细信息[用户名或密码为空]。') {
+              alert(successResponse.data.data)
+            }
           }
         })
         .catch(failResponse => {})
