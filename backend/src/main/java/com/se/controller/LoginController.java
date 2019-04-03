@@ -54,8 +54,6 @@ public class LoginController {
         session.setAttribute("account",account);
         System.out.println(session.getId());
         hashtable.put("msg","登陆成功");
-        //hashtable.put("sessionId",session.getId());
-        //hashtable.put("session",session);
         return ResultFactory.buildSuccessResult(hashtable);
     }
     @CrossOrigin
@@ -71,20 +69,25 @@ public class LoginController {
         String password=request.getParameter("password");
         String telephone=request.getParameter("telephone");
         Hashtable hashtable=new Hashtable();//存放要返回的数据
-
+        System.out.print("account:"+account+",password:"+password+",telephone:"+telephone);
 
         if(account==null||password==null){
             String message = String.format("注册失败，详细信息[用户名或密码为空]。");
             return ResultFactory.buildFailResult(message);
         }
+
         Users foundUser=usersService.selectUserByAccount(account);
         //System.out.println("account:"+account+" password:"+password);
-        if (!Objects.equals(foundUser.getAccount(), account)) {
+        if (foundUser!=null) {
             String message = String.format("注册失败，详细信息[用户名已存在]。");
             return ResultFactory.buildFailResult(message);
         }
-        usersService.toRegister(account,password,telephone);
-        String message = String.format("注册成功。");
-        return ResultFactory.buildSuccessResult(message);
+        else{
+            usersService.toRegister(account,password,telephone);
+            String message = String.format("注册成功。");
+            return ResultFactory.buildSuccessResult(message);
+        }
+
+
     }
 }

@@ -6,10 +6,10 @@ public class Users {
     private int id;
     private String account;
     private String password;
+    private String user_star;
     private String user_tel;
     private String real_name;
     private String user_addr;
-
 
     public void setId(int id) {
         this.id = id;
@@ -33,6 +33,14 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUser_star() {
+        return user_star;
+    }
+
+    public void setUser_star(String user_star) {
+        this.user_star = user_star;
     }
 
     public String getUser_tel() {
