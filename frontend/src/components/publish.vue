@@ -1,11 +1,25 @@
 <template id="publish">
   <div class="container">
-    <div class="all">
-      <div class="publish_imag">
+    <div class="all col-md-12 column">
+      <div class="publish_imag col-md-8 column">
         <div><img src="../assets/publish_1.jpg" /></div>
+        <form name="imgForm" id="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
+          <input class="input-loc-img"  name="imgLocal" id="imgLocal" type='file' accept="image/*" @change="selectImg" />
+        </form>
         <div><img src="../assets/publish_1.jpg" /></div>
+        <form name="imgForm" id="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
+          <input class="input-loc-img"  name="imgLocal" id="imgLocal" type='file' accept="image/*" @change="selectImg" />
+        </form>
+        <div><img src="../assets/publish_1.jpg" /></div>
+        <form name="imgForm" id="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
+          <input class="input-loc-img"  name="imgLocal" id="imgLocal" type='file' accept="image/*" @change="selectImg" />
+        </form>
+        <div><img src="../assets/publish_1.jpg" /></div>
+        <form name="imgForm" id="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
+          <input class="input-loc-img"  name="imgLocal" id="imgLocal" type='file' accept="image/*" @change="selectImg" />
+        </form>
       </div>
-      <div class="right">
+      <div class="right col-md-4 column">
         <div class="discription">
           <form>
             <div>
@@ -59,10 +73,6 @@
             </div>
           </div>
     </div>
-    <div class="publish_imag">
-      <div><img src="../assets/publish_1.jpg" /></div>
-      <div><img src="../assets/publish_1.jpg" /></div>
-    </div>
   </div>
 </template>
 
@@ -85,6 +95,11 @@ import qs from 'Qs'
             isChecked: false
           },
           {
+            label: '家居家纺',
+            value: '4',
+            isChecked: false
+          },
+          {
             label: '母婴',
             value: '2',
             isChecked: false
@@ -92,11 +107,6 @@ import qs from 'Qs'
           {
             label: '美妆',
             value: '3',
-            isChecked: false
-          },
-          {
-            label: '家居家纺',
-            value: '4',
             isChecked: false
           },
           {
@@ -158,6 +168,10 @@ import qs from 'Qs'
         this.GoodsInfo.class_id = this.radios[index].value
         this.radios[index].isChecked = true
       }
+    },
+    selectImg () {
+      let form = document.getElementById('imgLocal')
+      form.submit()
     }
   }
 
@@ -203,9 +217,10 @@ import qs from 'Qs'
     height: 25px;
     vertical-align: middle;
     cursor: pointer;
-    background-image: url(../assets/radio.png);
     background-repeat: no-repeat;
     background-position: 0 0;
+    background-image: url(../assets/radio.png);
+    background-size : 100% 100%;
   }
   .input-radio {
     display: inline-block;
