@@ -137,7 +137,7 @@ export default {
         .catch(failResponse => {})
     },
     toLogin () {
-      this.$router.replace({path: '/login?account=' + this.userInfo.account})
+      this.$router.push({path: '/login?account=' + this.userInfo.account})
     }
   }
 }
