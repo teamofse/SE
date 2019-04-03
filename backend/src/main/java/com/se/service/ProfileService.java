@@ -39,8 +39,8 @@ public class ProfileService {
     }
 
     //根据id修改商品信息
-    public void updateAddrService(String account, String user_addr) {
-        profileMapper.updateAddr(account, user_addr);
+    public void updateAddrService(String user_addr, String account) {
+        profileMapper.updateAddr(user_addr, account);
     }
 
 }
