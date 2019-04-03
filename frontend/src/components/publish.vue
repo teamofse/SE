@@ -12,28 +12,28 @@
               <p>
                 <span style="font-size:large; "><strong>标题</strong></span>
                 <br/>
-                <textarea name="reworkmes" cols="40" rows="1"  placeholder="品类品牌型号都是买家喜欢搜索的" style="OVERFLOW:   hidden"></textarea>
+                <textarea name="goods_name" v-model="GoodsInfo.goods_name" cols="40" rows="1"  placeholder="品类品牌型号都是买家喜欢搜索的" style="OVERFLOW:   hidden"></textarea>
               </p>
             </div>
+            <div id="class">
                 <p>宝贝类别：</p>
-                <input type="radio" name="checkbok" value="衣服">衣服
-                <input type="radio" name="checkbok" value="衣服">衣服
-                <input type="radio" name="checkbok" value="衣服">衣服
-                <input type="radio" name="checkbok" value="衣服">衣服
-                <input type="radio" name="checkbok" value="衣服">衣服
-                <input type="radio" name="checkbok" value="衣服">衣服
-                <br/>
+              <div class="radio-box" v-for="(item,index) in radios" :key="item.id">
+                <span class="radio" :class="{'on':item.isChecked}"></span>
+                <input v-model="GoodsInfo.class_id" :value="item.value" class="input-radio" :checked='item.isChecked'  @click="check(index)" type="radio">{{item.label}}
+              </div>
+              <br/>
+            </div>
                 <br/>
                 <p>宝贝详情：</p>
-                <textarea name="reworkmes" cols="40" rows="4" style="OVERFLOW:   hidden"></textarea>
+                <textarea name="goods_detail" v-model="GoodsInfo.goods_detail"  cols="40" rows="4" style="OVERFLOW:   hidden"></textarea>
                 <br/>
                 <div><p>价格：</p></div>
-                <textarea name="reworkmes" cols="40" rows="1" placeholder="                                                               元" style="OVERFLOW:   hidden"></textarea>
+                <textarea name="price"  v-model="GoodsInfo.price" cols="40" rows="1" placeholder="                                                               星星" style="OVERFLOW:   hidden"></textarea>
                 <br/>
                 <br/>
               </form>
               <div class="publish">
-                <button type="button" id="modal-140183" href="#modal-container-140183" role="button" class="btn btn-default btn-block" data-toggle="modal">发布</button>
+                <button type="button" id="modal-140183" href="#modal-container-140183" v-on:click="publish" role="button" class="btn btn-default btn-block" data-toggle="modal">发布</button>
               </div>
 
               <div class="modal fade" id="modal-container-140183" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -67,7 +67,98 @@
 </template>
 
 <script>
+import qs from 'Qs'
+
   export default {
+    name: 'publish',
+    data: function () {
+      return {
+        radios: [
+          {
+            label: '女装',
+            value: '0',
+            isChecked: false
+          },
+          {
+            label: '男装',
+            value: '1',
+            isChecked: false
+          },
+          {
+            label: '母婴',
+            value: '2',
+            isChecked: false
+          },
+          {
+            label: '美妆',
+            value: '3',
+            isChecked: false
+          },
+          {
+            label: '家居家纺',
+            value: '4',
+            isChecked: false
+          },
+          {
+            label: '数码家电',
+            value: '5',
+            isChecked: false
+          },
+          {
+            label: '手表配饰',
+            value: '6',
+            isChecked: false
+          },
+          {
+            label: '男女内衣',
+            value: '7',
+            isChecked: false
+          },
+          {
+            label: '鞋包',
+            value: '8',
+            isChecked: false
+          },
+          {
+            label: '生活小物',
+            value: '9',
+            isChecked: false
+          }
+        ],
+        GoodsInfo: {
+          goods_id: '',
+          goods_name: '',
+          price: '',
+          goods_detail: '',
+          class_id: ''
+        },
+        responseResult: []
+      }
+    },
+    methods: {
+      publish () {
+        this.$axios.post('/insertGoodsInformation', qs.stringify({
+          goods_id: '0',
+          goods_name: this.GoodsInfo.goods_name,
+          price: this.GoodsInfo.price,
+          goods_detail: this.GoodsInfo.goods_detail,
+          class_id: this.GoodsInfo.class_id
+        }))
+          .then(successResponse => {
+          this.responseResult = successResponse.data
+          console.log(successResponse.data)
+        })
+          .catch(failResponse => {
+          })
+      },
+      check (index) {
+        this.radios.forEach((item) => {
+          item.isChecked = false
+        })
+        this.GoodsInfo.class_id = this.radios[index].value
+        this.radios[index].isChecked = true
+      }
+    }
   }
 
 </script>
@@ -98,5 +189,36 @@
   }
   .all{
     margin-top:30px;
+  }
+  .radio-box{
+    display: inline-block;
+    position: relative;
+    height: 25px;
+    line-height: 25px;
+    margin-right: 5px;
+  }
+  .radio {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: url(../assets/radio.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+  }
+  .input-radio {
+    display: inline-block;
+    position: absolute;
+    opacity: 0;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    left: 0px;
+    outline: none;
+    -webkit-appearance: none;
+  }
+  .on {
+    background-position: -25px 0;
   }
 </style>

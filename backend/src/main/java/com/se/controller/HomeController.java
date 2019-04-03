@@ -1,11 +1,11 @@
 package com.se.controller;
 
 import com.se.entity.Goods;
+import com.se.entity.GoodsInformation;
 import com.se.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -31,9 +31,17 @@ public class HomeController {
     //插入商品信息
     @RequestMapping("/insertGoods")
     public List<Goods> goodsInsert(){
-        goodsService.insertService(3, "朱一龙", 300, "bbb", "ccc", 5);
+        goodsService.insertService(50, "朱一龙", 300, "bbb", "ccc", 5);
         return goodsService.queryByIdService();
     }
+
+    //发布时插入商品信息
+    /*@RequestMapping("/insertGoodsInformation")
+    private List<GoodsInformation> goodsinformationInsert(){
+       goodsService.insert_Service(0, "11", 400, "2",  10 );
+       return goodsService.query_ByIdService();
+    }*/
+
 
     //根据id修改商品信息
     @CrossOrigin
