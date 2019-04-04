@@ -96,6 +96,7 @@
 </template>
 
 <script>
+import qs from 'Qs'
 export default {
   name: 'home',
   data: function () {
@@ -152,17 +153,29 @@ export default {
       return arr
     },
     addHot: function (id, title, star, name, city, hot) {
-      var newId = this.id
-      var newTitle = this.title
-      var newStar = this.star
-      var newName = this.name
-      var newCity = this.city
-      var newHot = this.hot++
+      var newId = id
+      var newTitle = title
+      var newStar = star
+      var newName = name
+      var newCity = city
+      var newHot = hot + 1
       this.$axios
-        .put('/updateGoods', {id: newId, title: newTitle, star: newStar, name: newName, city: newCity, hot: newHot})
+        .put('/updateGoods', qs.stringify({
+          id: newId,
+          title: newTitle,
+          star: newStar,
+          name: newName,
+          city: newCity,
+          hot: newHot
+        }), {headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+          }})
         .then(successResponse => {
-          this.responseResult = successResponse.data
-          console.log(successResponse.data)
+          this.responseResult = JSON.stringify(successResponse.data)
+          if (successResponse.data.code === 200) {
+            this.$router.push({path: '/itemInfo?itemid=id'})
+            console.log(successResponse.data.data)
+          }
         })
         .catch(failResponse => {
         })

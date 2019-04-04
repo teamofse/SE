@@ -63,9 +63,11 @@
 </template>
 
 <script>
+import navigationbar from './navigationbar'
 import qs from 'Qs'
 export default {
   name: 'Login',
+  components: { navigationbar },
   data: function () {
     return {
       loginInfo: {
@@ -87,14 +89,17 @@ export default {
         .then(successResponse => {
           this.responseResult = JSON.stringify(successResponse.data)
           if (successResponse.data.code === 200) {
-            this.$router.replace({path: '/home'})
+            this.$store.dispatch('toLogin')
+            this.$router.push({path: '/home'})
             console.log(successResponse.data.data)
           }
         })
-        .catch(failResponse => {})
+        .catch(err => {
+          this.$message.error(err)
+        })
     },
     toRegister () {
-      this.$router.replace({path: '/register'})
+      this.$router.push({path: '/register'})
     }
   }
 }
