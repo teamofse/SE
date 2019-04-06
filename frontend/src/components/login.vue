@@ -1,5 +1,6 @@
 <template>
   <div class="container clogin">
+    <navigation-bar></navigation-bar>
     <div class="row clearfix">
       <div class="col-md-12 column">
         <div class="row clearfix">
@@ -63,11 +64,11 @@
 </template>
 
 <script>
-import navigationbar from './navigationbar'
+import NavigationBar from './navigationbar'
 import qs from 'Qs'
 export default {
   name: 'Login',
-  components: { navigationbar },
+  components: { NavigationBar },
   data: function () {
     return {
       loginInfo: {

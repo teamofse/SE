@@ -1,4 +1,4 @@
-<navigationbar>
+<template>
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <img class="logo" alt="logo" src="static/img/logo.png" />
     <h2 class="web-name">
@@ -25,11 +25,11 @@
     </h2>
   </nav>
 
-</navigationbar>
+</template>
 
 <script>
 export default {
-  name: 'navigationbar'
+  name: 'NavigationBar'
 }
 </script>
 
