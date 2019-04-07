@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <navigation-bar></navigation-bar>
     <div class="row clearfix">
       <div class="col-md-12 column">
         <div class="row clearfix">
@@ -78,9 +79,11 @@
 </template>
 
 <script>
+import NavigationBar from './navigationbar'
 import qs from 'Qs'
 export default {
   name: 'register',
+  components: { NavigationBar },
   data: function () {
     return {
       userInfo: {
