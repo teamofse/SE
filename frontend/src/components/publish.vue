@@ -1,22 +1,23 @@
 <template id="publish">
   <div class="container">
+    <navigation-bar></navigation-bar>
     <div class="all col-md-12 column">
       <div class="publish_imag col-md-8 column">
         <div><img src="../assets/publish_1.jpg" /></div>
-        <form name="imgForm" id="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
-          <input class="input-loc-img"  name="imgLocal" id="imgLocal" type='file' accept="image/*" @change="selectImg" />
+        <form name="imgForm" class="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
+          <input class="input-loc-img imgLocal"  name="imgLocal" type='file' accept="image/*" @change="selectImg" />
         </form>
         <div><img src="../assets/publish_1.jpg" /></div>
-        <form name="imgForm" id="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
-          <input class="input-loc-img"  name="imgLocal" id="imgLocal" type='file' accept="image/*" @change="selectImg" />
+        <form name="imgForm" class="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
+          <input class="input-loc-img imgLocal"  name="imgLocal" type='file' accept="image/*" @change="selectImg" />
         </form>
         <div><img src="../assets/publish_1.jpg" /></div>
-        <form name="imgForm" id="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
-          <input class="input-loc-img"  name="imgLocal" id="imgLocal" type='file' accept="image/*" @change="selectImg" />
+        <form name="imgForm" class="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
+          <input class="input-loc-img imgLocal"  name="imgLocal" type='file' accept="image/*" @change="selectImg" />
         </form>
         <div><img src="../assets/publish_1.jpg" /></div>
-        <form name="imgForm" id="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
-          <input class="input-loc-img"  name="imgLocal" id="imgLocal" type='file' accept="image/*" @change="selectImg" />
+        <form name="imgForm" class="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
+          <input class="input-loc-img imgLocal"  name="imgLocal" type='file' accept="image/*" @change="selectImg" />
         </form>
       </div>
       <div class="right col-md-4 column">
@@ -78,9 +79,11 @@
 
 <script>
 import qs from 'Qs'
+import NavigationBar from './navigationbar'
 
   export default {
     name: 'publish',
+    components: {NavigationBar},
     data: function () {
       return {
         radios: [
