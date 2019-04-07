@@ -6,22 +6,25 @@
       <div class="top">
         <ul class="nav navbar-nav">
           <li>
-            <a href="#">首页</a>
+            <a href="/home">首页</a>
           </li>
           <li>
-            <a href="#">商品</a>
+            <a href="/list">商品</a>
           </li>
           <li>
             <a href="#">关于我们</a>
           </li>
-          <li>
-            <a v-if="!isLogin" href="/login">登录</a>
+          <li :class="{'colordisplay':seenlog}">
+            <a href="#/login">登录</a>
           </li>
-          <li>
-            <a v-if="!isLogin" href="/register">注册</a>
+          <li :class="{'colordisplay':seenlog}">
+            <a href="/register">注册</a>
           </li>
-          <li>
-            <a v-if="isLogin" href="/psinfo">我的</a>
+          <li :class="{'colordisplay':seen}">
+            <a href="/psinfo">{{results.account}}</a>
+          </li>
+          <li :class="{'colordisplay':seen}">
+            <a href="/publish">发布</a>
           </li>
         </ul>
       </div>
@@ -31,27 +34,38 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
-import loginStatus from '../store/modules/loginStatus'
 export default {
   name: 'NavigationBar',
   data: function () {
     return {
+      responseResult: [],
+      results: [],
+      seen: true,
+      seenlog: false
     }
   },
-  computed: {
-    ...mapState('loginStatus', [
-      'isLogin'
-    ]),
-    isLogin () {
-      return loginStatus.state.isLogin
-    }
-  }
+  mounted: function () {
+    this.$axios
+      .get('/queryUserById')
+      .then(successResponse => {
+        this.responseResult = successResponse.data
+        this.results = this.responseResult
+        if (this.results.account != null) {
+          this.seen = false
+          this.seenlog = true
+        }
+        // console.log(this.responseResult)
+        // console.log(this.results)
+      })
+      .catch(failResponse => {
+      })
+  },
+  methods: {}
 }
 </script>
 
 <style scoped>
-.isDisplay{
-  display: none;
-}
+  .colordisplay {
+    display: none;
+  }
 </style>
