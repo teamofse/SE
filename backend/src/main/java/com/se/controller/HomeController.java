@@ -25,8 +25,13 @@ public class HomeController {
     @CrossOrigin
     @ResponseBody
     //查询所有商品信息
-    @RequestMapping(value="/queryGoodsById", method= RequestMethod.GET, produces="application/json; charset=UTF-8")
-    public List<Goods> goodsQueryById(){
+    @RequestMapping(value = "/queryGoodsById", method= RequestMethod.GET, produces="application/json; charset=UTF-8")
+    public List<Goods> goodsQueryById(HttpServletRequest request, HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
+        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+        response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
+//        HttpSession session=request.getSession();
         return goodsService.queryByIdService();
     }
 

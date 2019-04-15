@@ -1,15 +1,16 @@
 <template>
   <div class="container clogin">
+    <navigation-bar></navigation-bar>
     <div class="row clearfix">
       <div class="col-md-12 column">
         <div class="row clearfix">
           <div class="col-md-4 column">
           </div>
           <div class="col-md-4 column">
-            <span style="font-size: 100px;color: #ea5445">G</span>
-            <span style="font-size: 100px;color: #5bea4b">K</span>
-            <span style="font-size: 100px;color: #e9ea3f">X</span>
-            <span style="font-size: 100px;color: #0dd4ea">W</span>
+            <span style="font-size: 66px;color: #000000">隔</span>
+            <span style="font-size: 66px;color: #000000">空</span>
+            <span style="font-size: 66px;color: #000000">享</span>
+            <span style="font-size: 66px;color: #000000">物</span>
           </div>
           <div class="col-md-4 column">
           </div>
@@ -63,9 +64,13 @@
 </template>
 
 <script>
+import NavigationBar from './navigationbar'
+import {mapState} from 'vuex'
 import qs from 'Qs'
+import loginStatus from '../store/modules/loginStatus'
 export default {
   name: 'Login',
+  components: { NavigationBar },
   data: function () {
     return {
       loginInfo: {
@@ -73,6 +78,14 @@ export default {
         password: ''
       },
       responseResult: []
+    }
+  },
+  computed: {
+    ...mapState('loginStatus', [
+      'isLogin'
+    ]),
+    isLogin () {
+      return loginStatus.state.isLogin
     }
   },
   methods: {
@@ -87,14 +100,19 @@ export default {
         .then(successResponse => {
           this.responseResult = JSON.stringify(successResponse.data)
           if (successResponse.data.code === 200) {
-            this.$router.replace({path: '/home'})
-            console.log(successResponse.data.data)
+            this.$store.dispatch('toLogin')
+            // console.log('isLogin:')
+            // console.log(this.isLogin)
+            this.$router.push({path: '/home'})
+            // console.log(successResponse.data.data)
           }
         })
-        .catch(failResponse => {})
+        .catch(err => {
+          this.$message.error(err)
+        })
     },
     toRegister () {
-      this.$router.replace({path: '/register'})
+      this.$router.push({path: '/register'})
     }
   }
 }
