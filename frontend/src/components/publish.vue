@@ -203,8 +203,11 @@ import qs from 'Qs'
     height: 25px;
     vertical-align: middle;
     cursor: pointer;
+    border: solid 2px #843534;
     background-image: url(../assets/radio.png);
+    background-attachment: fixed;
     background-repeat: no-repeat;
+    background-size: 100% 100%;
     background-position: 0 0;
   }
   .input-radio {
