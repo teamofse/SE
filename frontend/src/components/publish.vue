@@ -2,27 +2,43 @@
   <div class="container">
     <navigation-bar></navigation-bar>
     <div class="all col-md-12 column">
+      <form :model="GoodsInfo" ref="GoodsInfo" :rules="ruleInline">
       <div class="publish_imag col-md-8 column">
         <div><img src="../assets/publish_1.jpg" /></div>
         <form name="imgForm" class="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
-          <input class="input-loc-img imgLocal"  name="imgLocal" type='file' accept="image/*" @change="selectImg" />
+        <input class="input-loc-img imgLocal"  name="imgLocal" type='file' accept="image/*" @change="selectImg" />
         </form>
+
         <div><img src="../assets/publish_1.jpg" /></div>
         <form name="imgForm" class="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
           <input class="input-loc-img imgLocal"  name="imgLocal" type='file' accept="image/*" @change="selectImg" />
         </form>
+
         <div><img src="../assets/publish_1.jpg" /></div>
         <form name="imgForm" class="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
           <input class="input-loc-img imgLocal"  name="imgLocal" type='file' accept="image/*" @change="selectImg" />
         </form>
+
         <div><img src="../assets/publish_1.jpg" /></div>
-        <form name="imgForm" class="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
-          <input class="input-loc-img imgLocal"  name="imgLocal" type='file' accept="image/*" @change="selectImg" />
-        </form>
+
+        <FormItem label="宝贝图片 : ">
+          <div>
+            <input type="file" @change="doUpload" ref="inputFile"/>
+            <Icon type="ios-plus-empty" class="uploadIcon"></Icon>
+
+            <div v-show="categoryLogoIsShow">
+              <img :src="GoodsInfo.goods_name" @click="$refs.inputFile.click()"/>
+            </div>
+          </div>
+          <div v-show="categoryLogoIsShow" style="text-align: left;">
+            <Icon type="information-circled"></Icon>
+            可点击图片重新选择
+          </div>
+        </FormItem>
+
       </div>
       <div class="right col-md-4 column">
         <div class="discription">
-          <form>
             <div>
               <p>
                 <span style="font-size:large; "><strong>标题</strong></span>
@@ -32,9 +48,8 @@
             </div>
             <div id="class">
                 <p>宝贝类别：</p>
-              <div class="radio-box" v-for="(item,index) in radios" :key="item.id">
-                <span class="radio" :class="{'on':item.isChecked}"></span>
-                <input v-model="GoodsInfo.class_id" :value="item.value" class="input-radio" :checked='item.isChecked'  @click="check(index)" type="radio">{{item.label}}
+              <div v-for="(item,index) in radios" :key="item.id">
+                <input v-model="GoodsInfo.class_id" :value="item.value"  name="input-radio"  @click="check(index)" type="radio">{{item.label}}
               </div>
               <br/>
             </div>
@@ -46,7 +61,6 @@
                 <textarea name="price"  v-model="GoodsInfo.price" cols="40" rows="1" placeholder="                                                               星星" style="OVERFLOW:   hidden"></textarea>
                 <br/>
                 <br/>
-              </form>
               <div class="publish">
                 <button type="button" id="modal-140183" href="#modal-container-140183" v-on:click="publish" role="button" class="btn btn-default btn-block" data-toggle="modal">发布</button>
               </div>
@@ -73,6 +87,7 @@
               </div>
             </div>
           </div>
+      </form>
     </div>
   </div>
 </template>
@@ -82,10 +97,12 @@ import qs from 'Qs'
 import NavigationBar from './navigationbar'
 
   export default {
-    name: 'publish',
-    components: {NavigationBar},
-    data: function () {
+      name: 'publish',
+      components: {NavigationBar},
+
+      data: function () {
       return {
+        total: { isShow:false,text:""} ,
         radios: [
           {
             label: '女装',
@@ -143,7 +160,25 @@ import NavigationBar from './navigationbar'
           goods_name: '',
           price: '',
           goods_detail: '',
-          class_id: ''
+          class_id: '',
+          goods_picture_4: ''
+        },
+        ruleInline: {
+          goods_name: [
+            {required: true, message: '寶貝標題不能为空', trigger: 'blur'},
+          ],
+          price: [
+            {required: true, message: '寶貝價格不能为空', trigger: 'blur'},
+          ],
+          goods_detail: [
+            {required: true, message: '宝贝详情不能为空', trigger: 'blur'},
+          ],
+          class_id: [
+            {required: true, message: '宝贝分类不能为空', trigger: 'blur'},
+          ],
+          goods_picture_4: [
+            {required: true, message: '宝贝图片不能为空', trigger: 'blur'},
+          ]
         },
         responseResult: []
       }
@@ -155,12 +190,13 @@ import NavigationBar from './navigationbar'
           goods_name: this.GoodsInfo.goods_name,
           price: this.GoodsInfo.price,
           goods_detail: this.GoodsInfo.goods_detail,
-          class_id: this.GoodsInfo.class_id
+          class_id: this.GoodsInfo.class_id,
+          goods_picture_4: this.GoodsInfo.goods_picture_4
         }))
           .then(successResponse => {
-          this.responseResult = successResponse.data
-          console.log(successResponse.data)
-        })
+            this.responseResult = successResponse.data
+            console.log(successResponse.data)
+          })
           .catch(failResponse => {
           })
       },
@@ -170,11 +206,19 @@ import NavigationBar from './navigationbar'
         })
         this.GoodsInfo.class_id = this.radios[index].value
         this.radios[index].isChecked = true
-      }
-    },
-    selectImg () {
-      let form = document.getElementById('imgLocal')
-      form.submit()
+      },
+      doUpload(files) {
+        var that = this;
+        this.uploadOneImage(files, function (err, data) {
+          if (err) {
+            that.formItem.fc_icon = data.url;
+            that.organizationLogoIsShow = true;
+          } else {
+            alert("图片上传失败");
+          }
+
+        });
+      },
     }
   }
 
@@ -207,40 +251,5 @@ import NavigationBar from './navigationbar'
   .all{
     margin-top:30px;
   }
-  .radio-box{
-    display: inline-block;
-    position: relative;
-    height: 25px;
-    line-height: 25px;
-    margin-right: 5px;
-  }
-  .radio {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    vertical-align: middle;
-    cursor: pointer;
-    border: solid 2px #843534;
-    background-image: url(../assets/radio.png);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-position: 0 0;
-    background-image: url(../assets/radio.png);
-    background-size : 100% 100%;
-  }
-  .input-radio {
-    display: inline-block;
-    position: absolute;
-    opacity: 0;
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-    left: 0px;
-    outline: none;
-    -webkit-appearance: none;
-  }
-  .on {
-    background-position: -25px 0;
-  }
+
 </style>
