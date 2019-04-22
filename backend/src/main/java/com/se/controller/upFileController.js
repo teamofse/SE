@@ -8,7 +8,7 @@ function dataInput(req, res) {
             return console.log(err);
         }
         //文件信息在req.file或者req.files中显示。
-        let photoPath = req.file.path;
+        var photoPath = req.file.path;
         photoPath = photoPath.replace(/public/,"");//将文件路径中的public\去掉，否则会和静态资源配置冲突
         //将photoPath存入数据库即可
         console.log(photoPath);
@@ -16,5 +16,5 @@ function dataInput(req, res) {
     });
 }
 module.exports = {
-    dataInput
+    //dataInput
 };

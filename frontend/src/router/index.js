@@ -14,6 +14,7 @@ import onsale from '../components/onsale'
 import home from '../components/home'
 import list from '../components/list'
 import publish from '../components/publish'
+import uploadfile from '../components/uploadfile'
 
 Vue.use(Router)
 
@@ -58,6 +59,10 @@ export default new Router({
         {
           path: '/hello',
           component: HelloWorld
+        },
+        {
+          path: '/upload',
+          component: uploadfile
         },
         {
           path: '/profile',
