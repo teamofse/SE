@@ -30,9 +30,15 @@ public class GoodsService {
     }
 
     //发布时插入商品信息
+<<<<<<< HEAD
     public void insert_Service(int goods_id,String goods_name,int price,String goods_detail,int class_id)
     {
         goodsMapper.insertGoodsInformation(goods_id, goods_name, price, goods_detail, class_id);
+=======
+    public void insert_Service(int goods_id,String goods_name,int price,String goods_detail,int class_id,String goods_picture_4)
+    {
+        goodsMapper.insertGoodsInformation(goods_id, goods_name, price, goods_detail, class_id, goods_picture_4);
+>>>>>>> parent of 3ceed98... 给陈煜元看！
 }
 
     //插入商品信息
