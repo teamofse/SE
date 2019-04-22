@@ -14,8 +14,9 @@
           <div id="btnUpload3" @change="upload"><img src="../assets/publish_1.jpg" alt="" /></div>
 
           <form id="fm" method="post" action="">
-          <input type="file" name="file_upload2" id = "uplx" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  @change="upload" >
-          <div id="btnUpload" @change="upload"><img src="../assets/publish_1.jpg" alt="" /></div>
+          <input type="file" name="file_upload2" id = "uplx" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  onchange="imgPreview(this)" >
+            <button type="button"  v-on:click="upload" role="button" class="btn btn-default btn-block" data-toggle="modal">发布</button>
+          <div id="btnUpload" @change="publish"><img src="../assets/publish_1.jpg" alt="" /></div>
           </form>
         </div>
         <div class="right">
@@ -55,6 +56,7 @@
 
 <script>
 import qs from 'Qs'
+import $ from 'jquery'
 
 export default {
   name: 'publish',
@@ -118,7 +120,7 @@ export default {
         price: '',
         goods_detail: '',
         class_id: '',
-        goods_picture_4: ''
+        goods_picture_1: ''
       },
       ruleInline: {
         goods_name: [
@@ -133,7 +135,7 @@ export default {
         class_id: [
           {required: true, message: '宝贝分类不能为空', trigger: 'blur'}
         ],
-        goods_picture_4: [
+        goods_picture_1: [
           {required: true, message: '宝贝图片不能为空', trigger: 'blur'}
         ]
       },
@@ -149,7 +151,7 @@ export default {
         price: this.GoodsInfo.price,
         goods_detail: this.GoodsInfo.goods_detail,
         class_id: this.GoodsInfo.class_id,
-        goods_picture_4: this.GoodsInfo.goods_picture_4
+        goods_picture_1: '1000'
       }))
         .then(successResponse => {
           this.responseResult = successResponse.data
@@ -169,7 +171,7 @@ export default {
   upload: function () {
     var formData = new FormData()
     formData.append('file', this.$('#uplx')[0].files[0])
-    this.$.ajax({
+    $.ajax({
       type: 'post',
       dataType: 'json',
       data: formData,

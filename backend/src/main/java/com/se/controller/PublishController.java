@@ -23,11 +23,11 @@ public class PublishController {
     private GoodsService goodsService;
 
     //发布时插入商品信息
-    /*@RequestMapping("/insertGoodsInformation")
+    @RequestMapping("/insertGoodsInformation")
     private List<GoodsInformation> goodsinformationInsert(){
-        goodsService.insert_Service(0, "11", 400, "2",  10 );
+        goodsService.insert_Service(0, "11", 400, "2",  10 ,"111");
        return goodsService.query_ByIdService();
-    }*/
+    }
 
     @CrossOrigin
     @ResponseBody
@@ -45,15 +45,16 @@ public class PublishController {
         int class_id=Integer.valueOf(request.getParameter("class_id"));
 
         goodsService.insert_Service(0, goods_name, price, goods_detail,  class_id ,"111");
+        //goodsService.insert_Service(0, goods_name, price, goods_detail, class_id );
         return goodsService.query_ByIdService();
     }
-
+    @CrossOrigin
     @ResponseBody
-    @RequestMapping("/addData")
+    @RequestMapping(value="/addData")
     public Map<String,Object> adddata(@RequestParam MultipartFile file,HttpServletRequest request  ) throws IOException
     {
         Map<String,Object> map=new HashMap<String,Object>();
-        //使用UUID给图片重命名，并去掉四个“-”
+        //        //使用UUID给图片重命名，并去掉四个“-”
         String name = UUID.randomUUID().toString().replaceAll("-", "");
         //获取文件的扩展名
         String ext = FilenameUtils.getExtension(file.getOriginalFilename());

@@ -52,11 +52,6 @@ public class LoginController {
             return ResultFactory.buildFailResult(message);
         }
         session.setAttribute("account",account);
-        if (session.isNew()) {
-            System.out.println("session创建成功，session的id是："+session.getId());
-        }else {
-            System.out.println("服务器已经存在session，session的id是："+session.getId());
-        }
         System.out.println(session.getId());
         hashtable.put("msg","登陆成功");
         return ResultFactory.buildSuccessResult(hashtable);
