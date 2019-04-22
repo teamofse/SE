@@ -1,6 +1,5 @@
 <template>
 <div class="container" id="profile-box">
-  <navigation-bar></navigation-bar>
   <div class="row clearfix">
     <div class="col-md-12 column">
   <div class="row clearfix">
@@ -33,10 +32,8 @@
 </template>
 
 <script>
-  import NavigationBar from './navigationbar'
 export default {
-  name: 'profile',
-  components: { NavigationBar }
+
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

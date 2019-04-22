@@ -126,7 +126,7 @@
                 <div style="width: 100%;float: left;clear:left;">
                   <span style="float: left;display: inline-block;">介绍</span>
                   <span style="float: left;display: inline-block">:</span>
-                  <p v-bind:disabled="!itemInfo.isLogin">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                  <p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
                     哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
                     哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
                     哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
@@ -200,8 +200,7 @@ export default {
   data: function () {
     return {
       itemInfo: {
-        itemId: '',
-        isLogin: this.$store.isLogin
+        itemId: ''
       },
       styleObject: {
       },
@@ -211,7 +210,7 @@ export default {
   mounted: function () {
     this.$axios
       .post('/getiteminfopage', qs.stringify({
-        itemId: this.$route.params.itemid
+        itemId: this.$route.params.itemInfo
       }), {headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
         }})
