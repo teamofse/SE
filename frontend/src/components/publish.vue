@@ -31,55 +31,56 @@
               </p>
             </div>
             <div id="class">
-              <p>宝贝类别：</p>
+                <p>宝贝类别：</p>
               <div class="radio-box" v-for="(item,index) in radios" :key="item.id">
                 <span class="radio" :class="{'on':item.isChecked}"></span>
                 <input v-model="GoodsInfo.class_id" :value="item.value" class="input-radio" :checked='item.isChecked'  @click="check(index)" type="radio">{{item.label}}
               </div>
               <br/>
             </div>
-            <br/>
-            <p>宝贝详情：</p>
-            <textarea name="goods_detail" v-model="GoodsInfo.goods_detail"  cols="40" rows="4" style="OVERFLOW:   hidden"></textarea>
-            <br/>
-            <div><p>价格：</p></div>
-            <textarea name="price"  v-model="GoodsInfo.price" cols="40" rows="1" placeholder="                                                               星星" style="OVERFLOW:   hidden"></textarea>
-            <br/>
-            <br/>
-          </form>
-          <div class="publish">
-            <button type="button" id="modal-140183" href="#modal-container-140183" v-on:click="publish" role="button" class="btn btn-default btn-block" data-toggle="modal">发布</button>
-          </div>
+                <br/>
+                <p>宝贝详情：</p>
+                <textarea name="goods_detail" v-model="GoodsInfo.goods_detail"  cols="40" rows="4" style="OVERFLOW:   hidden"></textarea>
+                <br/>
+                <div><p>价格：</p></div>
+                <textarea name="price"  v-model="GoodsInfo.price" cols="40" rows="1" placeholder="                                                               星星" style="OVERFLOW:   hidden"></textarea>
+                <br/>
+                <br/>
+              </form>
+              <div class="publish">
+                <button type="button" id="modal-140183" href="#modal-container-140183" v-on:click="publish" role="button" class="btn btn-default btn-block" data-toggle="modal">发布</button>
+              </div>
 
-          <div class="modal fade" id="modal-container-140183" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="success">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="height:20px;width:10px">×</button>
-                    <h4 class="modal-title" id="myModalLabel">
-                      标题
-                    </h4>
-                  </div>
-                  <div class="modal-body">
-                    宝贝发布成功！
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">去查看</button>
+              <div class="modal fade" id="modal-container-140183" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="success">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="height:20px;width:10px">×</button>
+                      <h4 class="modal-title" id="myModalLabel">
+                        标题
+                      </h4>
+                    </div>
+                    <div class="modal-body">
+                      宝贝发布成功！
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">去查看</button>
+                    </div>
                   </div>
                 </div>
               </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import qs from 'Qs'
-  import NavigationBar from './navigationbar'
+import qs from 'Qs'
+import NavigationBar from './navigationbar'
+
   export default {
     name: 'publish',
     components: {NavigationBar},
@@ -157,9 +158,9 @@
           class_id: this.GoodsInfo.class_id
         }))
           .then(successResponse => {
-            this.responseResult = successResponse.data
-            console.log(successResponse.data)
-          })
+          this.responseResult = successResponse.data
+          console.log(successResponse.data)
+        })
           .catch(failResponse => {
           })
       },
@@ -176,6 +177,7 @@
       form.submit()
     }
   }
+
 </script>
 
 <style scoped>
