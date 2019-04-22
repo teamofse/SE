@@ -2,7 +2,6 @@
   <div class="container">
     <navigation-bar></navigation-bar>
     <div class="all col-md-12 column">
-<<<<<<< HEAD
       <div class="publish_imag col-md-8 column">
         <div><img src="../assets/publish_1.jpg" /></div>
         <form name="imgForm" class="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
@@ -31,84 +30,56 @@
                 <textarea name="goods_name" v-model="GoodsInfo.goods_name" cols="40" rows="1"  placeholder="品类品牌型号都是买家喜欢搜索的" style="OVERFLOW:   hidden"></textarea>
               </p>
             </div>
-=======
-      <form :model="GoodsInfo" ref="GoodsInfo" :rules="ruleInline">
-        <div class="publish_imag col-md-8 column">
-
-          <input type="file" name="avatar"  id="avatar1" multiple="multiple" @change="upload">
-          <div id="btnUpload1" @change="upload"><img src="../assets/publish_1.jpg" alt="" /></div>
-
-          <input type="file" name="avatar"  id="avatar2" multiple="multiple" @change="upload">
-          <div id="btnUpload2" @change="upload"><img src="../assets/publish_1.jpg" alt="" /></div>
-
-          <input type="file" name="avatar"  id="avatar3" multiple="multiple" @change="upload">
-          <div id="btnUpload3" @change="upload"><img src="../assets/publish_1.jpg" alt="" /></div>
-
-          <form id="fm" method="post" action="">
-          <input type="file" name="file_upload2" id = "uplx" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  @change="upload" >
-          <div id="btnUpload" @change="upload"><img src="../assets/publish_1.jpg" alt="" /></div>
-          </form>
-        </div>
-        <div class="right">
-          <div class="discription">
-            <p><span style="font-size:large; "><strong>标题</strong></span></p>
-            <br/>
-            <textarea name="goods_name" v-model="GoodsInfo.goods_name" cols="40" rows="1"  placeholder="品类品牌型号都是买家喜欢搜索的" style="OVERFLOW:   hidden"></textarea>
->>>>>>> parent of 3ceed98... 给陈煜元看！
             <div id="class">
-                <p>宝贝类别：</p>
+              <p>宝贝类别：</p>
               <div class="radio-box" v-for="(item,index) in radios" :key="item.id">
                 <span class="radio" :class="{'on':item.isChecked}"></span>
                 <input v-model="GoodsInfo.class_id" :value="item.value" class="input-radio" :checked='item.isChecked'  @click="check(index)" type="radio">{{item.label}}
               </div>
               <br/>
             </div>
-                <br/>
-                <p>宝贝详情：</p>
-                <textarea name="goods_detail" v-model="GoodsInfo.goods_detail"  cols="40" rows="4" style="OVERFLOW:   hidden"></textarea>
-                <br/>
-                <div><p>价格：</p></div>
-                <textarea name="price"  v-model="GoodsInfo.price" cols="40" rows="1" placeholder="                                                               星星" style="OVERFLOW:   hidden"></textarea>
-                <br/>
-                <br/>
-              </form>
-              <div class="publish">
-                <button type="button" id="modal-140183" href="#modal-container-140183" v-on:click="publish" role="button" class="btn btn-default btn-block" data-toggle="modal">发布</button>
-              </div>
+            <br/>
+            <p>宝贝详情：</p>
+            <textarea name="goods_detail" v-model="GoodsInfo.goods_detail"  cols="40" rows="4" style="OVERFLOW:   hidden"></textarea>
+            <br/>
+            <div><p>价格：</p></div>
+            <textarea name="price"  v-model="GoodsInfo.price" cols="40" rows="1" placeholder="                                                               星星" style="OVERFLOW:   hidden"></textarea>
+            <br/>
+            <br/>
+          </form>
+          <div class="publish">
+            <button type="button" id="modal-140183" href="#modal-container-140183" v-on:click="publish" role="button" class="btn btn-default btn-block" data-toggle="modal">发布</button>
+          </div>
 
-              <div class="modal fade" id="modal-container-140183" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="success">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="height:20px;width:10px">×</button>
-                      <h4 class="modal-title" id="myModalLabel">
-                        标题
-                      </h4>
-                    </div>
-                    <div class="modal-body">
-                      宝贝发布成功！
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">去查看</button>
-                    </div>
+          <div class="modal fade" id="modal-container-140183" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="success">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="height:20px;width:10px">×</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                      标题
+                    </h4>
+                  </div>
+                  <div class="modal-body">
+                    宝贝发布成功！
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">去查看</button>
                   </div>
                 </div>
               </div>
-              </div>
             </div>
           </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import qs from 'Qs'
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-import NavigationBar from './navigationbar'
-
+  import qs from 'Qs'
+  import NavigationBar from './navigationbar'
   export default {
     name: 'publish',
     components: {NavigationBar},
@@ -186,112 +157,9 @@ import NavigationBar from './navigationbar'
           class_id: this.GoodsInfo.class_id
         }))
           .then(successResponse => {
-=======
-=======
->>>>>>> parent of 3ceed98... 给陈煜元看！
-=======
->>>>>>> parent of 3ceed98... 给陈煜元看！
-
-export default {
-  name: 'publish',
-  data: function () {
-    return {
-      radios: [
-        {
-          label: '女装',
-          value: '0',
-          isChecked: false
-        },
-        {
-          label: '男装',
-          value: '1',
-          isChecked: false
-        },
-        {
-          label: '母婴',
-          value: '2',
-          isChecked: false
-        },
-        {
-          label: '美妆',
-          value: '3',
-          isChecked: false
-        },
-        {
-          label: '家居家纺',
-          value: '4',
-          isChecked: false
-        },
-        {
-          label: '数码家电',
-          value: '5',
-          isChecked: false
-        },
-        {
-          label: '手表配饰',
-          value: '6',
-          isChecked: false
-        },
-        {
-          label: '男女内衣',
-          value: '7',
-          isChecked: false
-        },
-        {
-          label: '鞋包',
-          value: '8',
-          isChecked: false
-        },
-        {
-          label: '生活小物',
-          value: '9',
-          isChecked: false
-        }
-      ],
-      GoodsInfo: {
-        goods_id: '',
-        goods_name: '',
-        price: '',
-        goods_detail: '',
-        class_id: '',
-        goods_picture_4: ''
-      },
-      ruleInline: {
-        goods_name: [
-          {required: true, message: '宝贝标题不能为空', trigger: 'blur'}
-        ],
-        price: [
-          {required: true, message: '宝贝价格不能为空', trigger: 'blur'}
-        ],
-        goods_detail: [
-          {required: true, message: '宝贝详情不能为空', trigger: 'blur'}
-        ],
-        class_id: [
-          {required: true, message: '宝贝分类不能为空', trigger: 'blur'}
-        ],
-        goods_picture_4: [
-          {required: true, message: '宝贝图片不能为空', trigger: 'blur'}
-        ]
-      },
-      responseResult: []
-    }
-  },
-  methods: {
-
-    publish () {
-      this.$axios.post('/insertGoodsInformation', qs.stringify({
-        goods_id: '0',
-        goods_name: this.GoodsInfo.goods_name,
-        price: this.GoodsInfo.price,
-        goods_detail: this.GoodsInfo.goods_detail,
-        class_id: this.GoodsInfo.class_id,
-        goods_picture_4: this.GoodsInfo.goods_picture_4
-      }))
-        .then(successResponse => {
->>>>>>> parent of 3ceed98... 给陈煜元看！
-          this.responseResult = successResponse.data
-          console.log(successResponse.data)
-        })
+            this.responseResult = successResponse.data
+            console.log(successResponse.data)
+          })
           .catch(failResponse => {
           })
       },
@@ -307,24 +175,7 @@ export default {
       let form = document.getElementById('imgLocal')
       form.submit()
     }
-<<<<<<< HEAD
-=======
-  },
-  upload: function () {
-    var formData = new FormData()
-    formData.append('file', this.$('#uplx')[0].files[0])
-    this.$.ajax({
-      type: 'post',
-      dataType: 'json',
-      data: formData,
-      cache: false,
-      url: '../../addData',
-      processData: false,
-      contentType: false
-    })
->>>>>>> parent of 3ceed98... 给陈煜元看！
   }
-
 </script>
 
 <style scoped>
