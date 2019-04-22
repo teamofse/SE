@@ -9,12 +9,9 @@ import java.util.List;
 public interface GoodsMapper {
 
     //发布时插入商品信息
-    @Insert("INSERT INTO goods_information(goods_id,goods_name,price,goods_detail,class_id,goods_picture_1) VALUES(#{goods_id}, #{goods_name}, #{price}, #{goods_detail}, #{class_id},#{goods_picture_1})")
-    void insertGoodsInformation(@Param("goods_id") int goods_id,@Param("goods_name") String goods_name, @Param("price") int price, @Param("goods_detail") String goods_detail, @Param("class_id") int class_id, @Param("goods_picture_1") String goods_picture_1);
+    @Insert("INSERT INTO goods_information(goods_id,goods_name,price,goods_detail,class_id) VALUES(#{goods_id}, #{goods_name}, #{price}, #{goods_detail}, #{class_id})")
+    void insertGoodsInformation(@Param("goods_id") int goods_id,@Param("goods_name") String goods_name, @Param("price") int price, @Param("goods_detail") String goods_detail, @Param("class_id") int class_id);
 
-    //发布时插入商品信息
-    //@Insert("INSERT INTO goods_information(goods_id,goods_name,price,goods_detail,class_id) VALUES(#{goods_id}, #{goods_name}, #{price}, #{goods_detail}, #{class_id})")
-    //void insertGoodsInformation(@Param("goods_id") int goods_id,@Param("goods_name") String goods_name, @Param("price") int price, @Param("goods_detail") String goods_detail, @Param("class_id") int class_id);
     //插入商品信息
     @Insert("INSERT INTO goods(id, title, star, name, city, hot) VALUES(#{id}, #{title}, #{star}, #{name}, #{city}, #{hot})")
     void insertGoods(@Param("id") int id, @Param("title") String title, @Param("star") int star, @Param("name") String name, @Param("city") String city, @Param("hot") int hot);

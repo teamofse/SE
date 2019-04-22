@@ -36,8 +36,8 @@
         .then(successResponse => {
           this.responseResult = successResponse.data
           this.results = this.responseResult
-          console.log(this.responseResult)
-          console.log(this.results)
+          // console.log(this.responseResult)
+          // console.log(this.results)
         })
         .catch(failResponse => {
         })

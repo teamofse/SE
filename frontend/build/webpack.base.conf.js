@@ -1,6 +1,4 @@
 'use strict'
-const webpack = require("webpack")
-
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
@@ -26,13 +24,6 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
-  plugins: [
-  new webpack.optimize.CommonsChunkPlugin('common.js'),
-  new webpack.ProvidePlugin({                
-    jQuery:"jquery",                
-    $:"jquery"             
-  })            
-  ],
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
