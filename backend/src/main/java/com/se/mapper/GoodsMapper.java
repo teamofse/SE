@@ -10,8 +10,13 @@ public interface GoodsMapper {
 
     //发布时插入商品信息
 <<<<<<< HEAD
+<<<<<<< HEAD
     @Insert("INSERT INTO goods_information(goods_id,goods_name,price,goods_detail,class_id) VALUES(#{goods_id}, #{goods_name}, #{price}, #{goods_detail}, #{class_id})")
     void insertGoodsInformation(@Param("goods_id") int goods_id,@Param("goods_name") String goods_name, @Param("price") int price, @Param("goods_detail") String goods_detail, @Param("class_id") int class_id);
+=======
+    @Insert("INSERT INTO goods_information(goods_id,goods_name,price,goods_detail,class_id，goods_picture_4) VALUES(#{goods_id}, #{goods_name}, #{price}, #{goods_detail}, #{class_id},#{goods_picture_4})")
+    void insertGoodsInformation(@Param("goods_id") int goods_id,@Param("goods_name") String goods_name, @Param("price") int price, @Param("goods_detail") String goods_detail, @Param("class_id") int class_id, @Param("goods_picture_4") String goods_picture_4);
+>>>>>>> parent of 3ceed98... 给陈煜元看！
 =======
     @Insert("INSERT INTO goods_information(goods_id,goods_name,price,goods_detail,class_id，goods_picture_4) VALUES(#{goods_id}, #{goods_name}, #{price}, #{goods_detail}, #{class_id},#{goods_picture_4})")
     void insertGoodsInformation(@Param("goods_id") int goods_id,@Param("goods_name") String goods_name, @Param("price") int price, @Param("goods_detail") String goods_detail, @Param("class_id") int class_id, @Param("goods_picture_4") String goods_picture_4);

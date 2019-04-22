@@ -105,6 +105,7 @@
 <script>
 import qs from 'Qs'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import NavigationBar from './navigationbar'
 
   export default {
@@ -185,6 +186,8 @@ import NavigationBar from './navigationbar'
         }))
           .then(successResponse => {
 =======
+=======
+>>>>>>> parent of 3ceed98... 给陈煜元看！
 
 export default {
   name: 'publish',
