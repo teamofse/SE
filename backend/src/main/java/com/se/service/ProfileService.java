@@ -2,6 +2,8 @@ package com.se.service;
 import com.se.entity.Goods;
 import com.se.entity.InfoDeal;
 import com.se.entity.Users;
+import com.se.entity.GoodsInformation;
+import com.se.entity.OrderState;
 import com.se.mapper.ProfileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,9 +21,9 @@ public class ProfileService {
     }
 
     //根据用户id查询交易信息
-    public List<Goods> queryByBuyIdService(String account) {
-        return profileMapper.queryDealByBuyId(account);
-    }
+//    public List<Goods> queryByBuyIdService(String account) {
+//        return profileMapper.queryDealByBuyId(account);
+//    }
 
     //根据id查询用户信息
     public Users queryByUserIdService(String account) {
@@ -29,13 +31,28 @@ public class ProfileService {
     }
 
     //根据用户id查询已卖出信息
-    public List<Goods> queryBySoldStateService(String order_state, String account) {
-        return profileMapper.queryGoodBySoldStateId(order_state,account);
+    public List<GoodsInformation> queryBySoldStateService(int goods_state, String account) {
+        return profileMapper.queryGoodBySoldStateId(goods_state,account);
     }
 
     //根据用户id查询未卖出信息
-    public List<Goods> queryByOnSaleStateService(String order_state,String account) {
-        return profileMapper.queryGoodByOnSaleStateId(order_state,account);
+    public List<GoodsInformation> queryByOnSaleStateService(int goods_state,String account) {
+        return profileMapper.queryGoodByOnSaleStateId(goods_state,account);
+    }
+
+    //根据用户id查询未收到信息
+    public List<GoodsInformation> queryByArriveStateService(int order_state, String account) {
+        return profileMapper.queryGoodByArriveStateId(order_state,account);
+    }
+
+    //根据用户id查询已收到信息
+    public List<GoodsInformation> queryByOnTheWayStateService(int order_state,String account) {
+        return profileMapper.queryGoodByOnTheWayStateId(order_state,account);
+    }
+
+    //根据用户id查询收藏信息
+    public List<GoodsInformation> queryByOnLikeStateService(int like_state,String account) {
+        return profileMapper.queryGoodByLikeStateId(like_state,account);
     }
 
     //根据id修改商品信息

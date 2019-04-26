@@ -15,7 +15,7 @@
             <a href="#">关于我们</a>
           </li>
           <li :class="{'colordisplay':seenlog}">
-            <a href="#/login">登录</a>
+            <a href="/login">登录</a>
           </li>
           <li :class="{'colordisplay':seenlog}">
             <a href="/register">注册</a>

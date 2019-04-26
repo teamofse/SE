@@ -15,6 +15,9 @@ import home from '../components/home'
 import list from '../components/list'
 import publish from '../components/publish'
 import upload from '../components/upload'
+import unarrived from '../components/unarrived'
+import arrived from '../components/arrived'
+import like from '../components/like'
 
 Vue.use(Router)
 
@@ -74,7 +77,17 @@ export default new Router({
             },
             {
               path: '/records',
-              component: records
+              component: records,
+              children: [
+                {
+                  path: '/arrived',
+                  component: arrived
+                },
+                {
+                  path: '/unarrived',
+                  component: unarrived
+                }
+              ]
             },
             {
               path: '/commodity',
@@ -89,6 +102,10 @@ export default new Router({
                   component: onsale
                 }
               ]
+            },
+            {
+              path: '/like',
+              component: like
             }
           ]
         },
@@ -107,7 +124,17 @@ var routes = [
   },
   {
     path: '/records',
-    component: {template: '#records'}
+    component: {template: '#records'},
+    children: [
+      {
+        path: 'arrived',
+        component: {template: '#arrived'}
+      },
+      {
+        path: 'unarrived',
+        component: {template: '#unarrived'}
+      }
+    ]
   },
   {
     path: '/commodity',
@@ -122,6 +149,10 @@ var routes = [
         component: {template: '#onsale'}
       }
     ]
+  },
+  {
+    path: '/like',
+    component: {template: '#like'}
   }
 ]
 // 定义路由组件

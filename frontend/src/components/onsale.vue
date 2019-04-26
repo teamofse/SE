@@ -7,10 +7,10 @@
       </div>
       <div class="col-md-9 column">
         <h2 class="heading">
-          {{result.title}}
+          {{result.goods_name}}
         </h2>
         <p class="detail">
-          {{result.name}}
+          {{result.goods_detail}}
         </p>
         <p>
           <a class="button" href="#"><span>View details</span></a>

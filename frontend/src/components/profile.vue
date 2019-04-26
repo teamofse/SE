@@ -18,6 +18,9 @@
             <div class="button">
                   <router-link to="/onsale">我发布的</router-link>
             </div>
+          <div class="button">
+                  <router-link to="/like">我喜欢的</router-link>
+          </div>
         </div>
         <div class="col-md-9 column">
           <router-view></router-view>

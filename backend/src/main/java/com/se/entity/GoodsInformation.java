@@ -4,13 +4,14 @@ public class GoodsInformation {
     private int goods_id;
     private String goods_name;
     private int price;
+    private int hot;
     private String goods_detail;
     private int class_id;
     private String goods_picture_1;
     private String goods_picture_2;
     private String goods_picture_3;
     private String goods_picture_4;
-    private String order_state;
+    private int goods_state;
 
     public int getgoods_id() {
         return goods_id;
@@ -34,6 +35,14 @@ public class GoodsInformation {
 
     public void setprice(int price) {
         this.price = price;
+    }
+
+    public int getHot() {
+        return hot;
+    }
+
+    public void setHot(int hot) {
+        this.hot = hot;
     }
 
     public String getgoods_detail() {
@@ -84,11 +93,11 @@ public class GoodsInformation {
         this.goods_picture_4 = goods_picture_4;
     }
 
-    public String getorder_state() {
-        return order_state;
+    public int getorder_state() {
+        return goods_state;
     }
 
-    public void setorder_state(String order_state) {
-        this.order_state = order_state;
+    public void setorder_state(int goods_state) {
+        this.goods_state = goods_state;
     }
 }

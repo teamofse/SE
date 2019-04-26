@@ -1,6 +1,6 @@
 package com.se.mapper;
 import com.se.entity.InfoDeal;
-import com.se.entity.Goods;
+import com.se.entity.GoodsInformation;
 import com.se.entity.Users;
 import org.apache.ibatis.annotations.*;
 
@@ -11,20 +11,32 @@ public interface ProfileMapper {
     List<InfoDeal> queryDealById();
 
     //根据用户id查询交易信息
-    @Select("SELECT goods.* FROM info_deal, orders, goods, users WHERE info_deal.buy_id = users.id and orders.order_id = info_deal.order_id and orders.goods_id = goods.id and users.account = #{account}")
-    List<Goods> queryDealByBuyId(@Param("account") String account);
+//    @Select("SELECT goods_information.* FROM info_deal, orders, goods_information, users WHERE info_deal.buy_id = users.id and orders.order_id = info_deal.order_id and orders.goods_id = goods_information.id and users.account = #{account}")
+//    List<Goods> queryDealByBuyId(@Param("account") String account);
 
     //根据用户account查询用户信息
     @Select("SELECT * FROM users WHERE account = #{account}")
     Users queryUserByAccount(@Param("account") String account);
 
     //根据用户id查询已卖出信息
-    @Select("SELECT goods.* FROM info_deal, order_state ,orders, goods, users WHERE info_deal.sold_id = users.id and info_deal.order_id = order_state.order_id and orders.order_id = info_deal.order_id and orders.goods_id = goods.id and order_state.order_state = #{order_state} and users.account = #{account}")
-    List<Goods> queryGoodBySoldStateId(@Param("order_state") String order_state, @Param("account") String account);
+    @Select("SELECT goods_information.* FROM info_deal, orders, goods_information, users WHERE info_deal.sold_id = users.id and orders.order_id = info_deal.order_id and orders.goods_id = goods_information.goods_id and goods_information.goods_state = #{goods_state} and users.account = #{account}")
+    List<GoodsInformation> queryGoodBySoldStateId(@Param("goods_state") int goods_state, @Param("account") String account);
 
     //根据用户id查询未卖出信息
-    @Select("SELECT goods.* FROM info_deal, order_state ,orders, goods, users WHERE info_deal.sold_id = users.id and info_deal.order_id = order_state.order_id and orders.order_id = order_state.order_id and orders.goods_id = goods.id and order_state.order_state = #{order_state} and users.account = #{account}")
-    List<Goods> queryGoodByOnSaleStateId(@Param("order_state") String order_state, @Param("account") String account);
+    @Select("SELECT goods_information.* FROM info_deal,orders, goods_information, users WHERE info_deal.sold_id = users.id and orders.order_id = info_deal.order_id and orders.goods_id = goods_information.goods_id and goods_information.goods_state = #{goods_state} and users.account = #{account}")
+    List<GoodsInformation> queryGoodByOnSaleStateId(@Param("goods_state") int goods_state, @Param("account") String account);
+
+    //根据用户id查询未收到信息
+    @Select("SELECT goods_information.* FROM info_deal, order_state ,orders, goods_information, users WHERE info_deal.buy_id = users.id and info_deal.order_id = order_state.order_id and orders.order_id = info_deal.order_id and orders.goods_id = goods_information.goods_id and order_state.order_state = #{order_state} and users.account = #{account}")
+    List<GoodsInformation> queryGoodByArriveStateId(@Param("order_state") int order_state, @Param("account") String account);
+
+    //根据用户id查询已收到信息
+    @Select("SELECT goods_information.* FROM info_deal, order_state ,orders, goods_information, users WHERE info_deal.buy_id = users.id and info_deal.order_id = order_state.order_id and orders.order_id = order_state.order_id and orders.goods_id = goods_information.goods_id and order_state.order_state = #{order_state} and users.account = #{account}")
+    List<GoodsInformation> queryGoodByOnTheWayStateId(@Param("order_state") int order_state, @Param("account") String account);
+
+    //根据用户id查询收藏信息
+    @Select("SELECT goods_information.* FROM goods_information, users, goods_like WHERE goods_like.user_id = users.id and goods_like.goods_id = goods_information.goods_id and goods_like.like_state = #{like_state} and users.account = #{account}")
+    List<GoodsInformation> queryGoodByLikeStateId(@Param("like_state") int like_state, @Param("account") String account);
 
     //根据用户account修改地址信息
     @Update("Update users set user_addr = #{user_addr} WHERE account = #{account}")

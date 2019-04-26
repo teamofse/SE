@@ -1,100 +1,36 @@
 ﻿<template id="records">
-    <div class="itemregion">
-      <div class="item">
-        <div class="row clearfix" v-for="result in results" :key="result">
-          <div class="col-md-3 column">
-            <img alt="140x140" src="../assets/logo.png" width="140" height="140"/>
-          </div>
-          <div class="col-md-9 column">
-            <h2 class="heading">
-              {{result.title}}
-            </h2>
-            <p class="detail">
-              {{result.name}}
-            </p>
-            <p>
-              <a class="button" href="#"><span>View details</span></a>
-            </p>
-          </div>
-            </div>
-            </div>
-          </div>
+  <div class="tabbable" id="tabs-585381">
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a href="#panel-52687" data-toggle="tab">
+          <router-link to="/arrived">已收到</router-link>
+        </a>
+      </li>
+      <li>
+        <a href="#panel-96161" data-toggle="tab">
+          <router-link to="/unarrived">未收到</router-link>
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="panel-52687">
+        <router-view></router-view>
+      </div>
+      <div class="tab-pane" id="panel-96161">
+        <router-view></router-view>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
   export default {
-    name: 'records',
-    data: function () {
-      return {
-        responseResult: [],
-        results: []
-      }
-    },
-    mounted: function () {
-      this.$axios
-        .get('/queryDealByBuyId')
-        .then(successResponse => {
-          this.responseResult = successResponse.data
-          this.results = this.responseResult
-          // console.log(this.responseResult)
-          // console.log(this.results)
-        })
-        .catch(failResponse => {
-        })
-    },
-    methods: {
-    }
+    name: 'records'
   }
 </script>
 
 <style scoped>
-  h2.heading {
-    text-align: left;
-  }
-  p.detail {
-    text-align: justify;
-  }
-  .button {
-    display: inline-block;
-    border-radius: 4px;
-    border: none;
-    text-align: center;
-    font-size: 14px;
-    padding: 10px;
-    width: 150px;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: 5px;
-  }
-
-  .button span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-  }
-
-  .button span:after {
-    content: '»';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-  }
-
-  .button:hover span {
-    padding-right: 25px;
-  }
-
-  .button:hover span:after {
-    opacity: 1;
-    right: 0;
-  }
-  .itemregion{
-    padding: 20px;
-  }
-  .item {
+  #tabs-585381 {
     margin-top: 20px;
   }
 </style>
