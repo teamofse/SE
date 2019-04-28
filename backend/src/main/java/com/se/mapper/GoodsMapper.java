@@ -1,8 +1,10 @@
 package com.se.mapper;
 
-import com.se.entity.Goods;
 import com.se.entity.GoodsInformation;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -39,4 +41,8 @@ public interface GoodsMapper {
     //根据id查询商品信息
     @Select("SELECT * FROM goods_information WHERE goods_id = #{goods_id}")
     GoodsInformation selectGoodsInformationById(@Param("goods_id") int goods_id);
+
+    @Select("SELECT * FROM goods_information WHERE goods_id = #{goods_id}")
+    GoodsInformation selectGoodsById(@Param("goods_id") int goods_id);
+
 }

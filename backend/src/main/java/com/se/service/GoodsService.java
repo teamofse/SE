@@ -1,7 +1,6 @@
 package com.se.service;
 
 
-import com.se.entity.Goods;
 import com.se.entity.GoodsInformation;
 import com.se.mapper.GoodsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +52,9 @@ public class GoodsService {
     //根据id查找商品信息
     public GoodsInformation selectGoodsInformationByItemId(int goods_id) {
         return goodsMapper.selectGoodsInformationById(goods_id);
+    }
+
+    public GoodsInformation selectGoodsByItemId(int goods_id) {
+        return goodsMapper.selectGoodsById(goods_id);
     }
 }
