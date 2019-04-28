@@ -37,6 +37,6 @@ public interface GoodsMapper {
     void deleteGoods(@Param("id") int id);
 
     //根据id查询商品信息
-    @Select("SELECT * FROM goods WHERE id = #{id}")
-    Goods selectGoodsById(@Param("id") int id);
+    @Select("SELECT * FROM goods_information WHERE goods_id = #{goods_id}")
+    GoodsInformation selectGoodsById(@Param("goods_id") int goods_id);
 }

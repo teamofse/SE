@@ -51,7 +51,7 @@ public class GoodsService {
     }
 
     //根据id查找商品信息
-    public Goods selectGoodsByItemId(int id) {
-        return goodsMapper.selectGoodsById(id);
+    public GoodsInformation selectGoodsByItemId(int goods_id) {
+        return goodsMapper.selectGoodsById(goods_id);
     }
 }
