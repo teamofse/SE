@@ -25,9 +25,19 @@ public class ProfileService {
 //        return profileMapper.queryDealByBuyId(account);
 //    }
 
-    //根据id查询用户信息
+    //根据account查询用户信息
     public Users queryByUserIdService(String account) {
         return profileMapper.queryUserByAccount(account);
+    }
+
+    //根据id查询用户信息
+    //public Users queryTrueByUserIdService(int id) {
+    //    return profileMapper.queryUserById(id);
+    //}
+
+    //查询所有用户信息
+    public List<Users> queryUserService() {
+        return profileMapper.queryUser();
     }
 
     //根据用户id查询已卖出信息

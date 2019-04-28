@@ -1,6 +1,7 @@
 package com.se.controller;
 
 import com.se.entity.Goods;
+import com.se.entity.GoodsInformation;
 import com.se.entity.Users;
 import com.se.result.Result;
 import com.se.entity.GoodsInformation;
@@ -38,29 +39,8 @@ public class ItemInfoController {
 //        Hashtable hashtable=new Hashtable();//存放要返回的数据
         HttpSession session=request.getSession();//获取request请求里的session, 如果是第一次请求, 则会创建一个新的session
         String account = (String)session.getAttribute("account");
-
         return goodsService.selectGoodsByItemId(itemid);
 
-//        if(itemId==null){
-//            String message = String.format("查看错误，详细信息[商品Id为空！]。");
-//            return ResultFactory.buildFailResult(message);
-//        }
-//        else {
-//            char[] ca=itemId.toCharArray();
-//            for(char c:ca){
-//                if(!Character.isDigit(c)){
-//                    String message = String.format("查看错误，详细信息[Id格式错误！]。");
-//                    return ResultFactory.buildFailResult(message);
-//                }
-//            }
-//        }
-//        Goods foundGoods=goodsService.selectGoodsByItemId(Integer.valueOf(itemId));
-//        //System.out.println("account:"+account+" password:"+password);
-//        if(foundGoods==null){
-//            String message = String.format("查看错误，详细信息[商品不存在！]。");
-//            return ResultFactory.buildFailResult(message);
-//        }
-//        return ResultFactory.buildSuccessResult(hashtable);
     }
 
 }

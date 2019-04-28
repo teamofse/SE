@@ -5,22 +5,22 @@
       <div class="col-md-12 column">
         <!--商品列表-->
         <div class="goods">
-          <div class="col-md-4" v-for="result in results" :key="result" v-on:click="addHot(result.id, result.title, result.star, result.name, result.city, result.hot)">
+          <div class="col-md-4" v-for="result in results" :key="result" v-on:click="addHot(result.goods_id, result.hot)">
             <div class="thumbnail">
               <img class="image" alt="1" src="../assets/1.jpg" />
               <div class="intro">
                 <p class="title" align="left">
-                  <strong>{{result.title}}</strong>
+                  <strong>{{result.goods_name}}</strong>
                 </p>
                 <div class="money-row">
                   <img class="star" alt="star" src="../assets/star.png" align="left"/>
-                  <p class="money"><strong>{{result.star}}</strong></p>
+                  <p class="money"><strong>{{result.price}}</strong></p>
                   <p class="hot"><strong>点击量：{{result.hot}}</strong></p>
                 </div>
                 <hr class="line" />
                 <span class="name-city-row">
-                  <p class="name" align="left"><strong>{{result.name}}</strong></p>
-                  <p class="city" align="right"><strong>{{result.city}}</strong></p>
+                  <!--<p class="name" align="left"><strong>{{result.user_name}}</strong></p>-->
+                  <!--<p class="city" align="right"><strong>{{result.user_city}}</strong></p>-->
                 </span>
               </div>
             </div>
@@ -45,34 +45,44 @@ export default {
   components: { NavigationBar },
   data: function () {
     return {
-      results: []
+      results: [],
+      responseResultUser: [],
+      responseResultClass: []
       // newList: {}
     }
   },
   mounted: function () {
     this.$axios
-      .get('/queryGoodsById')
+      .get('/queryGoodsInformationById')
       .then(successResponse => {
         this.results = successResponse.data
+        this.$axios // 返回users表所有内容
+          .get('/queryAllUsers')
+          .then(successResponse => {
+            this.responseResultUser = successResponse.data
+            // console.log(this.responseResultUser)
+            this.$axios // 返回goods_class表所有内容
+              .get('/queryGoodsClass')
+              .then(successResponse => {
+                this.responseResultClass = successResponse.data
+                // console.log(this.responseResultClass)
+              })
+              .catch(failResponse => {
+              })
+          })
+          .catch(failResponse => {
+          })
       })
       .catch(failResponse => {
       })
   },
   methods: {
-    addHot: function (id, title, star, name, city, hot) {
+    addHot: function (id, hot) {
       var newId = id
-      var newTitle = title
-      var newStar = star
-      var newName = name
-      var newCity = city
       var newHot = hot + 1
       this.$axios
-        .put('/updateGoods', qs.stringify({
+        .put('/updateGoodsInformation', qs.stringify({
           id: newId,
-          title: newTitle,
-          star: newStar,
-          name: newName,
-          city: newCity,
           hot: newHot
         }), {
           headers: {

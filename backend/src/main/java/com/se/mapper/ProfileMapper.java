@@ -18,6 +18,14 @@ public interface ProfileMapper {
     @Select("SELECT * FROM users WHERE account = #{account}")
     Users queryUserByAccount(@Param("account") String account);
 
+    //根据用户id查询用户信息
+    //@Select("SELECT * FROM users WHERE id = #{id}")
+    //Users queryUserById(@Param("id") int id);
+
+    //查询所有用户信息
+    @Select("SELECT * FROM users")
+    List<Users> queryUser();
+
     //根据用户id查询已卖出信息
     @Select("SELECT goods_information.* FROM info_deal, orders, goods_information, users WHERE info_deal.sold_id = users.id and orders.order_id = info_deal.order_id and orders.goods_id = goods_information.goods_id and goods_information.goods_state = #{goods_state} and users.account = #{account}")
     List<GoodsInformation> queryGoodBySoldStateId(@Param("goods_state") int goods_state, @Param("account") String account);

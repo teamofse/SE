@@ -12,6 +12,7 @@ public class GoodsInformation {
     private String goods_picture_3;
     private String goods_picture_4;
     private int goods_state;
+    private int user_id;
 
     public int getgoods_id() {
         return goods_id;
@@ -99,5 +100,13 @@ public class GoodsInformation {
 
     public void setorder_state(int goods_state) {
         this.goods_state = goods_state;
+    }
+
+    public int getuser_id() {
+        return user_id;
+    }
+
+    public void setuser_id(int goods_state) {
+        this.user_id = user_id;
     }
 }

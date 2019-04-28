@@ -13,30 +13,30 @@ public interface GoodsMapper {
     void insertGoodsInformation(@Param("goods_id") int goods_id,@Param("goods_name") String goods_name, @Param("price") int price, @Param("goods_detail") String goods_detail, @Param("class_id") int class_id);
 
     //插入商品信息
-    @Insert("INSERT INTO goods(id, title, star, name, city, hot) VALUES(#{id}, #{title}, #{star}, #{name}, #{city}, #{hot})")
-    void insertGoods(@Param("id") int id, @Param("title") String title, @Param("star") int star, @Param("name") String name, @Param("city") String city, @Param("hot") int hot);
+    //@Insert("INSERT INTO goods(id, title, star, name, city, hot) VALUES(#{id}, #{title}, #{star}, #{name}, #{city}, #{hot})")
+    //void insertGoods(@Param("id") int id, @Param("title") String title, @Param("star") int star, @Param("name") String name, @Param("city") String city, @Param("hot") int hot);
 
     //查询所有商品信息
-    @Select("SELECT * FROM goods")
-    List<Goods> queryGoodsById();
+    //@Select("SELECT * FROM goods")
+    //List<Goods> queryGoodsById();
 
     //查询所有商品信息
     @Select("SELECT * FROM goods_information")
     List<GoodsInformation> queryGoodsInformationById();
 
     //根据名字查询商品信息
-    @Select("SELECT * FROM goods WHERE title = #{title}")
-    List<Goods> queryGoodsByTitle(@Param("title") String title);
+    @Select("SELECT * FROM goods_information WHERE goods_name = #{goods_name}")
+    List<GoodsInformation> queryGoodsInformationByGoodsName(@Param("goods_name") String goods_name);
 
     //根据id修改商品信息
-    @Update("Update goods set title = #{title}, star = #{star}, name = #{name}, city = #{city}, hot = #{hot} WHERE id = #{id}")
-    void updateGoods(@Param("id") int id, @Param("title") String title, @Param("star") int star, @Param("name") String name, @Param("city") String city, @Param("hot") int hot);
+    @Update("Update goods_information set hot = #{hot} WHERE goods_id = #{goods_id}")
+    void updateGoodsInformation(@Param("goods_id") int goods_id, @Param("hot") int hot);
 
     //根据id删除商品信息
-    @Delete("DELETE from goods WHERE id = #{id}")
-    void deleteGoods(@Param("id") int id);
+    //@Delete("DELETE from goods WHERE id = #{id}")
+    //void deleteGoods(@Param("id") int id);
 
     //根据id查询商品信息
     @Select("SELECT * FROM goods_information WHERE goods_id = #{goods_id}")
-    GoodsInformation selectGoodsById(@Param("goods_id") int goods_id);
+    GoodsInformation selectGoodsInformationById(@Param("goods_id") int goods_id);
 }
