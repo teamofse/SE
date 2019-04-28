@@ -46,7 +46,7 @@ public class ProfileController {
 //    }
     @CrossOrigin
     @ResponseBody
-    //根据id查询用户信息
+    //根据account查询用户信息
     @RequestMapping(value = "/queryUserById", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
     public Users userQueryById(HttpServletRequest request, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
@@ -58,6 +58,7 @@ public class ProfileController {
         System.out.println(session.getId());
         return profileService.queryByUserIdService(account);
     }
+
     @CrossOrigin
     @ResponseBody
     //根据用户id查询已卖出信息

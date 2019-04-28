@@ -1,6 +1,7 @@
 package com.se.controller;
 
 import com.se.entity.Goods;
+import com.se.entity.GoodsInformation;
 import com.se.entity.Users;
 import com.se.result.Result;
 import com.se.result.ResultFactory;
@@ -48,7 +49,7 @@ public class ItemInfoController {
                 }
             }
         }
-        Goods foundGoods=goodsService.selectGoodsByItemId(Integer.valueOf(itemId));
+        GoodsInformation foundGoods=goodsService.selectGoodsInformationByItemId(Integer.valueOf(itemId));
         //System.out.println("account:"+account+" password:"+password);
         if(foundGoods==null){
             String message = String.format("查看错误，详细信息[商品不存在！]。");

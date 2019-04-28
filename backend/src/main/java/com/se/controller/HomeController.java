@@ -2,10 +2,14 @@ package com.se.controller;
 
 import com.se.entity.Goods;
 
+import com.se.entity.GoodsClass;
 import com.se.entity.GoodsInformation;
+import com.se.entity.Users;
 import com.se.result.Result;
 import com.se.result.ResultFactory;
+import com.se.service.GoodsClassService;
 import com.se.service.GoodsService;
+import com.se.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,39 +25,71 @@ import java.util.List;
 public class HomeController {
     @Autowired
     private GoodsService goodsService;
+    @Autowired
+    private ProfileService profileService;
+    @Autowired
+    private GoodsClassService goodsClassService;
 
     @CrossOrigin
     @ResponseBody
     //查询所有商品信息
-    @RequestMapping(value = "/queryGoodsById", method= RequestMethod.GET, produces="application/json; charset=UTF-8")
-    public List<Goods> goodsQueryById(HttpServletRequest request, HttpServletResponse response){
+    @RequestMapping(value = "/queryGoodsInformationById", method= RequestMethod.GET, produces="application/json; charset=UTF-8")
+    public List<GoodsInformation> goodsInformationQueryById(HttpServletRequest request, HttpServletResponse response){
         response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
         response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
         response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
         response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
 //        HttpSession session=request.getSession();
-        return goodsService.queryByIdService();
+        return goodsService.query_ByIdService();
+    }
+
+    @CrossOrigin
+    @ResponseBody
+    //查询所有用户信息
+    @RequestMapping(value = "/queryAllUsers", method= RequestMethod.GET, produces="application/json; charset=UTF-8")
+    public List<Users> usersQuery(HttpServletRequest request, HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
+        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+        response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
+//        HttpSession session=request.getSession();
+        return profileService.queryUserService();
+    }
+
+    @CrossOrigin
+    @ResponseBody
+    //查询所有类别信息
+    @RequestMapping(value = "/queryGoodsClass", method= RequestMethod.GET, produces="application/json; charset=UTF-8")
+    public List<GoodsClass> goodsClassQuery(HttpServletRequest request, HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
+        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+        response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
+//        HttpSession session=request.getSession();
+        //return goodsClassService.queryGoodsClassService();
+        return goodsClassService.queryGoodsClassService();
     }
 
     @CrossOrigin
     @ResponseBody
     //根据名字查询商品信息
-    @RequestMapping("/queryGoodsByTitle")
-    public List<Goods> goodsQueryByTitle() {
-        return goodsService.queryByTitleService("朱一龙");
+    @RequestMapping("/queryGoodsInformationByGoodsName")
+    public List<GoodsInformation> goodsInformationQueryByGoodsName() {
+        return goodsService.queryByGoodsNameService("朱一龙");
     }
 
-    @CrossOrigin
-    @ResponseBody
+    //@CrossOrigin
+    //@ResponseBody
     //插入商品信息
-    @RequestMapping("/insertGoods")
-    public List<Goods> goodsInsert(){
-        goodsService.insertService(50, "朱一龙", 300, "bbb", "ccc", 5);
-        return goodsService.queryByIdService();
-    }
+    //@RequestMapping("/insertGoods")
+    //public List<Goods> goodsInsert(){
+    //    goodsService.insertService(50, "朱一龙", 300, "bbb", "ccc", 5);
+    //    return goodsService.queryByIdService();
+    //}
 
+    //修改热度
     @CrossOrigin
-    @RequestMapping(value = "/updateGoods", method = RequestMethod.PUT, produces = "application/json; charset=UTF-8")
+    @RequestMapping(value = "/updateGoodsInformation", method = RequestMethod.PUT, produces = "application/json; charset=UTF-8")
     @ResponseBody
     public Result updateAddr(HttpServletRequest request, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
@@ -61,26 +97,26 @@ public class HomeController {
         response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
         response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
 
-        String id_string=request.getParameter("id");
-        int id = Integer.parseInt(id_string);
-        String title=request.getParameter("title");
-        String star_string=request.getParameter("star");
-        int star = Integer.parseInt(star_string);
-        String name=request.getParameter("name");
-        String city=request.getParameter("city");
+        String id_string=request.getParameter("goods_id");
+        int goods_id = Integer.parseInt(id_string);
+        //String title=request.getParameter("title");
+        //String star_string=request.getParameter("star");
+        //int star = Integer.parseInt(star_string);
+        //String name=request.getParameter("name");
+        //String city=request.getParameter("city");
         String hot_string=request.getParameter("hot");
         int hot = Integer.parseInt(hot_string);
 
         Hashtable hashtable=new Hashtable();//存放要返回的数据
         HttpSession session=request.getSession();//获取request请求里的session, 如果是第一次请求, 则会创建一个新的session
 
-        if(id==' ' || title==null || star==' ' || name==null || city==null ||hot==' '){
+        if(goods_id==' '||hot==' '){
             String message = String.format("热度修改失败");
             return ResultFactory.buildFailResult(message);
         }
 //        Users foundUser=profileService.updateAddrService(account, user_addr);
-        goodsService.updateService(id, title, star, name, city, hot);
-        System.out.println("id:"+id+" title:"+title+" star:"+star+" name"+name+" city"+city+" hot"+hot);
+        goodsService.updateGoodsInformationService(goods_id, hot);
+        System.out.println("goods_id:"+goods_id+" hot:"+hot);
 
         //session.setAttribute("account",account);
         System.out.println(session.getId());
@@ -88,13 +124,13 @@ public class HomeController {
         return ResultFactory.buildSuccessResult(hashtable);
     }
 
-    @CrossOrigin
-    @ResponseBody
+    //@CrossOrigin
+    //@ResponseBody
     //根据id删除商品信息
-    @RequestMapping("/deleteGoods")
-    public String goodsDelete() {
-        goodsService.deleteService(3);
-        return "OK";
-    }
+    //@RequestMapping("/deleteGoods")
+    //public String goodsDelete() {
+    //    goodsService.deleteService(3);
+    //    return "OK";
+    //}
 
 }

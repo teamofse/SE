@@ -15,9 +15,9 @@ public class GoodsService {
     private GoodsMapper goodsMapper;
 
     //查询所有商品信息
-    public List<Goods> queryByIdService() {
-        return goodsMapper.queryGoodsById();
-    }
+    //public List<Goods> queryByIdService() {
+    //    return goodsMapper.queryGoodsById();
+    //}
 
     //查询所有商品信息
     public List<GoodsInformation> query_ByIdService() {
@@ -25,8 +25,8 @@ public class GoodsService {
     }
 
     //根据名字查询商品信息
-    public List<Goods> queryByTitleService(String title) {
-        return goodsMapper.queryGoodsByTitle(title);
+    public List<GoodsInformation> queryByGoodsNameService(String goods_name) {
+        return goodsMapper.queryGoodsInformationByGoodsName(goods_name);
     }
 
     //发布时插入商品信息
@@ -36,22 +36,22 @@ public class GoodsService {
 }
 
     //插入商品信息
-    public void insertService(int id, String title, int star, String name, String city, int hot) {
-        goodsMapper.insertGoods(id, title, star, name, city, hot);
-    }
+    //public void insertService(int id, String title, int star, String name, String city, int hot) {
+    //    goodsMapper.insertGoods(id, title, star, name, city, hot);
+    //}
 
     //根据id修改商品信息
-    public void updateService(int id, String title, int star, String name, String city, int hot) {
-        goodsMapper.updateGoods(id, title, star, name, city, hot);
+    public void updateGoodsInformationService(int goods_id, int hot) {
+        goodsMapper.updateGoodsInformation(goods_id, hot);
     }
 
     //根据id删除商品信息
-    public void deleteService(int id) {
-        goodsMapper.deleteGoods(id);
-    }
+    //public void deleteService(int id) {
+    //    goodsMapper.deleteGoods(id);
+    //}
 
     //根据id查找商品信息
-    public Goods selectGoodsByItemId(int id) {
-        return goodsMapper.selectGoodsById(id);
+    public GoodsInformation selectGoodsInformationByItemId(int goods_id) {
+        return goodsMapper.selectGoodsInformationById(goods_id);
     }
 }
