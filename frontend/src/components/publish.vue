@@ -38,7 +38,6 @@
             <div id="class">
                 <p>宝贝类别：</p>
               <div class="radio-box" v-for="(item,index) in radios" :key="item.id">
-                <span class="radio" :class="{'on':item.isChecked}"></span>
                 <input v-model="GoodsInfo.class_id" :value="item.value" class="input-radio" :checked='item.isChecked'  @click="check(index)" type="radio">{{item.label}}
               </div>
               <br/>
@@ -319,7 +318,6 @@ import NavigationBar from './navigationbar'
     overflow:hidden
   }
   .publish_imag div{
-    border: solid 2px #843534;
     width:50%;
     float:left;
   }
@@ -345,33 +343,7 @@ import NavigationBar from './navigationbar'
     line-height: 25px;
     margin-right: 5px;
   }
-  .radio {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    vertical-align: middle;
-    cursor: pointer;
-    border: solid 2px #843534;
-    background-image: url(../assets/radio.png);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-position: 0 0;
-    background-image: url(../assets/radio.png);
-    background-size : 100% 100%;
-  }
   .input-radio {
-    display: inline-block;
-    position: absolute;
-    opacity: 0;
-    width: 25px;
-    height: 25px;
     cursor: pointer;
-    left: 0px;
-    outline: none;
-    -webkit-appearance: none;
-  }
-  .on {
-    background-position: -25px 0;
   }
 </style>
