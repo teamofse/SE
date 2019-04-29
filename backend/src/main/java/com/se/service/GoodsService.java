@@ -29,9 +29,9 @@ public class GoodsService {
     }
 
     //发布时插入商品信息
-    public void insert_Service(int goods_id,String goods_name,int price,String goods_detail,int class_id)
+    public void insert_Service(int goods_id,String goods_name,int price,String goods_detail,int class_id,String goods_picture_1, String goods_picture_2,String goods_picture_3,String goods_picture_4,int goods_state,int user_id)
     {
-        goodsMapper.insertGoodsInformation(goods_id, goods_name, price, goods_detail, class_id);
+        goodsMapper.insertGoodsInformation(goods_id, goods_name, price, goods_detail, class_id,goods_picture_1,goods_picture_2,goods_picture_3,goods_picture_4,goods_state,user_id);
 }
 
     //插入商品信息

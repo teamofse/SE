@@ -3,22 +3,27 @@
     <navigation-bar></navigation-bar>
     <div class="all col-md-12 column">
       <div class="publish_imag col-md-8 column">
-        <div><img src="../assets/publish_1.jpg" /></div>
-        <form name="imgForm" class="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
-          <input class="input-loc-img imgLocal"  name="imgLocal" type='file' accept="image/*" @change="selectImg" />
+        <div><img src="../assets/publish_1.jpg" @click="getFile_1($event)"/></div>
+        <form>
+          <input type="file" @change="getFile_1($event)">
         </form>
-        <div><img src="../assets/publish_1.jpg" /></div>
-        <form name="imgForm" class="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
-          <input class="input-loc-img imgLocal"  name="imgLocal" type='file' accept="image/*" @change="selectImg" />
+
+        <div><img src="../assets/publish_1.jpg" @click="getFile_2($event)"/></div>
+        <form>
+          <input type="file" @change="getFile_2($event)">
         </form>
-        <div><img src="../assets/publish_1.jpg" /></div>
-        <form name="imgForm" class="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
-          <input class="input-loc-img imgLocal"  name="imgLocal" type='file' accept="image/*" @change="selectImg" />
+
+        <div><img src="../assets/publish_1.jpg" @click="getFile_3($event)"/></div>
+        <form>
+          <input type="file" @change="getFile_3($event)">
         </form>
-        <div><img src="../assets/publish_1.jpg" /></div>
-        <form name="imgForm" class="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
-          <input class="input-loc-img imgLocal"  name="imgLocal" type='file' accept="image/*" @change="selectImg" />
+
+        <div><img src="../assets/publish_1.jpg" @click="getFile_4($event)"/></div>
+        <form>
+          <input type="file" @change="getFile_4($event)">
+          <button class="button button-primary button-pill button-small" @click="submit($event)">提交</button>
         </form>
+
       </div>
       <div class="right col-md-4 column">
         <div class="discription">
@@ -48,7 +53,7 @@
                 <br/>
               </form>
               <div class="publish">
-                <button type="button" id="modal-140183" href="#modal-container-140183" v-on:click="publish" role="button" class="btn btn-default btn-block" data-toggle="modal">发布</button>
+                <button type="button" id="modal-140183" href="#modal-container-140183" v-on:click="publish($event)" role="button" class="btn btn-default btn-block" data-toggle="modal">发布</button>
               </div>
 
               <div class="modal fade" id="modal-container-140183" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -79,6 +84,7 @@
 
 <script>
 import qs from 'Qs'
+import axios from 'axios'
 import NavigationBar from './navigationbar'
 
   export default {
@@ -145,11 +151,31 @@ import NavigationBar from './navigationbar'
           goods_detail: '',
           class_id: ''
         },
+        file_1: '',
+        file_2: '',
+        file_3: '',
+        file_4: '',
         responseResult: []
       }
     },
     methods: {
-      publish () {
+      getFile_1: function (event) {
+        this.file_1 = event.target.files[0]
+        console.log(this.file_1)
+      },
+      getFile_2: function (event) {
+        this.file_2 = event.target.files[0]
+        console.log(this.file_2)
+      },
+      getFile_3: function (event) {
+        this.file_3 = event.target.files[0]
+        console.log(this.file_3)
+      },
+      getFile_4: function (event) {
+        this.file_4 = event.target.files[0]
+        console.log(this.file_4)
+      },
+      publish (event) {
         this.$axios.post('/insertGoodsInformation', qs.stringify({
           goods_id: '0',
           goods_name: this.GoodsInfo.goods_name,
@@ -163,6 +189,115 @@ import NavigationBar from './navigationbar'
         })
           .catch(failResponse => {
           })
+        event.preventDefault()
+        let formData1 = new FormData()
+        formData1.append('file', this.file_1)
+        axios.post('/upload/singlefile', formData1)
+          .then(function (response) {
+            alert(response.data)
+            console.log(response)
+            window.location.reload()
+          })
+          .catch(function (error) {
+            alert('上传失败')
+            console.log(error)
+            window.location.reload()
+          })
+        let formData2 = new FormData()
+        formData2.append('file', this.file_2)
+        axios.post('/upload/singlefile', formData2)
+          .then(function (response) {
+            alert(response.data)
+            console.log(response)
+            window.location.reload()
+          })
+          .catch(function (error) {
+            alert('上传失败')
+            console.log(error)
+            window.location.reload()
+          })
+        let formData3 = new FormData()
+        formData3.append('file', this.file_3)
+        axios.post('/upload/singlefile', formData3)
+          .then(function (response) {
+            alert(response.data)
+            console.log(response)
+            window.location.reload()
+          })
+          .catch(function (error) {
+            alert('上传失败')
+            console.log(error)
+            window.location.reload()
+          })
+        let formData4 = new FormData()
+        formData4.append('file', this.file_4)
+        axios.post('/upload/singlefile', formData4)
+          .then(function (response) {
+            alert(response.data)
+            console.log(response)
+            window.location.reload()
+          })
+          .catch(function (error) {
+            alert('上传失败')
+            console.log(error)
+            window.location.reload()
+          })
+      },
+      submit: function (event) {
+        // 阻止元素发生默认的行为
+        event.preventDefault()
+        let formData1 = new FormData()
+        formData1.append('file', this.file_1)
+        axios.post('/upload/singlefile', formData1)
+          .then(function (response) {
+            alert(response.data)
+            console.log(response)
+            window.location.reload()
+          })
+          .catch(function (error) {
+            alert('上传失败')
+            console.log(error)
+            window.location.reload()
+          })
+        let formData2 = new FormData()
+        formData2.append('file', this.file_2)
+        axios.post('/upload/singlefile', formData2)
+          .then(function (response) {
+            alert(response.data)
+            console.log(response)
+            window.location.reload()
+          })
+          .catch(function (error) {
+            alert('上传失败')
+            console.log(error)
+            window.location.reload()
+          })
+        let formData3 = new FormData()
+        formData3.append('file', this.file_3)
+        axios.post('/upload/singlefile', formData3)
+          .then(function (response) {
+            alert(response.data)
+            console.log(response)
+            window.location.reload()
+          })
+          .catch(function (error) {
+            alert('上传失败')
+            console.log(error)
+            window.location.reload()
+          })
+        let formData4 = new FormData()
+        formData4.append('file', this.file_4)
+        axios.post('/upload/singlefile', formData4)
+          .then(function (response) {
+            alert(response.data)
+            console.log(response)
+            window.location.reload()
+          })
+          .catch(function (error) {
+            alert('上传失败')
+            console.log(error)
+            window.location.reload()
+          })
       },
       check (index) {
         this.radios.forEach((item) => {
@@ -171,10 +306,6 @@ import NavigationBar from './navigationbar'
         this.GoodsInfo.class_id = this.radios[index].value
         this.radios[index].isChecked = true
       }
-    },
-    selectImg () {
-      let form = document.getElementById('imgLocal')
-      form.submit()
     }
   }
 
