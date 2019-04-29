@@ -104,10 +104,11 @@ export default {
   components: { NavigationBar },
   data: function () {
     return {
-      responseResult: [],
-      responseResultUser: [],
-      responseResultClass: [],
-      results: []
+      responseResult: [], // goods_information表
+      responseResultUser: [], // users表
+      responseResultClass: [], // goods_class表
+      results: [], // 冒泡排序后的goods_information表
+      responseAll: [] // 连接三个表
       // newList: {}
     }
   },
@@ -126,7 +127,7 @@ export default {
               .get('/queryGoodsClass')
               .then(successResponse => {
                 this.responseResultClass = successResponse.data
-                // console.log(this.responseResultClass)
+                 console.log(this.responseResultClass[0])
               })
               .catch(failResponse => {
               })
