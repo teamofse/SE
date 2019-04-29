@@ -13,7 +13,7 @@
               {{result.goods_detail}}
             </p>
             <p>
-              <a class="button" href="#"><span>View details</span></a>
+              <router-link :to="{path:'/iteminfo',query:{ itemid:result.goods_id }}" class="button"><span>View details</span></router-link>
             </p>
           </div>
     </div>

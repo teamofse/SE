@@ -86,22 +86,23 @@
               <p class="more-word">查看更多 >></p>
           </router-link>
 
-        <!--footer-->
-        <div class="footer">
-          <img class="footer-img" alt="footer" src="../assets/footer.jpg" />
-        </div>
-
       </div>
     </div>
+    <App-footer></App-footer>
   </div>
+
 </template>
 
 <script>
   import NavigationBar from './navigationbar'
+  import AppFooter from './footer'
 import qs from 'Qs'
 export default {
   name: 'home',
-  components: { NavigationBar },
+  components: {
+    NavigationBar,
+    AppFooter
+  },
   data: function () {
     return {
       responseResult: [], // goods_information表

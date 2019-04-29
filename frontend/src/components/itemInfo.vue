@@ -53,21 +53,16 @@
                 </div>
               </div>
               <div class="col-md-6 column">
-                <h2 style="float: left;display: inline-block;clear:left;">标题标题标题</h2>
+                <h2 style="float: left;display: inline-block;clear:left;">{{results.goods_name}}</h2>
                 <div style="width: 100%;float: left;clear:left;">
                   <span style="float: left;display: inline-block;">介绍</span>
                   <span style="float: left;display: inline-block">:</span>
-                  <p v-bind:disabled="!itemInfo.isLogin">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                  </p>
+                  <p v-bind:disabled="!itemInfo.isLogin">{{results.goods_detail}}</p>
                 </div>
                 <div style="float: left;clear:left;">
                   <span style="float: left;">价格</span>
                   <span style="float: left;">:</span>
-                  <span>99.99</span>
+                  <span>{{results.price}}</span>
                 </div>
                 <div style="float: left;clear:left;">
                   <a id="modal-17668" style="float: left;clear: left;margin-left: 0" href="#modal-container-17668" role="button" class="btn" data-toggle="modal">购买</a>
@@ -125,7 +120,7 @@
 </template>
 
 <script>
-import qs from 'Qs'
+// import qs from 'Qs'
 import NavigationBar from './navigationbar'
 export default {
   name: 'ItemInfo',
@@ -138,37 +133,34 @@ export default {
       },
       styleObject: {
       },
-      responseResult: []
+      responseResult: [],
+      results: []
     }
   },
   mounted: function () {
+    this.itemInfo.itemId = this.$route.query.itemid
+    console.log(this.itemInfo.itemId)
     this.$axios
-      .post('/getiteminfopage', qs.stringify({
-        itemId: this.$route.params.itemid
-      }), {headers: {
+      .get('/getiteminfopage', {
+        params: {
+          itemId: this.itemInfo.itemId
+        }
+      }, {headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
         }})
       .then(successResponse => {
-        this.responseResult = JSON.stringify(successResponse.data)
-        if (successResponse.data.code === 200) {
-          alert('注册成功!')
-          this.$router.replace({path: '/login'})
-          console.log(successResponse.data.data)
-        } else if (successResponse.data.code === 400) {
-          if (successResponse.data.data === '注册失败，详细信息[用户名或密码为空]。') {
-            alert(successResponse.data.data)
-          }
-        }
+        // this.responseResult = JSON.stringify(successResponse.data)
+        this.responseResult = successResponse.data
+        this.results = this.responseResult
+        // if (successResponse.data.code === 200) {
+        //   console.log(successResponse.data.data)
+        // }
       })
-      .catch(failResponse => {})
+      .catch(failResponse => {
+        alert(this.$router.params.itemid)
+      })
   },
   methods: {
-    toLogin () {
-      this.$router.replace({path: '/login'})
-    },
-    toRegister () {
-      this.$router.replace({path: '/register'})
-    }
   }
 }
 </script>

@@ -127,11 +127,11 @@ var routes = [
     component: {template: '#records'},
     children: [
       {
-        path: 'arrived',
+        path: 'arrived/:itemid',
         component: {template: '#arrived'}
       },
       {
-        path: 'unarrived',
+        path: 'unarrived/:itemid',
         component: {template: '#unarrived'}
       }
     ]
@@ -141,17 +141,17 @@ var routes = [
     component: {template: '#commodity'},
     children: [
       {
-        path: '/sold',
+        path: '/sold/:itemid',
         component: {template: '#sold'}
       },
       {
-        path: '/onsale',
+        path: '/onsale/:itemid',
         component: {template: '#onsale'}
       }
     ]
   },
   {
-    path: '/like',
+    path: '/like/:itemid',
     component: {template: '#like'}
   }
 ]
