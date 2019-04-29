@@ -16,7 +16,13 @@ module.exports = {
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
-        }
+        },
+        '/img': {
+          target: 'http://localhost:8081',  //目标接口域名
+          changeOrigin: true,  //是否跨域
+          pathRewrite: {
+            '^/img': '/img'   //重写接口
+          }
       }
     },
 

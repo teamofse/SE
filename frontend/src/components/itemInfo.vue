@@ -7,7 +7,7 @@
           <div class="col-md-1 column">
           </div>
           <div class="col-md-10 column">
-            <div class="row clearfix">
+            <div class="row clearfix" style="margin-top: 10px">
               <div class="col-md-6 column">
                 <div class="carousel slide" id="carousel-760586">
                   <ol class="carousel-indicators">
@@ -102,6 +102,7 @@
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
                       </div>
+                      <img src="/2.jpg"/>
                     </div>
 
                   </div>

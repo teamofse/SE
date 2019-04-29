@@ -40,7 +40,7 @@ public class UploadController {
         try {
             System.out.println("开始保存文件!");
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOAD_FOLDER + "/files" + file.getOriginalFilename());
+            Path path = Paths.get(UPLOAD_FOLDER + "/static/img/" + file.getOriginalFilename());
             //如果没有files文件夹，则创建
             if (!Files.isWritable(path)) {
                 Files.createDirectories(Paths.get(UPLOAD_FOLDER));
