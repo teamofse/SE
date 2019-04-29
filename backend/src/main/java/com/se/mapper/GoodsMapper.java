@@ -11,8 +11,8 @@ import java.util.List;
 public interface GoodsMapper {
 
     //发布时插入商品信息
-    @Insert("INSERT INTO goods_information(goods_id,goods_name,price,goods_detail,class_id) VALUES(#{goods_id}, #{goods_name}, #{price}, #{goods_detail}, #{class_id})")
-    void insertGoodsInformation(@Param("goods_id") int goods_id,@Param("goods_name") String goods_name, @Param("price") int price, @Param("goods_detail") String goods_detail, @Param("class_id") int class_id);
+    @Insert("INSERT INTO goods_information(goods_id,goods_name,price,goods_detail,class_id,goods_picture_1,goods_picture_2,goods_picture_3,goods_picture_4,goods_state,user_id) VALUES(#{goods_id}, #{goods_name}, #{price}, #{goods_detail}, #{class_id},#{goods_picture_1},#{goods_picture_2},#{goods_picture_3},#{goods_picture_4},#{goods_state},#{user_id})")
+    void insertGoodsInformation(@Param("goods_id") int goods_id,@Param("goods_name") String goods_name, @Param("price") int price, @Param("goods_detail") String goods_detail, @Param("class_id") int class_id, @Param("goods_picture_1") String goods_picture_1, @Param("goods_picture_2") String goods_picture_2, @Param("goods_picture_3") String goods_picture_3, @Param("goods_picture_4") String goods_picture_4, @Param("goods_state") int goods_state, @Param("user_id") int user_id);
 
     //插入商品信息
     //@Insert("INSERT INTO goods(id, title, star, name, city, hot) VALUES(#{id}, #{title}, #{star}, #{name}, #{city}, #{hot})")
