@@ -5,7 +5,7 @@
       <div class="col-md-12 column">
         <!--商品列表-->
         <div class="goods">
-          <div class="col-md-4" v-for="result in results" :key="result" v-on:click="addHot(result.goods_id, result.hot)">
+          <div class="col-md-4" v-for="result in responseAll" :key="result" v-on:click="addHot(result.goods_id, result.hot)">
             <div class="thumbnail">
               <img class="image" alt="1" src="../assets/1.jpg" />
               <div class="intro">
@@ -19,8 +19,8 @@
                 </div>
                 <hr class="line" />
                 <span class="name-city-row">
-                  <!--<p class="name" align="left"><strong>{{result.user_name}}</strong></p>-->
-                  <!--<p class="city" align="right"><strong>{{result.user_city}}</strong></p>-->
+                  <p class="name" align="left"><strong>{{result.user_name}}</strong></p>
+                  <p class="city" align="right"><strong>{{result.user_addr_city}}</strong></p>
                 </span>
               </div>
             </div>
@@ -47,7 +47,8 @@ export default {
     return {
       results: [],
       responseResultUser: [],
-      responseResultClass: []
+      responseResultClass: [],
+      responseAll: []
       // newList: {}
     }
   },
@@ -66,6 +67,23 @@ export default {
               .then(successResponse => {
                 this.responseResultClass = successResponse.data
                 // console.log(this.responseResultClass)
+                for (var i = 0; i < this.results.length; i++) {
+                  this.responseAll[i] = this.results[i]
+                  // console.log(this.responseAll[i])
+                  for (var j = 0; j < this.responseResultUser.length; j++) {
+                    if (this.responseAll[i].user_id === this.responseResultUser[j].id) {
+                      this.responseAll[i].user_name = this.responseResultUser[j].account
+                      this.responseAll[i].user_addr_city = this.responseResultUser[j].user_addr_city
+                      break
+                    }
+                  }
+                  for (var k = 0; k < this.responseResultClass.length; k++) {
+                    if (this.responseAll[i].class_id === this.responseResultClass[k].class_id) {
+                      this.responseAll[i].class_name = this.responseResultClass[k].class_name
+                      break
+                    }
+                  }
+                }
               })
               .catch(failResponse => {
               })

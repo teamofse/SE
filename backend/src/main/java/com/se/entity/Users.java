@@ -9,7 +9,9 @@ public class Users {
     private String user_star;
     private String user_tel;
     private String real_name;
-    private String user_addr;
+    private String user_addr_pro;
+    private String user_addr_city;
+    private String user_addr_det;
 
     public void setId(int id) {
         this.id = id;
@@ -59,11 +61,27 @@ public class Users {
         this.real_name = real_name;
     }
 
-    public String getUser_addr() {
-        return user_addr;
+    public String getUser_addr_pro() {
+        return user_addr_pro;
     }
 
-    public void setUser_addr(String user_addr) {
-        this.user_addr = user_addr;
+    public void setUser_addr_pro(String user_addr_pro) {
+        this.user_addr_pro = user_addr_pro;
+    }
+
+    public String getUser_addr_city() {
+        return user_addr_city;
+    }
+
+    public void setUser_addr_city(String user_addr_city) {
+        this.user_addr_city = user_addr_city;
+    }
+
+    public String getUser_addr_det() {
+        return user_addr_det;
+    }
+
+    public void setUser_addr_det(String user_addr_det) {
+        this.user_addr_det = user_addr_det;
     }
 }

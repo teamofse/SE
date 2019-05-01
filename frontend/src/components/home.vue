@@ -56,9 +56,14 @@
           <a class="right carousel-control" href="#carousel-134833" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
         </div>
 
+        <div class="sort">
+          <text>全部</text>
+          <text>女装</text>
+        </div>
+
         <!--商品列表-->
         <div class="goods">
-          <div class="col-md-4" v-for="result in results" :key="result" v-on:click="addHot(result.goods_id, result.hot)">
+          <div class="col-md-4" v-for="result in responseAll" :key="result" v-on:click="addHot(result.goods_id, result.hot)">
             <div class="thumbnail">
               <img class="image" alt="1" src="../assets/1.jpg" />
               <div class="intro">
@@ -72,8 +77,8 @@
                 </div>
                 <hr class="line" />
                 <span class="name-city-row">
-                  <!--<p class="name" align="left"><strong>{{result.user_name}}</strong></p>-->
-                  <!--<p class="city" align="right"><strong>{{result.user_city}}</strong></p>-->
+                  <p class="name" align="left"><strong>{{result.user_name}}</strong></p>
+                  <p class="city" align="right"><strong>{{result.user_addr_city}}</strong></p>
                 </span>
               </div>
             </div>
@@ -118,17 +123,44 @@ export default {
       .get('/queryGoodsInformationById')
       .then(successResponse => {
         this.responseResult = successResponse.data
+        // console.log(this.responseResult)
         this.results = this.bubbleSort(this.responseResult)
+        // console.log('goods')
+        // console.log(this.results)
         this.$axios // 返回users表所有内容
           .get('/queryAllUsers')
           .then(successResponse => {
             this.responseResultUser = successResponse.data
+            // console.log('users')
             // console.log(this.responseResultUser)
             this.$axios // 返回goods_class表所有内容
               .get('/queryGoodsClass')
               .then(successResponse => {
                 this.responseResultClass = successResponse.data
-                 console.log(this.responseResultClass[0])
+                // console.log('class')
+                // console.log(this.responseResultClass)
+                for (var i = 0; i < this.results.length; i++) {
+                  this.responseAll[i] = this.results[i]
+                  // console.log(this.responseAll[i])
+                  for (var j = 0; j < this.responseResultUser.length; j++) {
+                    if (this.responseAll[i].user_id === this.responseResultUser[j].id) {
+                      this.responseAll[i].user_name = this.responseResultUser[j].account
+                      this.responseAll[i].user_addr_city = this.responseResultUser[j].user_addr_city
+                      break
+                    }
+                  }
+                  for (var k = 0; k < this.responseResultClass.length; k++) {
+                    if (this.responseAll[i].class_id === this.responseResultClass[k].class_id) {
+                      this.responseAll[i].class_name = this.responseResultClass[k].class_name
+                      break
+                    }
+                  }
+                }
+                // console.log(this.responseAll[0])
+                // console.log(this.responseAll[1])
+                // console.log(this.responseAll[2])
+                // console.log(this.responseAll[3])
+                // console.log(this.responseAll[4])
               })
               .catch(failResponse => {
               })
@@ -200,6 +232,9 @@ export default {
   .zyl {
     width: 100%;
     height: 400px;
+  }
+  .sort {
+    float: left;
   }
   .goods {
     padding-bottom: 100px;
@@ -277,7 +312,7 @@ export default {
     width: 90px;
     margin-right: 20px;
     position: absolute;
-    bottom: 255px;
+    bottom: 20px;
     right: 60px;
   }
   .footer-img {
