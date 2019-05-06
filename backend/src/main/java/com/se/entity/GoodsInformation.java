@@ -106,7 +106,7 @@ public class GoodsInformation {
         return user_id;
     }
 
-    public void setuser_id(int goods_state) {
+    public void setuser_id(int user_id) {
         this.user_id = user_id;
     }
 }
