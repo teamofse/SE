@@ -1,6 +1,6 @@
 <template id="footer">
   <!--<div class="container">-->
-    <div class="row clearfix foot">
+    <div class="row clearfix foot" style="margin-top: 50px">
       <div class="col-md-12 column">
         <div class="row clearfix">
           <div class="col-md-6 column">

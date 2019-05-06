@@ -57,13 +57,35 @@
         </div>
 
         <div class="sort">
-          <text>全部</text>
-          <text>女装</text>
+          <div class="sort_item">
+            <p class="sort_all" style="color: red" v-on:click="find_class(0)" v-if="flag === true">全部</p>
+            <p class="sort_all" v-on:click="find_class(0)" v-if="flag === false">全部</p>
+            <p class="sort_nv" style="color: red" v-on:click="find_class(1)" v-if="results[0].class_id === 1 && flag === false">女装</p>
+            <p class="sort_nv" v-on:click="find_class(1)" v-if="results[0].class_id !== 1 || flag === true">女装</p>
+            <p class="sort_nan" style="color: red" v-on:click="find_class(2)" v-if="results[0].class_id === 2 && flag === false">男装</p>
+            <p class="sort_nan" v-on:click="find_class(2)" v-if="results[0].class_id !== 2 || flag === true">男装</p>
+            <p class="sort_mu" style="color: red" v-on:click="find_class(3)" v-if="results[0].class_id === 3 && flag === false">母婴</p>
+            <p class="sort_mu" v-on:click="find_class(3)" v-if="results[0].class_id !== 3 || flag === true">母婴</p>
+            <p class="sort_mei" style="color: red" v-on:click="find_class(4)" v-if="results[0].class_id === 4 && flag === false">美妆</p>
+            <p class="sort_mei" v-on:click="find_class(4)" v-if="results[0].class_id !== 4 || flag === true">美妆</p>
+            <p class="sort_jia" style="color: red" v-on:click="find_class(5)" v-if="results[0].class_id === 5 && flag === false">家居家纺</p>
+            <p class="sort_jia" v-on:click="find_class(5)" v-if="results[0].class_id !== 5 || flag === true">家居家纺</p>
+            <p class="sort_shu" style="color: red" v-on:click="find_class(6)" v-if="results[0].class_id === 6 && flag === false">数码家电</p>
+            <p class="sort_shu" v-on:click="find_class(6)" v-if="results[0].class_id !== 6 || flag === true">数码家电</p>
+            <p class="sort_shou" style="color: red" v-on:click="find_class(7)" v-if="results[0].class_id === 7 && flag === false">手表配饰</p>
+            <p class="sort_shou" v-on:click="find_class(7)" v-if="results[0].class_id !== 7 || flag === true">手表配饰</p>
+            <p class="sort_nei" style="color: red" v-on:click="find_class(8)" v-if="results[0].class_id === 8 && flag === false">男女内衣</p>
+            <p class="sort_nei" v-on:click="find_class(8)" v-if="results[0].class_id !== 8 || flag === true">男女内衣</p>
+            <p class="sort_xie" style="color: red" v-on:click="find_class(9)" v-if="results[0].class_id === 9 && flag === false">鞋包</p>
+            <p class="sort_xie" v-on:click="find_class(9)" v-if="results[0].class_id !== 9 || flag === true">鞋包</p>
+            <p class="sort_wu" style="color: red" v-on:click="find_class(10)" v-if="results[0].class_id === 10 && flag === false">生活小物</p>
+            <p class="sort_wu" v-on:click="find_class(10)" v-if="results[0].class_id !== 10 || flag === true">生活小物</p>
+          </div>
         </div>
 
         <!--商品列表-->
         <div class="goods">
-          <div class="col-md-4" v-for="result in responseAll" :key="result" v-on:click="addHot(result.goods_id, result.hot)">
+          <div class="col-md-4" v-for="result in results" :key="result" v-on:click="addHot(result.goods_id, result.hot)">
             <div class="thumbnail">
               <img class="image" alt="1" src="../assets/1.jpg" />
               <div class="intro">
@@ -110,11 +132,13 @@ export default {
   },
   data: function () {
     return {
+      flag: true,
       responseResult: [], // goods_information表
       responseResultUser: [], // users表
       responseResultClass: [], // goods_class表
-      results: [], // 冒泡排序后的goods_information表
-      responseAll: [] // 连接三个表
+      results: [], // 冒泡排序后的goods_information表 用来显示
+      responseAll: [], // 连接三个表
+      resultsClass: [] // 点击分类
       // newList: {}
     }
   },
@@ -156,11 +180,8 @@ export default {
                     }
                   }
                 }
-                // console.log(this.responseAll[0])
-                // console.log(this.responseAll[1])
-                // console.log(this.responseAll[2])
-                // console.log(this.responseAll[3])
-                // console.log(this.responseAll[4])
+                // 咋用results就好使，用responseAll就不好使捏
+                this.results = this.responseAll
               })
               .catch(failResponse => {
               })
@@ -205,6 +226,25 @@ export default {
         })
         .catch(failResponse => {
         })
+    },
+    find_class: function (x) {
+      if (x === 0) { // 查找全部
+        this.results = this.responseAll
+        this.flag = true
+      } else { // 查找部分
+        var flag = 0
+        this.flag = false
+        this.resultsClass = []
+        for (var i = 0; i < this.responseAll.length; i++) {
+          if (this.responseAll[i].class_id === x) {
+            this.resultsClass[flag] = this.responseAll[i]
+            flag++
+          }
+        }
+        // console.log(this.resultsClass)
+        this.results = this.resultsClass
+      }
+      // console.log(this.results)
     }
   // 监听路由，每次进入都要从后台获取新数据。init方法即为每次进入此页面都需要执行的方法，请求数据的方法也在里面。
   // watch: {
@@ -235,6 +275,20 @@ export default {
   }
   .sort {
     float: left;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: -30px;
+    margin-left: 150px
+  }
+  .sort_item {
+    margin-left: 20%;
+  }
+  .sort_all, .sort_nv, .sort_nan, .sort_mu, .sort_mei, .sort_jia, .sort_shu, .sort_shou, .sort_nei, .sort_xie, .sort_wu{
+    float: left;
+    margin-right: 10px;
+  }
+  .sort_all:hover, .sort_nv:hover, .sort_nan:hover, .sort_mu:hover, .sort_mei:hover, .sort_jia:hover, .sort_shu:hover, .sort_shou:hover, .sort_nei:hover, .sort_xie:hover, .sort_wu:hover {
+    color: red;
   }
   .goods {
     padding-bottom: 100px;
@@ -312,12 +366,12 @@ export default {
     width: 90px;
     margin-right: 20px;
     position: absolute;
-    bottom: 20px;
+    bottom: -30px;
     right: 60px;
-  }
-  .footer-img {
-    margin-top: 50px;
-    width: 100%;
-    height: 250px;
-  }
+  }  .footer-img {
+       margin-top: 50px;
+       width: 100%;
+       height: 250px;
+     }
+
 </style>
