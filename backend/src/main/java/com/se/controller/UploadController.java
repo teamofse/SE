@@ -15,12 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-/**
- * Created by IntelliJ IDEA.
- *
- * @author luoliang
- * @date 2018/2/12
- **/
+
 @RestController
 @RequestMapping("/api/upload")
 @CrossOrigin
@@ -38,12 +33,11 @@ public class UploadController {
             System.out.println("文件为空!");
             return "文件为空，请重新上传";
         }
-
         try {
             System.out.println("开始保存文件!");
             byte[] bytes = file.getBytes();
             Path path = Paths.get(UPLOAD_FOLDER + "/static/img/" + file.getOriginalFilename());
-            //如果没有files文件夹，则创建
+            //Path path = Paths.get(UPLOAD_FOLDER + "/files" + file.getOriginalFilename());
             if (!Files.isWritable(path)) {
                 Files.createDirectories(Paths.get(UPLOAD_FOLDER));
             }
