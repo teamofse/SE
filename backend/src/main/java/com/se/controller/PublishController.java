@@ -32,6 +32,7 @@ public class PublishController {
         response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
         response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
 
+
         String goods_name=request.getParameter("goods_name");
         int price=Integer.valueOf(request.getParameter("price"));
         String goods_detail=request.getParameter("goods_detail");
@@ -41,5 +42,6 @@ public class PublishController {
         goodsService.insert_Service(0, goods_name, price, goods_detail,  class_id ,"11","11","11","11",1,user_id);
         return goodsService.query_ByIdService();
     }
+
 
 }
