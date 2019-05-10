@@ -7,6 +7,7 @@ import com.se.result.Result;
 import com.se.entity.GoodsInformation;
 import com.se.result.ResultFactory;
 import com.se.service.GoodsService;
+import com.se.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,13 +35,32 @@ public class ItemInfoController {
         response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
 
         String itemId=request.getParameter("itemId");
-        System.out.println(itemId);
+        System.out.println("itemId is "+itemId);
         int itemid = parseInt(itemId);
 //        Hashtable hashtable=new Hashtable();//存放要返回的数据
         HttpSession session=request.getSession();//获取request请求里的session, 如果是第一次请求, 则会创建一个新的session
-        String account = (String)session.getAttribute("account");
+        //String account = (String)session.getAttribute("account");
         return goodsService.selectGoodsByItemId(itemid);
 
     }
+    @Autowired
+    private UsersService usersService;
+    @CrossOrigin
+    @RequestMapping(value = "/getsellerinfo", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public Users getSellerInfo(HttpServletRequest request, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
+        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+        response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
 
+        String sellerId=request.getParameter("sellerId");
+        System.out.println("sellerId is "+sellerId);
+        int sellerid = parseInt(sellerId);
+//        Hashtable hashtable=new Hashtable();//存放要返回的数据
+        HttpSession session=request.getSession();//获取request请求里的session, 如果是第一次请求, 则会创建一个新的session
+        //String account = (String)session.getAttribute("account");
+        return usersService.selectUserById(sellerid);
+
+    }
 }

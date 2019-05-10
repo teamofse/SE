@@ -55,17 +55,22 @@
               <div class="col-md-6 column">
                 <h2 style="float: left;display: inline-block;clear:left;">{{results.goods_name}}</h2>
                 <div style="width: 100%;float: left;clear:left;">
+                  <span style="float: left;display: inline-block;">卖家</span>
+                  <span style="float: left;display: inline-block">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  <p>{{results.goods_detail}}</p>
+                </div>
+                <div style="width: 100%;float: left;clear:left;">
                   <span style="float: left;display: inline-block;">介绍</span>
-                  <span style="float: left;display: inline-block">:</span>
-                  <p v-bind:disabled="!itemInfo.isLogin">{{results.goods_detail}}</p>
+                  <span style="float: left;display: inline-block">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  <p>{{results.goods_detail}}</p>
                 </div>
                 <div style="float: left;clear:left;">
                   <span style="float: left;">价格</span>
-                  <span style="float: left;">:</span>
-                  <span>{{results.price}}</span>
+                  <span style="float: left;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  <span style="color:red">¥{{results.price}}</span>
                 </div>
-                <div style="float: left;clear:left;">
-                  <a id="modal-17668" style="float: left;clear: left;margin-left: 0" href="#modal-container-17668" role="button" class="btn" data-toggle="modal">购买</a>
+                <div style="float: left;clear:left;margin-top: 10px">
+                  <button id="modal-17668" style="float: left;clear: left;margin-left: 0" href="#modal-container-17668" role="button" class="btn" data-toggle="modal">购买</button>
                   <img src="/static/icon/like.png">
                 </div>
                 <div class="modal fade" id="modal-container-17668" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -74,7 +79,7 @@
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                         <h4 class="modal-title" id="myModalLabel">
-                          请输入
+                          购买信息
                         </h4>
                       </div>
                       <div class="modal-body">
@@ -83,7 +88,7 @@
                             <div class="col-sm-1">
                             </div>
                             <div class="col-sm-10">
-                              <input type="email" class="form-control" id="inputAddress" placeholder="地址"/>
+                              <input type="input" class="form-control" id="inputAddress" placeholder="地址"/>
                             </div>
                             <div class="col-sm-1">
                             </div>
@@ -92,7 +97,11 @@
                             <div class="col-sm-1">
                             </div>
                             <div class="col-sm-10">
-                              <input type="password" class="form-control" id="inputItem" placeholder="商品"/>
+                              <div style="float: left;clear:left;">
+                                <span style="float: left;">价格</span>
+                                <span style="float: left;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <span style="color:red">¥{{results.price}}</span>
+                              </div>
                             </div>
                             <div class="col-sm-1">
                             </div>
@@ -100,7 +109,7 @@
                         </form>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">购买</button>
                       </div>
                     </div>
 
@@ -149,12 +158,23 @@ export default {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
         }})
       .then(successResponse => {
-        // this.responseResult = JSON.stringify(successResponse.data)
         this.responseResult = successResponse.data
         this.results = this.responseResult
-        // if (successResponse.data.code === 200) {
-        //   console.log(successResponse.data.data)
-        // }
+      })
+      .catch(failResponse => {
+        alert(this.$router.params.itemid)
+      })
+    this.$axios
+      .get('/getsellerinfo', {
+        params: {
+          itemId: this.itemInfo.itemId
+        }
+      }, {headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+        }})
+      .then(successResponse => {
+        this.responseResult = successResponse.data
+        this.results = this.responseResult
       })
       .catch(failResponse => {
         alert(this.$router.params.itemid)
