@@ -88,16 +88,10 @@
                             <div class="col-sm-1">
                             </div>
                             <div class="col-sm-10">
-                              <input type="input" class="form-control" id="inputAddress" placeholder="地址"/>
-                            </div>
-                            <div class="col-sm-1">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="col-sm-1">
-                            </div>
-                            <div class="col-sm-10">
-                              <div style="float: left;clear:left;">
+                              <input type="input" class="form-control" id="inputAddrPro" placeholder="省"/>
+                              <input type="input" class="form-control" id="inputAddrCity" placeholder="市"/>
+                              <input type="input" class="form-control" id="inputAddrDet" placeholder="详细地址"/>
+                              <div style="float: left;clear:left;margin-top: 10px">
                                 <span style="float: left;">价格</span>
                                 <span style="float: left;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                 <span style="color:red">¥{{results.price}}</span>
@@ -129,7 +123,7 @@
 </template>
 
 <script>
-// import qs from 'Qs'
+import qs from 'Qs'
 import NavigationBar from './navigationbar'
 export default {
   name: 'ItemInfo',
@@ -181,6 +175,30 @@ export default {
       })
   },
   methods: {
+    clickedBuyingButton: function () {
+      this.$axios
+        .post('/buying', qs.stringify({
+          itemid: this.$router.params.itemid,
+          user_addr_pro: 'Fujian',
+          user_addr_city: 'Zhaoan',
+          user_addr_det: 'Bushang'
+        }), {headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+          }})
+        .then(successResponse => {
+          this.responseResult = JSON.stringify(successResponse.data)
+          if (successResponse.data.code === 200) {
+            // this.$store.dispatch('toLogin')
+            // console.log('isLogin:')
+            // console.log(this.isLogin)
+            // this.$router.push({path: '/home'})
+            // console.log(successResponse.data.data)
+          }
+        })
+        .catch(err => {
+          this.$message.error(err)
+        })
+    }
   }
 }
 </script>
