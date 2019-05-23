@@ -89,7 +89,7 @@ public class HomeController {
 
     //修改热度
     @CrossOrigin
-    @RequestMapping(value = "/updateGoodsInformation", method = RequestMethod.PUT, produces = "application/json; charset=UTF-8")
+    @RequestMapping(value = "/updateGoodsInformation", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
     @ResponseBody
     public Result updateAddr(HttpServletRequest request, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
@@ -97,7 +97,7 @@ public class HomeController {
         response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
         response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
 
-        String id_string=request.getParameter("goods_id");
+        String id_string=request.getParameter("id");
         int goods_id = Integer.parseInt(id_string);
         //String title=request.getParameter("title");
         //String star_string=request.getParameter("star");

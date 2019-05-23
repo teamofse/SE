@@ -165,7 +165,7 @@ export default {
         alert(this.$router.params.itemid)
       })
     this.$axios
-      .get('/getsellerinfo', {
+      .get('/getiteminfopage', {
         params: {
           itemId: this.itemInfo.itemId
         }
