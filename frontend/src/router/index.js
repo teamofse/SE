@@ -18,6 +18,7 @@ import upload from '../components/upload'
 import unarrived from '../components/unarrived'
 import arrived from '../components/arrived'
 import like from '../components/like'
+import abouts from "../components/abouts";
 
 Vue.use(Router)
 
@@ -62,6 +63,10 @@ export default new Router({
         {
           path: '/upload',
           component: upload
+        },
+        {
+          path: '/abouts',
+          component: abouts
         },
         {
           path: '/hello',

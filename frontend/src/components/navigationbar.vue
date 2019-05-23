@@ -11,21 +11,22 @@
           <li>
             <a href="/list">商品</a>
           </li>
-          <li>
-            <a href="#">关于我们</a>
-          </li>
           <li :class="{'colordisplay':seenlog}">
             <a href="/login">登录</a>
           </li>
           <li :class="{'colordisplay':seenlog}">
             <a href="/register">注册</a>
           </li>
+          <li :class="{'colordisplay':seenlog}">
+            <a href="/publish">发布</a>
+          </li>
+          <li :class="{'colordisplay':seenlog}">
+            <a href="/abouts">关于我们</a>
+          </li>
           <li :class="{'colordisplay':seen}">
             <a href="/psinfo">{{results.account}}</a>
           </li>
-          <li :class="{'colordisplay':seen}">
-            <a href="/publish">发布</a>
-          </li>
+
         </ul>
       </div>
     </h2>
