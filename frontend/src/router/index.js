@@ -18,7 +18,7 @@ import upload from '../components/upload'
 import unarrived from '../components/unarrived'
 import arrived from '../components/arrived'
 import like from '../components/like'
-import abouts from "../components/abouts";
+import abouts from '../components/abouts'
 import modifypsinfo from '../components/modifypsinfo'
 
 Vue.use(Router)

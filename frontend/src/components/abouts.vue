@@ -69,7 +69,7 @@
 
 export default {
   name: 'abouts',
-  components: {NavigationBar},
+  components: {NavigationBar}
 }
 </script>
 
