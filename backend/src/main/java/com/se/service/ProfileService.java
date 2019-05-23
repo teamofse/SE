@@ -65,9 +65,14 @@ public class ProfileService {
         return profileMapper.queryGoodByLikeStateId(like_state,account);
     }
 
-    //根据id修改商品信息
-    public void updateAddrService(String user_addr, String account) {
-        profileMapper.updateAddr(user_addr, account);
+    //根据id修改地址
+    public void updateAddrService(String user_addr_pro, String user_addr_city, String user_addr_det, String account) {
+        profileMapper.updateAddr(user_addr_pro, user_addr_city, user_addr_det, account);
+    }
+
+    //根据id修改密码
+    public void updatePswService(String password, String account) {
+        profileMapper.updatePsw(password, account);
     }
 
 }

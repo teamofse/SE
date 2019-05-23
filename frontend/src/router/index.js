@@ -18,6 +18,8 @@ import upload from '../components/upload'
 import unarrived from '../components/unarrived'
 import arrived from '../components/arrived'
 import like from '../components/like'
+import abouts from "../components/abouts";
+import modifypsinfo from '../components/modifypsinfo'
 
 Vue.use(Router)
 
@@ -64,8 +66,16 @@ export default new Router({
           component: upload
         },
         {
+          path: '/abouts',
+          component: abouts
+        },
+        {
           path: '/hello',
           component: HelloWorld
+        },
+        {
+          path: '/modifypsinfo',
+          component: modifypsinfo
         },
         {
           path: '/profile',
@@ -122,6 +132,10 @@ var routes = [
     path: '/psinfo',
     component: {template: '#psinfo'}
   },
+  // {
+  //   path: '/modifypsinfo',
+  //   component: {template: '#mofidypsinfo'}
+  // },
   {
     path: '/records',
     component: {template: '#records'},

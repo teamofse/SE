@@ -23,16 +23,30 @@
                 {{results.user_star}}
               </dd>
               </div>
+              <div id="tel">
+                <dt>
+                  手机号
+                </dt>
+                <dd>
+                  {{results.user_tel}}
+                </dd>
+              </div>
               <div id="address">
               <dt>
                 地址
               </dt>
-              <input id="add1" v-model="results.user_addr" placeholder="请输入地址" :disabled="flag"/>
+                <!--<dd><input id="add1" v-model="results.user_addr_pro" placeholder="请输入地址" :disabled="flag"/></dd>-->
+                <!--<dd><input id="add2" v-model="results.user_addr_city" placeholder="请输入地址" :disabled="flag"/></dd>-->
+                <!--<dd><input id="add3" v-model="results.user_addr_det" placeholder="请输入地址" :disabled="flag"/></dd>-->
+                <dd>{{results.user_addr_pro}}</dd>
+                <dd>{{results.user_addr_city}}</dd>
+                <dd>{{results.user_addr_det}}</dd>
+
               <!--<dd id="add2">-->
                 <!--哈尔滨工业大学-->
               <!--</dd>-->
-                <p class="modify"><a v-on:click="changevision" :class="{'colordisplay':modify}">修改地址</a></p>
-                <p class="modify"><a v-on:click="modifyaddr" :class="{'colordisplay':commit}">确定</a></p>
+                <!--<p class="modify"><a v-on:click="changevision" :class="{'colordisplay':modify}">修改地址</a></p>-->
+                <!--<p class="modify"><a v-on:click="modifyaddr" :class="{'colordisplay':commit}">确定</a></p>-->
               </div>
             </dl>
           </div>
@@ -44,7 +58,7 @@
 </template>
 
 <script>
-  import qs from 'Qs'
+  // import qs from 'Qs'
   export default {
     name: 'psinfo',
     data: function () {
@@ -75,33 +89,35 @@
           this.modify = true
           this.commit = false
         }
-      },
-      modifyaddr: function () {
-        // console.log(this.modifyInfo.user_addr)
-        this.$axios
-          .put('/updateAddrs', qs.stringify({
-            account: this.results.account,
-            user_addr: this.results.user_addr
-          }), {headers: {
-              'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-            }})
-          .then(successResponse => {
-            // console.log(this.modifyInfo.user_addr)
-            // console.log(successResponse.data)
-            this.responseResult = JSON.stringify(successResponse.data)
-            // console.log(this.responseResult)
-            if (successResponse.data.code === 200) {
-              this.$router.replace({path: '/psinfo'})
-              console.log(successResponse.data.data)
-            }
-          })
-          .catch(failResponse => {
-            // console.log(this.modifyInfo.user_addr)
-          })
-        this.flag = true
-        this.modify = false
-        this.commit = true
       }
+      // modifyaddr: function () {
+      //   // console.log(this.modifyInfo.user_addr)
+      //   this.$axios
+      //     .put('/updateAddrs', qs.stringify({
+      //       account: this.results.account,
+      //       user_addr_pro: this.results.user_addr_pro,
+      //       user_addr_city: this.results.user_addr_city,
+      //       user_addr_det: this.results.user_addr_det
+      //     }), {headers: {
+      //         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+      //       }})
+      //     .then(successResponse => {
+      //       // console.log(this.modifyInfo.user_addr)
+      //       // console.log(successResponse.data)
+      //       this.responseResult = JSON.stringify(successResponse.data)
+      //       // console.log(this.responseResult)
+      //       if (successResponse.data.code === 200) {
+      //         this.$router.replace({path: '/psinfo'})
+      //         console.log(successResponse.data.data)
+      //       }
+      //     })
+      //     .catch(failResponse => {
+      //       // console.log(this.modifyInfo.user_addr)
+      //     })
+      //   this.flag = true
+      //   this.modify = false
+      //   this.commit = true
+      // }
     }
   }
 </script>
@@ -126,7 +142,7 @@
   #address {
     padding: 10px;
   }
-  #add2 {
+  #add2, #add3{
     margin-top: 10px;
   }
   .modify {
