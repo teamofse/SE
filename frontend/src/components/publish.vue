@@ -2,28 +2,37 @@
   <div class="container">
     <navigation-bar></navigation-bar>
     <div class="all col-md-12 column">
-      <div class="publish_imag col-md-8 column">
-        <div><img src="../assets/publish_1.jpg" @click="getFile_1($event)"/></div>
-        <form>
-          <input type="file" @change="getFile_1($event)">
-        </form>
+      <div class="left col-md-8 column">
+        <div class="row clearfix">
+          <div class="col-md-6 column">
+            <img src="../assets/publish_1.jpg" height="330" width="330"  @click="getFile_1($event)" />
+            <form>
+              <input type="file" @change="getFile_1($event)">
+            </form>
+          </div>
+          <div class="col-md-6 column ">
+            <img src="../assets/publish_1.jpg" height="330" width="330" @click="getFile_2($event)"/>
+            <form>
+              <input type="file" @change="getFile_2($event)">
+            </form>
+          </div>
+        </div>
 
-        <div><img src="../assets/publish_1.jpg" @click="getFile_2($event)"/></div>
-        <form>
-          <input type="file" @change="getFile_2($event)">
-        </form>
-
-        <div><img src="../assets/publish_1.jpg" @click="getFile_3($event)"/></div>
-        <form>
-          <input type="file" @change="getFile_3($event)">
-        </form>
-
-        <div><img src="../assets/publish_1.jpg" @click="getFile_4($event)"/></div>
-        <form>
-          <input type="file" @change="getFile_4($event)">
-          <button class="button button-primary button-pill button-small" @click="submit($event)">提交</button>
-        </form>
-
+        <div class="row clearfix">
+          <div class="col-md-6 column">
+            <img src="../assets/publish_1.jpg" height="330" width="330" @click="getFile_3($event)"/>
+            <form>
+              <input type="file" @change="getFile_3($event)">
+            </form>
+          </div>
+          <div class="col-md-6 column">
+            <img src="../assets/publish_1.jpg" height="330" width="330" @click="getFile_4($event)"/>
+            <form>
+              <input type="file" @change="getFile_4($event)">
+              <button class="button button-primary button-pill button-small" @click="submit($event)">提交</button>
+            </form>
+          </div>
+        </div>
       </div>
       <div class="right col-md-4 column">
         <div class="discription">
@@ -32,25 +41,26 @@
               <p>
                 <span style="font-size:large; "><strong>标题</strong></span>
                 <br/>
-                <textarea name="goods_name" v-model="GoodsInfo.goods_name" cols="40" rows="1"  placeholder="品类品牌型号都是买家喜欢搜索的" style="OVERFLOW:   hidden"></textarea>
+                <textarea v-on:keypress="checkForm" name="goods_name" v-model="GoodsInfo.goods_name" cols="40" rows="1"  placeholder="品类品牌型号都是买家喜欢搜索的" style="OVERFLOW:   hidden"></textarea>
               </p>
             </div>
             <div id="class">
                 <p>宝贝类别：</p>
               <div class="radio-box" v-for="(item,index) in radios" :key="item.id">
-                <input v-model="GoodsInfo.class_id" :value="item.value" class="input-radio" :checked='item.isChecked'  @click="check(index)" type="radio">{{item.label}}
+                <input v-on:keypress="checkForm" v-model="GoodsInfo.class_id" :value="item.value" class="input-radio" :checked='item.isChecked'  @click="check(index)" type="radio">{{item.label}}
               </div>
               <br/>
             </div>
                 <br/>
                 <p>宝贝详情：</p>
-                <textarea name="goods_detail" v-model="GoodsInfo.goods_detail"  cols="40" rows="4" style="OVERFLOW:   hidden"></textarea>
+                <textarea v-on:keypress="checkForm" name="goods_detail" v-model="GoodsInfo.goods_detail"  cols="40" rows="4" style="OVERFLOW:   hidden"></textarea>
                 <br/>
                 <div><p>价格：</p></div>
-                <textarea name="price"  v-model="GoodsInfo.price" cols="40" rows="1" placeholder="                                                               星星" style="OVERFLOW:   hidden"></textarea>
+                <textarea v-on:keypress="checkForm" name="price"  v-model="GoodsInfo.price" cols="40" rows="1" placeholder="                                                               星星" style="OVERFLOW:   hidden"></textarea>
                 <br/>
                 <br/>
               </form>
+              <span id="tips" v-bind:style="styleObject.tips">{{GoodsInfo.tipsInfo}}</span>
               <div class="publish">
                 <button type="button" id="modal-140183" href="#modal-container-140183" v-on:click="publish($event)" role="button" class="btn btn-default btn-block" data-toggle="modal">发布</button>
               </div>
@@ -69,7 +79,7 @@
                       宝贝发布成功！
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">去查看</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary" v-on:click=" ">去查看</button>
                     </div>
                   </div>
                 </div>
@@ -148,7 +158,13 @@ import NavigationBar from './navigationbar'
           goods_name: '',
           price: '',
           goods_detail: '',
-          class_id: ''
+          class_id: '',
+          tipsInfo: ''
+        },
+        styleObject: {
+          tips: {
+            color: 'green'
+          }
         },
         file_1: '',
         file_2: '',
@@ -174,6 +190,20 @@ import NavigationBar from './navigationbar'
         this.file_4 = event.target.files[0]
         console.log(this.file_4)
       },
+      checkForm () {
+        if (this.GoodsInfo.goods_name === '') {
+          this.GoodsInfo.tipsInfo = '宝贝标题不能为空!'
+        } else if (this.GoodsInfo.class_id === '') {
+          this.GoodsInfo.tipsInfo = '宝贝类别不能为空!'
+        } else if (this.GoodsInfo.goods_detail === '') {
+          this.GoodsInfo.tipsInfo = '宝贝详情不能为空!'
+        } else if (this.GoodsInfo.price === '') {
+          this.GoodsInfo.tipsInfo = '宝贝价格不能为空!'
+        } else {
+          this.GoodsInfo.tipsInfo = 'It\'s OK!'
+          this.styleObject.tips.color = 'green'
+        }
+      },
       publish (event) {
         this.$axios.post('/insertGoodsInformation', qs.stringify({
           goods_id: '0',
@@ -189,58 +219,58 @@ import NavigationBar from './navigationbar'
           .catch(failResponse => {
           })
         event.preventDefault()
-        let formData1 = new FormData()
-        formData1.append('file', this.file_1)
-        axios.post('/upload/singlefile', formData1)
-          .then(function (response) {
-            alert(response.data)
-            console.log(response)
-            window.location.reload()
-          })
-          .catch(function (error) {
-            alert('上传失败')
-            console.log(error)
-            window.location.reload()
-          })
-        let formData2 = new FormData()
-        formData2.append('file', this.file_2)
-        axios.post('/upload/singlefile', formData2)
-          .then(function (response) {
-            alert(response.data)
-            console.log(response)
-            window.location.reload()
-          })
-          .catch(function (error) {
-            alert('上传失败')
-            console.log(error)
-            window.location.reload()
-          })
-        let formData3 = new FormData()
-        formData3.append('file', this.file_3)
-        axios.post('/upload/singlefile', formData3)
-          .then(function (response) {
-            alert(response.data)
-            console.log(response)
-            window.location.reload()
-          })
-          .catch(function (error) {
-            alert('上传失败')
-            console.log(error)
-            window.location.reload()
-          })
-        let formData4 = new FormData()
-        formData4.append('file', this.file_4)
-        axios.post('/upload/singlefile', formData4)
-          .then(function (response) {
-            alert(response.data)
-            console.log(response)
-            window.location.reload()
-          })
-          .catch(function (error) {
-            alert('上传失败')
-            console.log(error)
-            window.location.reload()
-          })
+        // let formData1 = new FormData()
+        // formData1.append('file', this.file_1)
+        // axios.post('/upload/singlefile', formData1)
+        //   .then(function (response) {
+        //     alert(response.data)
+        //     console.log(response)
+        //     window.location.reload()
+        //   })
+        //   .catch(function (error) {
+        //     alert('上传失败')
+        //     console.log(error)
+        //     window.location.reload()
+        //   })
+        // let formData2 = new FormData()
+        // formData2.append('file', this.file_2)
+        // axios.post('/upload/singlefile', formData2)
+        //   .then(function (response) {
+        //     alert(response.data)
+        //     console.log(response)
+        //     window.location.reload()
+        //   })
+        //   .catch(function (error) {
+        //     alert('上传失败')
+        //     console.log(error)
+        //     window.location.reload()
+        //   })
+        // let formData3 = new FormData()
+        // formData3.append('file', this.file_3)
+        // axios.post('/upload/singlefile', formData3)
+        //   .then(function (response) {
+        //     alert(response.data)
+        //     console.log(response)
+        //     window.location.reload()
+        //   })
+        //   .catch(function (error) {
+        //     alert('上传失败')
+        //     console.log(error)
+        //     window.location.reload()
+        //   })
+        // let formData4 = new FormData()
+        // formData4.append('file', this.file_4)
+        // axios.post('/upload/singlefile', formData4)
+        //   .then(function (response) {
+        //     alert(response.data)
+        //     console.log(response)
+        //     window.location.reload()
+        //   })
+        //   .catch(function (error) {
+        //     alert('上传失败')
+        //     console.log(error)
+        //     window.location.reload()
+        //   })
       },
       submit: function (event) {
         // 阻止元素发生默认的行为
@@ -312,17 +342,9 @@ import NavigationBar from './navigationbar'
 
 <style scoped>
   .publish_imag{
-    float:left;
-    width:55%;
+    width: 20px;
     margin-left:30px;
     overflow:hidden
-  }
-  .publish_imag div{
-    width:50%;
-    float:left;
-  }
-  .publish_imag div img{
-    width:100%;
   }
   .discription {
     margin-right: 50px;
@@ -330,7 +352,6 @@ import NavigationBar from './navigationbar'
   }
   .right{
     margin-top:0px;
-    margin-right: 70px;
     float: right;
   }
   .all{

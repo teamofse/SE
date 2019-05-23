@@ -1,16 +1,13 @@
 <template>
   <div class="container clogin">
-    <navigation-bar></navigation-bar>
     <div class="row clearfix">
       <div class="col-md-12 column">
         <div class="row clearfix">
           <div class="col-md-4 column">
           </div>
           <div class="col-md-4 column">
-            <span style="font-size: 66px;color: #000000">隔</span>
-            <span style="font-size: 66px;color: #000000">空</span>
-            <span style="font-size: 66px;color: #000000">享</span>
-            <span style="font-size: 66px;color: #000000">物</span>
+            <span style="font-size: 66px;color: #000000">登</span>
+            <span style="font-size: 66px;color: #000000">陆</span>
           </div>
           <div class="col-md-4 column">
           </div>

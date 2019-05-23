@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <navigation-bar></navigation-bar>
     <div class="row clearfix">
       <div class="col-md-12 column">
         <div class="row clearfix">
