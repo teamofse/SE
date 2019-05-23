@@ -89,9 +89,10 @@
             <div class="thumbnail">
               <img class="image" alt="1" src="../assets/1.jpg" v-on:click="addHot(result.goods_id, result.hot)"/>
               <div class="intro">
-                <p class="title" align="left">
-                  <strong>{{result.goods_name}}</strong>
-                </p>
+                <span class="title">
+                  <p class="goods_name" align="left"><strong>{{result.goods_name}}</strong></p>
+                  <p class="store" align="right" v-on:click="goodStore(result.goods_id)">收藏</p>
+                </span>
                 <div class="money-row">
                   <img class="star" alt="star" src="../assets/star.png" align="left"/>
                   <p class="money"><strong>{{result.price}}</strong></p>
@@ -138,7 +139,8 @@ export default {
       responseResultClass: [], // goods_class表
       results: [], // 冒泡排序后的goods_information表 用来显示
       responseAll: [], // 连接三个表
-      resultsClass: [] // 点击分类
+      resultsClass: [], // 点击分类
+      responseLike: [] // 收藏
       // newList: {}
     }
   },
@@ -223,6 +225,46 @@ export default {
             this.$router.push({path: '/itemInfo?itemid=' + id})
             // console.log(successResponse.data.data)
           }
+        })
+        .catch(failResponse => {
+          console.log(failResponse)
+        })
+    },
+    goodStore: function (goodsId) {
+      this.$axios
+        .get('/queryGoodsLike')
+        .then(successResponse => {
+          this.responseLike = successResponse.data
+          var oldId = this.responseLike[this.responseLike.length - 1].id
+          var newId = oldId + 1
+          this.$axios
+            .get('/queryByAccount')
+            .then(successResponse => {
+                var userId = successResponse.data.id
+                // console.log(userId)
+                // console.log(successResponse.data)
+                this.$axios
+                  .post('/addGoodsLike', qs.stringify({
+                    id: newId,
+                    user_id: userId,
+                    goods_id: goodsId
+                  }), {headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+                    }})
+                  .then(successResponse => {
+                    if (successResponse.data.code === 200) {
+                      alert('收藏成功!')
+                      // console.log(successResponse.data.data)
+                    }
+                  })
+                  .catch(failResponse => {
+                    console.log(failResponse)
+                    alert('收藏失败!')
+                  })
+            })
+            .catch(failResponse => {
+              console.log(failResponse)
+            })
         })
         .catch(failResponse => {
           console.log(failResponse)
@@ -319,6 +361,12 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+  .store {
+    margin-top: 4px;
+    float: right;
+    font-size: 15px;
+    color: #2e6da4;
   }
   .star {
     width: 30px;

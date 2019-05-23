@@ -37,9 +37,10 @@
             <div class="thumbnail">
               <img class="image" alt="1" src="../assets/1.jpg" />
               <div class="intro">
-                <p class="title" align="left">
-                  <strong>{{result.goods_name}}</strong>
-                </p>
+                <span class="title" align="left">
+                  <p class="goods_name" align="left"><strong>{{result.goods_name}}</strong></p>
+                  <p class="store" align="right" v-on:click="goodStore(result.goods_id)">收藏</p>
+                </span>
                 <div class="money-row">
                   <img class="star" alt="star" src="../assets/star.png" align="left"/>
                   <p class="money"><strong>{{result.price}}</strong></p>
@@ -147,6 +148,46 @@ export default {
         .catch(failResponse => {
         })
     },
+    goodStore: function (goodsId) {
+      this.$axios
+        .get('/queryGoodsLike')
+        .then(successResponse => {
+          this.responseLike = successResponse.data
+          var oldId = this.responseLike[this.responseLike.length - 1].id
+          var newId = oldId + 1
+          this.$axios
+            .get('/queryByAccount')
+            .then(successResponse => {
+              var userId = successResponse.data.id
+              // console.log(userId)
+              // console.log(successResponse.data)
+              this.$axios
+                .post('/addGoodsLike', qs.stringify({
+                  id: newId,
+                  user_id: userId,
+                  goods_id: goodsId
+                }), {headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+                  }})
+                .then(successResponse => {
+                  if (successResponse.data.code === 200) {
+                    alert('收藏成功!')
+                    // console.log(successResponse.data.data)
+                  }
+                })
+                .catch(failResponse => {
+                  console.log(failResponse)
+                  alert('收藏失败!')
+                })
+            })
+            .catch(failResponse => {
+              console.log(failResponse)
+            })
+        })
+        .catch(failResponse => {
+          console.log(failResponse)
+        })
+    },
     find_class: function (x) {
       if (x === 0) { // 查找全部
         this.results = this.responseAll
@@ -217,6 +258,12 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+  .store {
+    margin-top: 4px;
+    float: right;
+    font-size: 15px;
+    color: #2e6da4;
   }
   .star {
     width: 30px;

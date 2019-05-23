@@ -1,15 +1,10 @@
 package com.se.controller;
 
-import com.se.entity.Goods;
+import com.se.entity.*;
 
-import com.se.entity.GoodsClass;
-import com.se.entity.GoodsInformation;
-import com.se.entity.Users;
 import com.se.result.Result;
 import com.se.result.ResultFactory;
-import com.se.service.GoodsClassService;
-import com.se.service.GoodsService;
-import com.se.service.ProfileService;
+import com.se.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -29,6 +25,10 @@ public class HomeController {
     private ProfileService profileService;
     @Autowired
     private GoodsClassService goodsClassService;
+    @Autowired
+    private GoodsLikeService goodsLikeService;
+    @Autowired
+    private UsersService usersService;
 
     @CrossOrigin
     @ResponseBody
@@ -121,6 +121,70 @@ public class HomeController {
         //session.setAttribute("account",account);
         System.out.println(session.getId());
         hashtable.put("msg","修改成功");
+        return ResultFactory.buildSuccessResult(hashtable);
+    }
+
+    @CrossOrigin
+    @ResponseBody
+    //查询收藏
+    @RequestMapping(value = "/queryGoodsLike", method= RequestMethod.GET, produces="application/json; charset=UTF-8")
+    public List<GoodsLike> goodsLikeQuery(HttpServletRequest request, HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
+        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+        response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
+//        HttpSession session=request.getSession();
+        //return goodsClassService.queryGoodsClassService();
+        return goodsLikeService.queryService();
+    }
+
+    @CrossOrigin
+    @ResponseBody
+    //通过用户名查询用户信息
+    @RequestMapping(value = "/queryByAccount", method= RequestMethod.GET, produces="application/json; charset=UTF-8")
+    public Users byAccountQuery(HttpServletRequest request, HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
+        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+        response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
+        HttpSession session=request.getSession();
+        String account = (String) session.getAttribute("account");
+        // return session.getAttributeNames();
+        System.out.println(account);
+        return usersService.selectUserByAccount(account);
+    }
+
+    //增加收藏
+    @CrossOrigin
+    @RequestMapping(value = "/addGoodsLike", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public Result addGoodsLike(HttpServletRequest request, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
+        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+        response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
+
+        String id_string=request.getParameter("id");
+        int id = Integer.parseInt(id_string);
+        String user_id_string=request.getParameter("user_id");
+        int user_id = Integer.parseInt(user_id_string);
+        String goods_id_string=request.getParameter("goods_id");
+        int goods_id = Integer.parseInt(goods_id_string);
+
+        Hashtable hashtable=new Hashtable();//存放要返回的数据
+        HttpSession session=request.getSession();//获取request请求里的session, 如果是第一次请求, 则会创建一个新的session
+
+        if(id==' ' || user_id==' ' || goods_id==' '){
+            String message = String.format("增加收藏失败");
+            return ResultFactory.buildFailResult(message);
+        }
+//        Users foundUser=profileService.updateAddrService(account, user_addr);
+        goodsLikeService.insertService(id, user_id, goods_id, 1);
+        System.out.println("id:"+id+" user_id:"+user_id+" goods_id:"+goods_id+" like_state:"+1);
+
+        //session.setAttribute("account",account);
+        System.out.println(session.getId());
+        hashtable.put("msg","增加收藏成功");
         return ResultFactory.buildSuccessResult(hashtable);
     }
 

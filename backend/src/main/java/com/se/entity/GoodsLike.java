@@ -1,9 +1,18 @@
 package com.se.entity;
 
 public class GoodsLike {
+    private int id;
     private int user_id;
     private int goods_id;
     private int like_state;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public void setUserId(int user_id) {
         this.user_id = user_id;
