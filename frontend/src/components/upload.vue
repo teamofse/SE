@@ -36,7 +36,6 @@
             window.location.reload()
           })
           .catch(function (error) {
-            alert('上传失败')
             console.log(error)
             window.location.reload()
           })

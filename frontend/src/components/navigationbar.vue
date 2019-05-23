@@ -22,7 +22,18 @@
           </li>
           <li :class="{'colordisplay':seenlog}">
             <a href="/abouts">关于我们</a>
+          <li :class="{'colordisplay':seen}" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">{{results.account}}<strong class="caret"></strong></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/psinfo">个人信息</a>
+              </li>
+              <li>
+                <a href="/modifypsinfo">设置</a>
+              </li>
+            </ul>
           </li>
+
           <li :class="{'colordisplay':seen}">
             <a href="/psinfo">{{results.account}}</a>
           </li>

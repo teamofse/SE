@@ -47,7 +47,11 @@ public interface ProfileMapper {
     List<GoodsInformation> queryGoodByLikeStateId(@Param("like_state") int like_state, @Param("account") String account);
 
     //根据用户account修改地址信息
-    @Update("Update users set user_addr = #{user_addr} WHERE account = #{account}")
-    void updateAddr(@Param("user_addr") String user_addr, @Param("account") String account);
+    @Update("Update users set user_addr_pro = #{user_addr_pro} , user_addr_city = #{user_addr_city} , user_addr_det = #{user_addr_det} WHERE account = #{account}")
+    void updateAddr(@Param("user_addr_pro") String user_addr_pro, @Param("user_addr_city") String user_addr_city, @Param("user_addr_det") String user_addr_det, @Param("account") String account);
+
+    //根据用户account修改密码
+    @Update("Update users set password = #{password} WHERE account = #{account}")
+    void updatePsw(@Param("password") String password, @Param("account") String account);
 
 }

@@ -85,9 +85,9 @@
 
         <!--商品列表-->
         <div class="goods">
-          <div class="col-md-4" v-for="result in results" :key="result" v-on:click="addHot(result.goods_id, result.hot)">
+          <div class="col-md-4" v-for="result in results" :key="result" >
             <div class="thumbnail">
-              <img class="image" alt="1" src="../assets/1.jpg" />
+              <img class="image" alt="1" src="../assets/1.jpg" v-on:click="addHot(result.goods_id, result.hot)"/>
               <div class="intro">
                 <p class="title" align="left">
                   <strong>{{result.goods_name}}</strong>
@@ -211,7 +211,7 @@ export default {
       var newId = id
       var newHot = hot + 1
       this.$axios
-        .put('/updateGoodsInformation', qs.stringify({
+        .post('/updateGoodsInformation', qs.stringify({
           id: newId,
           hot: newHot
         }), {headers: {
@@ -220,11 +220,12 @@ export default {
         .then(successResponse => {
           this.responseResult = JSON.stringify(successResponse.data)
           if (successResponse.data.code === 200) {
-            this.$router.push({path: '/itemInfo?itemid=id'})
-            console.log(successResponse.data.data)
+            this.$router.push({path: '/itemInfo?itemid=' + id})
+            // console.log(successResponse.data.data)
           }
         })
         .catch(failResponse => {
+          console.log(failResponse)
         })
     },
     find_class: function (x) {

@@ -14,6 +14,11 @@ public class UsersService {
         return UsersMapper.findUserByAccount(account);
     }
 
+    public Users selectUserById(int id) {
+        return UsersMapper.findUserById(id);
+    }
+
+
     public Users toLogin(String account, String password){
         return UsersMapper.filterByAccountAndPassword(account, password);
     }

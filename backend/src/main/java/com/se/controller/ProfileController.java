@@ -138,8 +138,8 @@ public class ProfileController {
 //    }
 
     @CrossOrigin
-    @RequestMapping(value = "/updateAddrs", method = RequestMethod.PUT, produces = "application/json; charset=UTF-8")
     @ResponseBody
+    @RequestMapping(value = "/updateAddrs", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
     public Result updateAddr(HttpServletRequest request, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
         response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
@@ -147,19 +147,58 @@ public class ProfileController {
         response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
 
         String account=request.getParameter("account");
-        String user_addr=request.getParameter("user_addr");
+        String user_addr_pro=request.getParameter("user_addr_pro");
+        String user_addr_city=request.getParameter("user_addr_city");
+        String user_addr_det=request.getParameter("user_addr_det");
         Hashtable hashtable=new Hashtable();//存放要返回的数据
         HttpSession session=request.getSession();//获取request请求里的session, 如果是第一次请求, 则会创建一个新的session
 
-        if(account==null||user_addr==null){
+        if(account==null||user_addr_pro==null||user_addr_city==null||user_addr_det==null){
             String message = String.format("地址修改失败，详细信息[地址为空]。");
             return ResultFactory.buildFailResult(message);
         }
 //        Users foundUser=profileService.updateAddrService(account, user_addr);
-        profileService.updateAddrService(user_addr,account);
-        System.out.println("account:"+account+" user_addr:"+user_addr);
+        profileService.updateAddrService(user_addr_pro, user_addr_city, user_addr_det, account);
+        System.out.println("account:"+account+" user_addr_pro:"+user_addr_pro);
 
 //        String account = (String)session.getAttribute("account");
+        System.out.println(session.getId());
+        hashtable.put("msg","修改成功");
+        return ResultFactory.buildSuccessResult(hashtable);
+    }
+
+    @CrossOrigin
+    @ResponseBody
+    @RequestMapping(value = "/updatePsw", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+    public Result updatePsw(HttpServletRequest request, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
+        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+        response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
+
+        String account=request.getParameter("account");
+        String oldpsw=request.getParameter("oldpsw");
+        String newpsw=request.getParameter("newpsw");
+        String confirmnewpsw=request.getParameter("confirmnewpsw");
+        Hashtable hashtable=new Hashtable();//存放要返回的数据
+        HttpSession session=request.getSession();//获取request请求里的session, 如果是第一次请求, 则会创建一个新的session
+        if(account==null||oldpsw==null || newpsw==null || confirmnewpsw==null){
+            String message = String.format("密码修改失败。");
+            return ResultFactory.buildFailResult(message);
+        }
+        Users user = profileService.queryByUserIdService(account);
+        System.out.println(user.getPassword());
+        if(!oldpsw.equals(user.getPassword())){
+            String message = String.format("密码修改失败，旧密码输入不正确。");
+            System.out.println(message);
+            return ResultFactory.buildFailResult(message);
+        }
+        else if(!newpsw.equals(confirmnewpsw)){
+            String message = String.format("密码修改失败，两次密码输入不一致。");
+            return ResultFactory.buildFailResult(message);
+        }
+        profileService.updatePswService(newpsw,account);
+        System.out.println(oldpsw);
         System.out.println(session.getId());
         hashtable.put("msg","修改成功");
         return ResultFactory.buildSuccessResult(hashtable);
