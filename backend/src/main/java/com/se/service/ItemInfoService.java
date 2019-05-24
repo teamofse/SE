@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ItemInfoService {
     @Autowired
-    private com.se.mapper.UsersMapper UsersMapper;
+    private com.se.mapper.ItemInfoMapper itemInfoMapper;
 
-    public Users selectUserByAccount(String account) {
-        return UsersMapper.findUserByAccount(account);
+    public void buying(int goods_id, String addr_pro, String addr_city, String addr_det) {
+        itemInfoMapper.Buying(goods_id, addr_pro, addr_city, addr_det);
     }
 
 }

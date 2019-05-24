@@ -3,7 +3,6 @@
     <img class="logo" alt="logo" src="static/img/logo.png" />
     <h2 class="web-name">
       <strong>隔空享物</strong>
-    </h2>
       <div class="top">
         <ul class="nav navbar-nav">
           <li>
@@ -37,7 +36,7 @@
           </li>
         </ul>
       </div>
-    <!--</h2>-->
+    </h2>
   </nav>
 
 </template>
@@ -76,9 +75,5 @@ export default {
 <style scoped>
   .colordisplay {
     display: none;
-  }
-  .top {
-    width: 450px;
-    padding-top: 10px;
   }
 </style>

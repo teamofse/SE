@@ -32,8 +32,12 @@ public class GoodsService {
     public void insert_Service(int goods_id,String goods_name,int price,String goods_detail,int class_id,String goods_picture_1, String goods_picture_2,String goods_picture_3,String goods_picture_4,int goods_state,int user_id)
     {
         goodsMapper.insertGoodsInformation(goods_id, goods_name, price, goods_detail, class_id,goods_picture_1,goods_picture_2,goods_picture_3,goods_picture_4,goods_state,user_id);
-}
+    }
 
+    //查找最大id
+    public int query_LastIdService(){
+        return goodsMapper.queryGoodsLastId();
+    }
     //插入商品信息
     //public void insertService(int id, String title, int star, String name, String city, int hot) {
     //    goodsMapper.insertGoods(id, title, star, name, city, hot);
