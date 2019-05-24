@@ -6,6 +6,7 @@
             <img src="../assets/publish_1.jpg" height="500" width="500" @click="getFile_2($event)"/>
             <form>
               <input class="left " type="file" @change="getFile_2($event)">
+              <button class="button button-primary button-pill button-small" @click="submit($event)">提交</button>
             </form>
       </div>
         <!--<div class="row clearfix">-->
@@ -168,22 +169,22 @@ import NavigationBar from './navigationbar'
       }
     },
     methods: {
-      getFile_1: function (event) {
-        this.file_1 = event.target.files[0]
-        console.log(this.file_1)
-      },
+      // getFile_1: function (event) {
+      //   this.file_1 = event.target.files[0]
+      //   console.log(this.file_1)
+      // },
       getFile_2: function (event) {
         this.file_2 = event.target.files[0]
-        console.log(this.file_2)
+        // console.log(this.file_2)
       },
-      getFile_3: function (event) {
-        this.file_3 = event.target.files[0]
-        console.log(this.file_3)
-      },
-      getFile_4: function (event) {
-        this.file_4 = event.target.files[0]
-        console.log(this.file_4)
-      },
+      // getFile_3: function (event) {
+      //   this.file_3 = event.target.files[0]
+      //   console.log(this.file_3)
+      // },
+      // getFile_4: function (event) {
+      //   this.file_4 = event.target.files[0]
+      //   console.log(this.file_4)
+      // },
       jump: function (event) {
         var s = '/iteminfo?itemid='
         var id
@@ -284,57 +285,18 @@ import NavigationBar from './navigationbar'
       submit: function (event) {
         // 阻止元素发生默认的行为
         event.preventDefault()
-        let formData1 = new FormData()
-        formData1.append('file', this.file_1)
-        axios.post('/upload/singlefile', formData1)
-          .then(function (response) {
-            alert(response.data)
-            console.log(response)
-            window.location.reload()
-          })
-          .catch(function (error) {
-            alert('上传失败')
-            console.log(error)
-            window.location.reload()
-          })
         let formData2 = new FormData()
         formData2.append('file', this.file_2)
         axios.post('/upload/singlefile', formData2)
           .then(function (response) {
-            alert(response.data)
+            // alert(response.data)
             console.log(response)
-            window.location.reload()
+            // window.location.reload()
           })
           .catch(function (error) {
-            alert('上传失败')
+            // alert('上传失败')
             console.log(error)
-            window.location.reload()
-          })
-        let formData3 = new FormData()
-        formData3.append('file', this.file_3)
-        axios.post('/upload/singlefile', formData3)
-          .then(function (response) {
-            alert(response.data)
-            console.log(response)
-            window.location.reload()
-          })
-          .catch(function (error) {
-            alert('上传失败')
-            console.log(error)
-            window.location.reload()
-          })
-        let formData4 = new FormData()
-        formData4.append('file', this.file_4)
-        axios.post('/upload/singlefile', formData4)
-          .then(function (response) {
-            alert(response.data)
-            console.log(response)
-            window.location.reload()
-          })
-          .catch(function (error) {
-            alert('上传失败')
-            console.log(error)
-            window.location.reload()
+            // window.location.reload()
           })
       },
       check (index) {
