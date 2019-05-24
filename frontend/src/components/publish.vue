@@ -2,39 +2,29 @@
   <div class="container">
     <navigation-bar></navigation-bar>
     <div class="all col-md-12 column">
-      <div class="left col-md-8 column">
-        <div class="row clearfix">
-          <div class="col-md-6 column">
-            <img src="../assets/publish_1.jpg" height="330" width="330"  @click="getFile_1($event)" />
+      <div class="col-md-7 column">
+            <img src="../assets/publish_1.jpg" height="500" width="500" @click="getFile_2($event)"/>
             <form>
-              <input type="file" @change="getFile_1($event)">
+              <input class="left " type="file" @change="getFile_2($event)">
             </form>
-          </div>
-          <div class="col-md-6 column ">
-            <img src="../assets/publish_1.jpg" height="330" width="330" @click="getFile_2($event)"/>
-            <form>
-              <input type="file" @change="getFile_2($event)">
-            </form>
-          </div>
-        </div>
-
-        <div class="row clearfix">
-          <div class="col-md-6 column">
-            <img src="../assets/publish_1.jpg" height="330" width="330" @click="getFile_3($event)"/>
-            <form>
-              <input type="file" @change="getFile_3($event)">
-            </form>
-          </div>
-          <div class="col-md-6 column">
-            <img src="../assets/publish_1.jpg" height="330" width="330" @click="getFile_4($event)"/>
-            <form>
-              <input type="file" @change="getFile_4($event)">
-              <button class="button button-primary button-pill button-small" @click="submit($event)">提交</button>
-            </form>
-          </div>
-        </div>
       </div>
-      <div class="right col-md-4 column">
+        <!--<div class="row clearfix">-->
+          <!--<div class="col-md-6 column">-->
+            <!--<img src="../assets/publish_1.jpg" height="330" width="330" @click="getFile_3($event)"/>-->
+            <!--<form>-->
+              <!--<input type="file" @change="getFile_3($event)">-->
+            <!--</form>-->
+          <!--</div>-->
+          <!--<div class="col-md-6 column">-->
+            <!--<img src="../assets/publish_1.jpg" height="330" width="330" @click="getFile_4($event)"/>-->
+            <!--<form>-->
+              <!--<input type="file" @change="getFile_4($event)">-->
+              <!--<button class="button button-primary button-pill button-small" @click="submit($event)">提交</button>-->
+            <!--</form>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <div class="right col-md-5 column">
         <div class="discription">
           <form>
             <div>
@@ -44,25 +34,25 @@
                 <textarea v-on:keypress="checkForm" name="goods_name" v-model="GoodsInfo.goods_name" cols="40" rows="1"  placeholder="品类品牌型号都是买家喜欢搜索的" style="OVERFLOW:   hidden"></textarea>
               </p>
             </div>
-            <div id="class">
-                <p>宝贝类别：</p>
+            <div id="class" class="block">
+                <p><strong>宝贝类别</strong></p>
               <div class="radio-box" v-for="(item,index) in radios" :key="item.id">
                 <input v-on:keypress="checkForm" v-model="GoodsInfo.class_id" :value="item.value" class="input-radio" :checked='item.isChecked'  @click="check(index)" type="radio">{{item.label}}
               </div>
               <br/>
             </div>
-                <br/>
-                <p>宝贝详情：</p>
-                <textarea v-on:keypress="checkForm" name="goods_detail" v-model="GoodsInfo.goods_detail"  cols="40" rows="4" style="OVERFLOW:   hidden"></textarea>
-                <br/>
-                <div><p>价格：</p></div>
-                <textarea v-on:keypress="checkForm" name="price"  v-model="GoodsInfo.price" cols="40" rows="1" placeholder="                                                               星星" style="OVERFLOW:   hidden"></textarea>
+            <div class="block">
+                <p><strong>宝贝详情</strong></p>
+                <textarea v-on:keypress="checkForm" name="goods_detail" v-model="GoodsInfo.goods_detail"  cols="40" rows="8" style="OVERFLOW:   hidden"></textarea>
+            </div>
+                <div class="block"><p><strong>价格</strong></p></div>
+                <textarea v-on:keypress="checkForm" name="price"  v-model="GoodsInfo.price" cols="40" rows="1" placeholder="                                                          星星" style="OVERFLOW:   hidden"></textarea>
                 <br/>
                 <br/>
               </form>
               <span id="tips" v-bind:style="styleObject.tips">{{GoodsInfo.tipsInfo}}</span>
-              <div class="publish">
-                <button type="button" id="modal-140183" href="#modal-container-140183" v-on:click="publish($event)" role="button" class="btn btn-default btn-block" data-toggle="modal">发布</button>
+              <div class="publish block">
+                <button type="button" id="modal-140183" href="#modal-container-140183" v-on:click="publish($event)" role="button" class="btn btn-default btn-block" data-toggle="modal"><strong>发布</strong></button>
               </div>
 
               <div class="modal fade" id="modal-container-140183" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -79,7 +69,9 @@
                       宝贝发布成功！
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary" v-on: click="">去查看</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                      <button type="button" class="btn btn-primary" v-on:click="jump($event)">去查看</button>
+                      <!--<a class="btn btn-primary" href="/home">去查看</a>-->
                     </div>
                   </div>
                 </div>
@@ -98,7 +90,9 @@ import NavigationBar from './navigationbar'
 
   export default {
     name: 'publish',
-    components: {NavigationBar},
+    components: {
+      NavigationBar
+    },
     data: function () {
       return {
         radios: [
@@ -190,6 +184,21 @@ import NavigationBar from './navigationbar'
         this.file_4 = event.target.files[0]
         console.log(this.file_4)
       },
+      jump: function (event) {
+        var s = '/iteminfo?itemid='
+        var id
+        this.$axios.get('/goodslastid')
+          .then(successResponse => {
+        id = successResponse.data
+        window.location.href = s + id.toString()
+      })
+        .then(function (res) {
+          console.log(res)
+        })
+        .catch(function (err) {
+          console.log(err)
+        })
+    },
       checkForm () {
         if (this.GoodsInfo.goods_name === '') {
           this.GoodsInfo.tipsInfo = '宝贝标题不能为空!'
@@ -350,6 +359,9 @@ import NavigationBar from './navigationbar'
     margin-right: 50px;
     float: left;
   }
+  .left{
+    margin-left: 55px;
+  }
   .right{
     margin-top:0px;
     float: right;
@@ -366,5 +378,12 @@ import NavigationBar from './navigationbar'
   }
   .input-radio {
     cursor: pointer;
+  }
+  .block{
+    margin-top:15px;
+    margin-top:15px;
+  }
+  .foot{
+    bottom:0;
   }
 </style>
