@@ -27,7 +27,7 @@
           Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa just
         </p>
         <p>
-          <a class="btn" href="#">View details »</a>
+          <a class="btn" href="/home">开启分享之旅 »</a>
         </p>
       </div>
       <div class="col-md-4 column all">

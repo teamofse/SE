@@ -16,11 +16,18 @@ public class PublishController {
     private GoodsService goodsService;
 
     //发布时插入商品信息
-    /*@RequestMapping("/insertGoodsInformation")
-    private List<GoodsInformation> goodsinformationInsert(){
-        goodsService.insert_Service(0, "11", 400, "2",  10 );
-       return goodsService.query_ByIdService();
-    }*/
+//    @RequestMapping("/insertGoodsInformation")
+//    private List<GoodsInformation> goodsinformationInsert(){
+//        goodsService.insert_Service(0, "11", 400, "2",  10  ,"11","11","11","11",1,1);
+//        return goodsService.query_ByIdService();
+//    }
+
+    //查找最大的id
+//    @RequestMapping("/goodslastid")
+//    private int goodslastid(){
+//        goodsService.insert_Service(0, "11", 400, "2",  10  ,"11","11","11","11",1,1);
+//        return goodsService.query_LastIdService();
+//    }
 
     @CrossOrigin
     @ResponseBody
@@ -43,5 +50,15 @@ public class PublishController {
         return goodsService.query_ByIdService();
     }
 
+    @CrossOrigin
+    @RequestMapping(value = "/goodslastid", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    private int goodslastid(HttpServletRequest request, HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
+        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+        response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
 
+        return goodsService.query_LastIdService();
+    }
 }
