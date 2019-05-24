@@ -79,7 +79,7 @@
                       宝贝发布成功！
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary" v-on: click = "">去查看</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary" v-on: click="">去查看</button>
                     </div>
                   </div>
                 </div>

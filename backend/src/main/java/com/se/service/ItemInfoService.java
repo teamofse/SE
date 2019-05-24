@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ItemInfoService {
     @Autowired
-    private com.se.mapper.UsersMapper UsersMapper;
     private com.se.mapper.ItemInfoMapper itemInfoMapper;
 
     public void buying(int goods_id, String addr_pro, String addr_city, String addr_det) {

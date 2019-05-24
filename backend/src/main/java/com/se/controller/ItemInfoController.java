@@ -79,7 +79,7 @@ public class ItemInfoController {
     @Autowired
     private ItemInfoService itemInfoService;
     @CrossOrigin
-    @RequestMapping(value = "/buying", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+    @RequestMapping(value = "/buying", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
     @ResponseBody
     public Hashtable buyingGoods(HttpServletRequest request, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
@@ -100,6 +100,10 @@ public class ItemInfoController {
         //String account = (String)session.getAttribute("account");
         hashtable.put("statusCode",200);
         hashtable.put("msg","购买成功");
+        System.out.println(itemidint);
+        System.out.println("pro:"+user_addr_pro+" city:"+user_addr_city+" det:"+user_addr_det);
+        itemInfoService.buying(itemidint,user_addr_pro,user_addr_city,user_addr_det);
+        System.out.println("购买成功");
         return hashtable;
 
     }

@@ -1,9 +1,9 @@
 <template id="itembar0">
   <div class="container">
     <navigation-bar></navigation-bar>
-    <div class="row clearfix">
+    <div class="row clearfix" >
       <div class="col-md-12 column">
-        <div class="row clearfix">
+        <div class="row clearfix shadow" style="padding-bottom:20px; background-color: #fafafa">
           <div class="col-md-1 column">
           </div>
           <div class="col-md-10 column">
@@ -55,12 +55,11 @@
               <div class="col-md-6 column">
                 <h2 style="float: left;display: inline-block;clear:left;">{{results.goods_name}}</h2>
                 <div style="width: 100%;float: left;clear:left;">
-                  <span style="float: left;display: inline-block;">卖家</span>
                   <span style="float: left;display: inline-block">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                   <p>{{results.goods_detail}}</p>
                 </div>
                 <div style="width: 100%;float: left;clear:left;">
-                  <span style="float: left;display: inline-block;">介绍</span>
+                  <span style="float: left;display: inline-block;">简介</span>
                   <span style="float: left;display: inline-block">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                   <p>{{results.goods_detail}}</p>
                 </div>
@@ -69,49 +68,24 @@
                   <span style="float: left;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                   <span style="color:red">¥{{results.price}}</span>
                 </div>
+                <div style="width: 100%;float: left;clear:left;">
+                  <span style="float:left">您的地址</span>
+                </div>
+                <div style="width: 100%;float: left;clear:left;">
+                  <input type="text" class="form-control" placeholder="省"/>
+                </div>
+                <div style="width: 100%;float: left;clear:left;">
+                  <input type="text" class="form-control" placeholder="市"/>
+                </div>
+                <div style="width: 100%;float: left;clear:left;">
+                  <input type="text" class="form-control" placeholder="详细地址"/>
+                </div>
                 <div style="float: left;clear:left;margin-top: 10px">
-                  <button id="modal-17668" style="float: left;clear: left;margin-left: 0" href="#modal-container-17668" role="button" class="btn" data-toggle="modal">购买</button>
-                  <img src="/static/icon/like.png">
+                  <button v-on:click="clickedBuyingButton" style="float: left;clear: left;margin-left: 0" class="btn">购买</button>
                 </div>
-                <div class="modal fade" id="modal-container-17668" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">
-                          购买信息
-                        </h4>
-                      </div>
-                      <div class="modal-body">
-                        <form class="form-horizontal" role="form">
-                          <div class="form-group">
-                            <div class="col-sm-1">
-                            </div>
-                            <div class="col-sm-10">
-                              <input type="input" class="form-control" id="inputAddrPro" placeholder="省"/>
-                              <input type="input" class="form-control" id="inputAddrCity" placeholder="市"/>
-                              <input type="input" class="form-control" id="inputAddrDet" placeholder="详细地址"/>
-                              <div style="float: left;clear:left;margin-top: 10px">
-                                <span style="float: left;">价格</span>
-                                <span style="float: left;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                <span style="color:red">¥{{results.price}}</span>
-                              </div>
-                            </div>
-                            <div class="col-sm-1">
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" v-on:click="clickedBuyingButton" class="btn btn-primary">购买</button>
-                      </div>
-                    </div>
-
-                  </div>
+                <div style="float: left;clear:left;margin-top: 10px">
 
                 </div>
-
               </div>
             </div>
           </div>
@@ -138,7 +112,8 @@ export default {
       styleObject: {
       },
       responseResult: [],
-      results: []
+      results: [],
+      addr: []
     }
   },
   mounted: function () {
@@ -176,10 +151,11 @@ export default {
       })
   },
   methods: {
-    clickedBuyingButton: function () {
+    clickedBuyingButton () {
+      console.log('@@@@@@@' + this.itemInfo.itemId)
       this.$axios
         .post('/buying', qs.stringify({
-          itemid: this.$router.params.itemid,
+          itemid: this.itemInfo.itemId,
           user_addr_pro: 'Fujian',
           user_addr_city: 'Zhaoan',
           user_addr_det: 'Bushang'
@@ -190,11 +166,6 @@ export default {
           this.responseResult = JSON.stringify(successResponse.data)
           if (successResponse.data.code === 200) {
             alert('ok')
-            // this.$store.dispatch('toLogin')
-            // console.log('isLogin:')
-            // console.log(this.isLogin)
-            // this.$router.push({path: '/home'})
-            // console.log(successResponse.data.data)
           }
         })
         .catch(err => {
@@ -206,5 +177,9 @@ export default {
 </script>
 
 <style scoped>
-
+  .shadow{
+    -webkit-box-shadow: 0 1px 5px 0 rgba(0,34,77,.12);
+    -moz-box-shadow: 0 1px 5px 0 rgba(0,34,77,.12);
+    box-shadow: 0 1px 5px 0 rgba(0,34,77,.12);
+  }
 </style>
