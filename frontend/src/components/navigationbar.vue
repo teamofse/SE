@@ -3,6 +3,7 @@
     <img class="logo" alt="logo" src="static/img/logo.png" />
     <h2 class="web-name">
       <strong>隔空享物</strong>
+    </h2>
       <div class="top">
         <ul class="nav navbar-nav">
           <li>
@@ -20,8 +21,6 @@
           <li :class="{'colordisplay':seenlog}">
             <a href="/publish">发布</a>
           </li>
-          <li :class="{'colordisplay':seenlog}">
-            <a href="/abouts">关于我们</a>
           <li :class="{'colordisplay':seen}" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">{{results.account}}<strong class="caret"></strong></a>
             <ul class="dropdown-menu">
@@ -37,10 +36,12 @@
           <li :class="{'colordisplay':seen}">
             <a href="/psinfo">{{results.account}}</a>
           </li>
-
+          <li>
+            <a href="/abouts">关于我们</a>
+          </li>
         </ul>
       </div>
-    </h2>
+    <!--</h2>-->
   </nav>
 
 </template>
@@ -79,5 +80,9 @@ export default {
 <style scoped>
   .colordisplay {
     display: none;
+  }
+  .top {
+    width: 450px;
+    padding-top: 10px;
   }
 </style>
