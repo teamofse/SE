@@ -7,6 +7,7 @@ import com.se.result.Result;
 import com.se.entity.GoodsInformation;
 import com.se.result.ResultFactory;
 import com.se.service.GoodsService;
+import com.se.service.ItemInfoService;
 import com.se.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -76,11 +77,11 @@ public class ItemInfoController {
 
     }
     @Autowired
-    private GoodsService goodsService2;
+    private ItemInfoService itemInfoService;
     @CrossOrigin
     @RequestMapping(value = "/buying", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public Result buyingGoods(HttpServletRequest request, HttpServletResponse response) {
+    public Hashtable buyingGoods(HttpServletRequest request, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx, application/json");
         response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
         response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
@@ -97,8 +98,9 @@ public class ItemInfoController {
         int itemidint = parseInt(itemid_str);
         HttpSession session=request.getSession();//获取request请求里的session, 如果是第一次请求, 则会创建一个新的session
         //String account = (String)session.getAttribute("account");
-        hashtable.put("msg","登陆成功");
-        return ResultFactory.buildSuccessResult(hashtable);
+        hashtable.put("statusCode",200);
+        hashtable.put("msg","购买成功");
+        return hashtable;
 
     }
     public boolean isNumeric(String str){

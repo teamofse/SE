@@ -103,7 +103,8 @@
                         </form>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">购买</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" v-on:click="clickedBuyingButton" class="btn btn-primary">购买</button>
                       </div>
                     </div>
 
@@ -167,7 +168,7 @@ export default {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
         }})
       .then(successResponse => {
-        this.responseResult = successResponse.data
+        this.responseResult = successResponse.data.data
         this.results = this.responseResult
       })
       .catch(failResponse => {
@@ -188,6 +189,7 @@ export default {
         .then(successResponse => {
           this.responseResult = JSON.stringify(successResponse.data)
           if (successResponse.data.code === 200) {
+            alert('ok')
             // this.$store.dispatch('toLogin')
             // console.log('isLogin:')
             // console.log(this.isLogin)
