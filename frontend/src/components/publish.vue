@@ -2,39 +2,29 @@
   <div class="container">
     <navigation-bar></navigation-bar>
     <div class="all col-md-12 column">
-      <div class="left col-md-8 column">
-        <div class="row clearfix">
-          <div class="col-md-6 column">
-            <img src="../assets/publish_1.jpg" height="330" width="330"  @click="getFile_1($event)" />
+      <div class="col-md-7 column">
+            <img src="../assets/publish_1.jpg" height="500" width="500" @click="getFile_2($event)"/>
             <form>
-              <input type="file" @change="getFile_1($event)">
+              <input class="left " type="file" @change="getFile_2($event)">
             </form>
-          </div>
-          <div class="col-md-6 column ">
-            <img src="../assets/publish_1.jpg" height="330" width="330" @click="getFile_2($event)"/>
-            <form>
-              <input type="file" @change="getFile_2($event)">
-            </form>
-          </div>
-        </div>
-
-        <div class="row clearfix">
-          <div class="col-md-6 column">
-            <img src="../assets/publish_1.jpg" height="330" width="330" @click="getFile_3($event)"/>
-            <form>
-              <input type="file" @change="getFile_3($event)">
-            </form>
-          </div>
-          <div class="col-md-6 column">
-            <img src="../assets/publish_1.jpg" height="330" width="330" @click="getFile_4($event)"/>
-            <form>
-              <input type="file" @change="getFile_4($event)">
-              <button class="button button-primary button-pill button-small" @click="submit($event)">提交</button>
-            </form>
-          </div>
-        </div>
       </div>
-      <div class="right col-md-4 column">
+        <!--<div class="row clearfix">-->
+          <!--<div class="col-md-6 column">-->
+            <!--<img src="../assets/publish_1.jpg" height="330" width="330" @click="getFile_3($event)"/>-->
+            <!--<form>-->
+              <!--<input type="file" @change="getFile_3($event)">-->
+            <!--</form>-->
+          <!--</div>-->
+          <!--<div class="col-md-6 column">-->
+            <!--<img src="../assets/publish_1.jpg" height="330" width="330" @click="getFile_4($event)"/>-->
+            <!--<form>-->
+              <!--<input type="file" @change="getFile_4($event)">-->
+              <!--<button class="button button-primary button-pill button-small" @click="submit($event)">提交</button>-->
+            <!--</form>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <div class="right col-md-5 column">
         <div class="discription">
           <form>
             <div>
@@ -53,7 +43,7 @@
             </div>
             <div class="block">
                 <p><strong>宝贝详情</strong></p>
-                <textarea v-on:keypress="checkForm" name="goods_detail" v-model="GoodsInfo.goods_detail"  cols="40" rows="10" style="OVERFLOW:   hidden"></textarea>
+                <textarea v-on:keypress="checkForm" name="goods_detail" v-model="GoodsInfo.goods_detail"  cols="40" rows="8" style="OVERFLOW:   hidden"></textarea>
             </div>
                 <div class="block"><p><strong>价格</strong></p></div>
                 <textarea v-on:keypress="checkForm" name="price"  v-model="GoodsInfo.price" cols="40" rows="1" placeholder="                                                          星星" style="OVERFLOW:   hidden"></textarea>
@@ -369,6 +359,9 @@ import NavigationBar from './navigationbar'
     margin-right: 50px;
     float: left;
   }
+  .left{
+    margin-left: 55px;
+  }
   .right{
     margin-top:0px;
     float: right;
@@ -387,7 +380,8 @@ import NavigationBar from './navigationbar'
     cursor: pointer;
   }
   .block{
-    margin-top:40px;
+    margin-top:15px;
+    margin-top:15px;
   }
   .foot{
     bottom:0;
