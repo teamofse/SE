@@ -31,7 +31,10 @@
             <dd><input v-model="results.user_addr_det"/></dd>
           </div>
         <!--<button type="submit" class="btn btn-default"><a v-on:click="modifyaddr">提交</a></button>-->
-            <p class="modify"><a v-on:click="modifyaddr">修改个人信息</a></p>
+            <div class="form-element">
+              <span class="modify btn btn-normal" v-on:click="modifyaddr">保存</span>
+              <span class="btn btn-normal" v-on:click="cancelmodify">取消</span>
+            </div>
         <!--</form>-->
       </div>
     </div>
@@ -74,6 +77,7 @@
       return {
         responseResult: [],
         results: [],
+        failResult: [],
         oldpsw: '',
         newpsw: '',
         confirmnewpsw: ''
@@ -129,18 +133,22 @@
               'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
             }})
           .then(successResponse => {
-            // console.log(this.modifyInfo.user_addr)
             // console.log(successResponse.data)
             this.responseResult = JSON.stringify(successResponse.data)
-            // console.log(this.responseResult)
+            console.log(this.responseResult)
+            alert(successResponse.data.message)
             if (successResponse.data.code === 200) {
               this.$router.push({path: '/psinfo'})
               console.log(successResponse.data.data)
             }
           })
           .catch(failResponse => {
-            // console.log(this.modifyInfo.user_addr)
+            this.failResult = JSON.stringify(failResponse.data)
+            console.log(this.failResult)
           })
+      },
+      cancelmodify: function () {
+        this.$router.push({path: '/psinfo'})
       }
     }
   }
