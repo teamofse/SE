@@ -7,7 +7,7 @@
           </div>
           <div class="col-md-4 column">
             <span style="font-size: 66px;color: #000000">登</span>
-            <span style="font-size: 66px;color: #000000">录</span>
+            <span style="font-size: 66px;color: #000000">陆</span>
           </div>
           <div class="col-md-4 column">
           </div>
