@@ -18,7 +18,7 @@
           <li :class="{'colordisplay':seenlog}">
             <a href="/register">注册</a>
           </li>
-          <li :class="{'colordisplay':seenlog}">
+          <li :class="{'colordisplay':seen}">
             <a href="/publish">发布</a>
           </li>
           <li :class="{'colordisplay':seen}" class="dropdown">
@@ -31,10 +31,6 @@
                 <a href="/modifypsinfo">设置</a>
               </li>
             </ul>
-          </li>
-
-          <li :class="{'colordisplay':seen}">
-            <a href="/psinfo">{{results.account}}</a>
           </li>
           <li>
             <a href="/abouts">关于我们</a>
