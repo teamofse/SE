@@ -146,7 +146,7 @@ export default {
     }
   },
   mounted: function () {
-    this.$axios
+    this.$axios // 返回goods_information表所有内容
       .get('/queryGoodsInformationById')
       .then(successResponse => {
         this.responseResult = successResponse.data
