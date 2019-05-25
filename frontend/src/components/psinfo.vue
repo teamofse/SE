@@ -90,34 +90,6 @@
           this.commit = false
         }
       }
-      // modifyaddr: function () {
-      //   // console.log(this.modifyInfo.user_addr)
-      //   this.$axios
-      //     .put('/updateAddrs', qs.stringify({
-      //       account: this.results.account,
-      //       user_addr_pro: this.results.user_addr_pro,
-      //       user_addr_city: this.results.user_addr_city,
-      //       user_addr_det: this.results.user_addr_det
-      //     }), {headers: {
-      //         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-      //       }})
-      //     .then(successResponse => {
-      //       // console.log(this.modifyInfo.user_addr)
-      //       // console.log(successResponse.data)
-      //       this.responseResult = JSON.stringify(successResponse.data)
-      //       // console.log(this.responseResult)
-      //       if (successResponse.data.code === 200) {
-      //         this.$router.replace({path: '/psinfo'})
-      //         console.log(successResponse.data.data)
-      //       }
-      //     })
-      //     .catch(failResponse => {
-      //       // console.log(this.modifyInfo.user_addr)
-      //     })
-      //   this.flag = true
-      //   this.modify = false
-      //   this.commit = true
-      // }
     }
   }
 </script>
