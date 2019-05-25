@@ -22,10 +22,10 @@
               <img class="zyl" alt="zyl" src="../assets/e.jpg" />
               <div class="carousel-caption">
                 <h4>
-                  隔空享物网
+                  First Thumbnail label
                 </h4>
                 <p>
-                  线上交易与我们的生活越来越密不可分，越来越多的人喜欢线上交易商品，与此同时也涌现了许多优秀的电子商务网站。
+                  Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
                 </p>
               </div>
             </div>
@@ -87,11 +87,14 @@
         <div class="goods">
           <div class="col-md-4" v-for="result in results" :key="result" >
             <div class="thumbnail">
+<<<<<<< HEAD
               <!--<img class="image" alt="1" src= "/src/main/resources/itemid{{result.goods_id}}.jpg"  v-on:click="addHot(result.goods_id, result.hot)"/>-->
               <!--<img class="image" alt="1" src= "/src/main/resources/itemid2.jpg"  v-on:click="addHot(result.goods_id, result.hot)"/>-->
               <img class="image" alt="1" src= "/src/main/resources/star.png"  v-on:click="addHot(result.goods_id, result.hot)"/>
               <img class="image" alt="1" v-bind:src="result.imgpath" v-on:click="addHot(result.goods_id, result.hot)"/>
               <!--<img class="image" alt="1" v-bind:src="/api/img/itemid{{result.goods_picture_1}}" v-on:click="addHot(result.goods_id, result.hot)"/>-->
+=======
+              <img class="image" alt="1" src="../assets/1.jpg" v-on:click="addHot(result.goods_id, result.hot)"/>
               <div class="intro">
                 <span class="title">
                   <p class="goods_name" align="left"><strong>{{result.goods_name}}</strong></p>
