@@ -9,48 +9,7 @@
           <div class="col-md-10 column">
             <div class="row clearfix" style="margin-top: 10px">
               <div class="col-md-6 column">
-                <div class="carousel slide" id="carousel-760586">
-                  <ol class="carousel-indicators">
-                    <li class="active" data-slide-to="0" data-target="#carousel-760586">
-                    </li>
-                    <li data-slide-to="1" data-target="#carousel-760586">
-                    </li>
-                    <li data-slide-to="2" data-target="#carousel-760586">
-                    </li>
-                  </ol>
-                  <div class="carousel-inner">
-                    <div class="item active">
-                      <img alt="" src="/static/img/ww1.jpg" />
-                      <div class="carousel-caption">
-                        <h4>
-                          First Thumbnail label
-                        </h4>
-                        <p>
-                        </p>
-                      </div>
-                    </div>
-                    <div class="item">
-                      <img alt="" src="/static/img/ww2.jpg" />
-                      <div class="carousel-caption">
-                        <h4>
-                          Second Thumbnail label
-                        </h4>
-                        <p>
-                        </p>
-                      </div>
-                    </div>
-                    <div class="item">
-                      <img alt="" src="/static/img/ww3.jpg" />
-                      <div class="carousel-caption">
-                        <h4>
-                          Third Thumbnail label
-                        </h4>
-                        <p>
-                        </p>
-                      </div>
-                    </div>
-                  </div> <a class="left carousel-control" href="#carousel-760586" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-760586" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-                </div>
+                <img style="height:300px;width: 400px" src="/api/img/itemid1.jpg"/>
               </div>
               <div class="col-md-6 column">
                 <h2 style="float: left;display: inline-block;clear:left;">{{results.goods_name}}</h2>
@@ -90,6 +49,16 @@
             </div>
           </div>
           <div class="col-md-1 column">
+          </div>
+        </div>
+
+        <div class="row clearfix shadow" style="margin-top:10px; padding-bottom:20px; background-color: #fafafa">
+          <div class="col-md-2 column">
+          </div>
+          <div class="col-md-8 column" style="margin-top: 5px">
+            <p>给商家留言</p>
+          </div>
+          <div class="col-md-2 column">
           </div>
         </div>
       </div>

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import java.io.File;
 import java.util.List;
 
 @RestController
@@ -61,7 +63,11 @@ public class PublishController {
         response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
         response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
         response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
-
-        return goodsService.query_LastIdService();
+        int lastId = goodsService.query_LastIdService();
+        HttpSession session=request.getSession();
+        String fileName = (String)session.getAttribute("fileName");
+        File oldFile = new File("src/main/resources/static/img/" +fileName);
+        oldFile.renameTo(new File("src/main/resources/static/img/" +File.separator+"itemid"+lastId+".jpg"));
+        return lastId;
     }
 }

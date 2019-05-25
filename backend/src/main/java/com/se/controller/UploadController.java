@@ -1,5 +1,6 @@
 package com.se.controller;
 
+import com.mysql.cj.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,7 +28,7 @@ public class UploadController {
     private Logger logger = LoggerFactory.getLogger(UploadController.class);
 
     @PostMapping("/singlefile")
-    public Object singleFileUpload(MultipartFile file) {
+    public Object singleFileUpload(MultipartFile file, HttpServletRequest request) {
         System.out.println("开始上传!");
         //logger.debug("传入的文件参数：{}", JSON.toJSONString(file, true));
         if (Objects.isNull(file) || file.isEmpty()) {
@@ -36,6 +39,11 @@ public class UploadController {
         try {
             System.out.println("开始保存文件!");
             byte[] bytes = file.getBytes();
+            HttpSession session=request.getSession();
+            String account = (String)session.getAttribute("account");
+            session.setAttribute("fileName", file.getOriginalFilename());
+            System.out.println((String)session.getAttribute("fileName"));
+            System.out.println(account);
             Path path = Paths.get(UPLOAD_FOLDER + "/static/img/" + file.getOriginalFilename());
             //Path path = Paths.get(UPLOAD_FOLDER + "/files" + file.getOriginalFilename());
             if (!Files.isWritable(path)) {
@@ -45,7 +53,7 @@ public class UploadController {
             Files.write(path, bytes);
             System.out.println("文件写入成功!");
             logger.debug("文件写入成功...");
-            return "文件上传成功";
+            return file.getOriginalFilename();
         } catch (IOException e) {
             e.printStackTrace();
             return "后端异常...";
