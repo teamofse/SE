@@ -47,8 +47,6 @@ public class PublishController {
         int price=Integer.valueOf(request.getParameter("price"));
         String goods_detail=request.getParameter("goods_detail");
         int class_id=Integer.valueOf(request.getParameter("class_id"));
-        int lastId = goodsService.query_LastIdService();
-
         int user_id;
         HttpSession session=request.getSession();//获取request请求里的session, 如果是第一次请求, 则会创建一个新的session
         user_id = (int)session.getAttribute("user_id");
