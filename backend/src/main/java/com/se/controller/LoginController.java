@@ -1,21 +1,17 @@
 package com.se.controller;
 
 
-import com.se.entity.Test;
 import com.se.entity.Users;
 import com.se.result.Result;
 import com.se.result.ResultFactory;
 import com.se.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Objects;
 
 
@@ -52,6 +48,7 @@ public class LoginController {
             return ResultFactory.buildFailResult(message);
         }
         session.setAttribute("account",account);
+        session.setAttribute("user_id",foundUser.getId());
         if (session.isNew()) {
             System.out.println("session创建成功，session的id是："+session.getId());
         }else {

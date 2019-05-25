@@ -88,6 +88,7 @@
           <div class="col-md-4" v-for="result in results" :key="result" >
             <div class="thumbnail">
               <img class="image" alt="1" v-bind:src="result.imgpath" v-on:click="addHot(result.goods_id, result.hot)"/>
+              <!--<img class="image" alt="1" v-bind:src="/api/img/itemid{{result.goods_picture_1}}" v-on:click="addHot(result.goods_id, result.hot)"/>-->
               <div class="intro">
                 <span class="title">
                   <p class="goods_name" align="left"><strong>{{result.goods_name}}</strong></p>
@@ -247,6 +248,11 @@ export default {
           this.$axios
             .get('/queryByAccount')
             .then(successResponse => {
+              // console.log(successResponse.data.id)
+              if (successResponse.data.id == null) {
+                alert('未登录！')
+                this.$router.push({path: '/login'})
+              } else {
                 var userId = successResponse.data.id
                 // console.log(userId)
                 // console.log(successResponse.data)
@@ -255,9 +261,11 @@ export default {
                     id: newId,
                     user_id: userId,
                     goods_id: goodsId
-                  }), {headers: {
+                  }), {
+                    headers: {
                       'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-                    }})
+                    }
+                  })
                   .then(successResponse => {
                     if (successResponse.data.code === 200) {
                       alert('收藏成功!')
@@ -268,6 +276,7 @@ export default {
                     console.log(failResponse)
                     alert('收藏失败!')
                   })
+              }
             })
             .catch(failResponse => {
               console.log(failResponse)
