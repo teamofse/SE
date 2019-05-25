@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -44,9 +45,11 @@ public class PublishController {
         int price=Integer.valueOf(request.getParameter("price"));
         String goods_detail=request.getParameter("goods_detail");
         int class_id=Integer.valueOf(request.getParameter("class_id"));
-        int user_id = 1;
+        int user_id;
+        HttpSession session=request.getSession();//获取request请求里的session, 如果是第一次请求, 则会创建一个新的session
+        user_id = (int)session.getAttribute("user_id");
 
-        goodsService.insert_Service(0, goods_name, price, goods_detail,  class_id ,"11","11","11","11",1,user_id);
+        goodsService.insert_Service(0, goods_name, price, goods_detail,  class_id ,"11","11","11","11",1, user_id);
         return goodsService.query_ByIdService();
     }
 
