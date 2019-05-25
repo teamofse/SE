@@ -31,13 +31,13 @@
                   <span style="float:left">您的地址</span>
                 </div>
                 <div style="width: 100%;float: left;clear:left;">
-                  <input type="text" class="form-control" placeholder="省"/>
+                  <input type="text" class="form-control" placeholder="省" v-model="resultsa.user_addr_pro"/>
                 </div>
                 <div style="width: 100%;float: left;clear:left;">
-                  <input type="text" class="form-control" placeholder="市"/>
+                  <input type="text" class="form-control" placeholder="市" v-model="resultsa.user_addr_city"/>
                 </div>
                 <div style="width: 100%;float: left;clear:left;">
-                  <input type="text" class="form-control" placeholder="详细地址"/>
+                  <input type="text" class="form-control" placeholder="详细地址" v-model="resultsa.user_addr_det"/>
                 </div>
                 <div style="float: left;clear:left;margin-top: 10px">
                   <button v-on:click="clickedBuyingButton" style="float: left;clear: left;margin-left: 0" class="btn">购买</button>
@@ -82,7 +82,8 @@ export default {
       imgpath: '',
       responseResult: [],
       results: [],
-      addr: []
+      addr: [],
+      resultsa: []
     }
   },
   mounted: function () {
@@ -118,6 +119,14 @@ export default {
       })
       .catch(failResponse => {
         alert(this.$router.params.itemid)
+      })
+    this.$axios
+      .get('/queryUserById')
+      .then(successResponse => {
+        this.responseResult = successResponse.data
+        this.resultsa = this.responseResult
+      })
+      .catch(failResponse => {
       })
   },
   methods: {
