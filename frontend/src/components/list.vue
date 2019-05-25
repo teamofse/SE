@@ -35,7 +35,7 @@
         <div class="goods">
           <div class="col-md-4" v-for="result in results" :key="result" v-on:click="addHot(result.goods_id, result.hot)">
             <div class="thumbnail">
-              <img class="image" alt="1" src="../assets/1.jpg" />
+              <img class="image" alt="1" v-bind:src="result.imgpath" />
               <div class="intro">
                 <span class="title" align="left">
                   <p class="goods_name" align="left"><strong>{{result.goods_name}}</strong></p>
@@ -113,6 +113,13 @@ export default {
                       break
                     }
                   }
+                }
+                // eslint-disable-next-line no-redeclare
+                for (var i = 0; i < this.results.length; i++) {
+                  this.responseAll[i].imgpath = '/api/img/itemid' + this.responseAll[i].goods_id + '.jpg'
+                  // eslint-disable-next-line no-undef
+                  console.log(this.responseAll[i].goods_id)
+                  console.log(this.responseAll[i].imgpath)
                 }
                 this.results = this.responseAll
               })

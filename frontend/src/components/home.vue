@@ -19,7 +19,7 @@
           </ol>
           <div class="carousel-inner">
             <div class="item active">
-              <img class="zyl" alt="zyl" src="../assets/zyl1.png" />
+              <img class="zyl" alt="zyl" src="../assets/e.jpg" />
               <div class="carousel-caption">
                 <h4>
                   First Thumbnail label
@@ -30,7 +30,7 @@
               </div>
             </div>
             <div class="item">
-              <img class="zyl" alt="zyl" src="../assets/zyl2.png" />
+              <img class="zyl" alt="zyl" src="../assets/g.jpg" />
               <div class="carousel-caption">
                 <h4>
                   Second Thumbnail label
@@ -41,7 +41,7 @@
               </div>
             </div>
             <div class="item">
-              <img class="zyl" alt="zyl" src="../assets/zyl3.png" />
+              <img class="zyl" alt="zyl" src="../assets/k.jpg" />
               <div class="carousel-caption">
                 <h4>
                   Third Thumbnail label
@@ -87,7 +87,7 @@
         <div class="goods">
           <div class="col-md-4" v-for="result in results" :key="result" >
             <div class="thumbnail">
-              <img class="image" alt="1" src="../assets/1.jpg" v-on:click="addHot(result.goods_id, result.hot)"/>
+              <img class="image" alt="1" v-bind:src="result.imgpath" v-on:click="addHot(result.goods_id, result.hot)"/>
               <div class="intro">
                 <span class="title">
                   <p class="goods_name" align="left"><strong>{{result.goods_name}}</strong></p>
@@ -181,6 +181,13 @@ export default {
                       break
                     }
                   }
+                }
+                // eslint-disable-next-line no-redeclare
+                for (var i = 0; i < this.results.length; i++) {
+                  this.responseAll[i].imgpath = '/api/img/itemid' + this.responseAll[i].goods_id + '.jpg'
+                  // eslint-disable-next-line no-undef
+                  console.log(this.responseAll[i].goods_id)
+                  console.log(this.responseAll[i].imgpath)
                 }
                 // 咋用results就好使，用responseAll就不好使捏
                 this.results = this.responseAll

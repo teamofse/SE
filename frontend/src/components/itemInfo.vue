@@ -9,7 +9,7 @@
           <div class="col-md-10 column">
             <div class="row clearfix" style="margin-top: 10px">
               <div class="col-md-6 column">
-                <img style="height:300px;width: 400px" src="/api/img/itemid1.jpg"/>
+                <img style="height:300px;width: 400px" v-bind:src="imgpath"/>
               </div>
               <div class="col-md-6 column">
                 <h2 style="float: left;display: inline-block;clear:left;">{{results.goods_name}}</h2>
@@ -56,7 +56,6 @@
           <div class="col-md-2 column">
           </div>
           <div class="col-md-8 column" style="margin-top: 5px">
-            <p>给商家留言</p>
           </div>
           <div class="col-md-2 column">
           </div>
@@ -80,6 +79,7 @@ export default {
       },
       styleObject: {
       },
+      imgpath: '',
       responseResult: [],
       results: [],
       addr: []
@@ -87,6 +87,7 @@ export default {
   },
   mounted: function () {
     this.itemInfo.itemId = this.$route.query.itemid
+    this.imgpath = '/api/img/itemid' + this.itemInfo.itemId + '.jpg'
     console.log(this.itemInfo.itemId)
     this.$axios
       .get('/getiteminfopage', {
