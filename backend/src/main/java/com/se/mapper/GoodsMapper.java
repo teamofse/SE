@@ -32,7 +32,7 @@ public interface GoodsMapper {
 
     //查询所有商品信息
     //@Select("SELECT * FROM goods_information")
-    @Select("SELECT goods_name FROM goods_information")
+    @Select("SELECT * FROM goods_information")
     List<GoodsInformation> queryGoodsInformationById();
 
     //根据名字查询商品信息

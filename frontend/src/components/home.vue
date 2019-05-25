@@ -19,7 +19,7 @@
           </ol>
           <div class="carousel-inner">
             <div class="item active">
-              <img class="zyl" alt="zyl" src="../assets/zyl1.png" />
+              <img class="zyl" alt="zyl" src="../assets/e.jpg" />
               <div class="carousel-caption">
                 <h4>
                   隔空享物网
@@ -30,7 +30,7 @@
               </div>
             </div>
             <div class="item">
-              <img class="zyl" alt="zyl" src="../assets/zyl2.png" />
+              <img class="zyl" alt="zyl" src="../assets/g.jpg" />
               <div class="carousel-caption">
                 <h4>
                   Second Thumbnail label
@@ -41,7 +41,7 @@
               </div>
             </div>
             <div class="item">
-              <img class="zyl" alt="zyl" src="../assets/zyl3.png" />
+              <img class="zyl" alt="zyl" src="../assets/k.jpg" />
               <div class="carousel-caption">
                 <h4>
                   Third Thumbnail label
@@ -90,6 +90,8 @@
               <!--<img class="image" alt="1" src= "/src/main/resources/itemid{{result.goods_id}}.jpg"  v-on:click="addHot(result.goods_id, result.hot)"/>-->
               <!--<img class="image" alt="1" src= "/src/main/resources/itemid2.jpg"  v-on:click="addHot(result.goods_id, result.hot)"/>-->
               <img class="image" alt="1" src= "/src/main/resources/star.png"  v-on:click="addHot(result.goods_id, result.hot)"/>
+              <img class="image" alt="1" v-bind:src="result.imgpath" v-on:click="addHot(result.goods_id, result.hot)"/>
+              <!--<img class="image" alt="1" v-bind:src="/api/img/itemid{{result.goods_picture_1}}" v-on:click="addHot(result.goods_id, result.hot)"/>-->
               <div class="intro">
                 <span class="title">
                   <p class="goods_name" align="left"><strong>{{result.goods_name}}</strong></p>
@@ -147,7 +149,7 @@ export default {
     }
   },
   mounted: function () {
-    this.$axios
+    this.$axios // 返回goods_information表所有内容
       .get('/queryGoodsInformationById')
       .then(successResponse => {
         this.responseResult = successResponse.data
@@ -183,6 +185,13 @@ export default {
                       break
                     }
                   }
+                }
+                // eslint-disable-next-line no-redeclare
+                for (var i = 0; i < this.results.length; i++) {
+                  this.responseAll[i].imgpath = '/api/img/itemid' + this.responseAll[i].goods_id + '.jpg'
+                  // eslint-disable-next-line no-undef
+                  console.log(this.responseAll[i].goods_id)
+                  console.log(this.responseAll[i].imgpath)
                 }
                 // 咋用results就好使，用responseAll就不好使捏
                 this.results = this.responseAll
@@ -242,6 +251,11 @@ export default {
           this.$axios
             .get('/queryByAccount')
             .then(successResponse => {
+              // console.log(successResponse.data.id)
+              if (successResponse.data.id == null) {
+                alert('未登录！')
+                this.$router.push({path: '/login'})
+              } else {
                 var userId = successResponse.data.id
                 // console.log(userId)
                 // console.log(successResponse.data)
@@ -250,9 +264,11 @@ export default {
                     id: newId,
                     user_id: userId,
                     goods_id: goodsId
-                  }), {headers: {
+                  }), {
+                    headers: {
                       'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-                    }})
+                    }
+                  })
                   .then(successResponse => {
                     if (successResponse.data.code === 200) {
                       alert('收藏成功!')
@@ -263,6 +279,7 @@ export default {
                     console.log(failResponse)
                     alert('收藏失败!')
                   })
+              }
             })
             .catch(failResponse => {
               console.log(failResponse)

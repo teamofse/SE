@@ -3,7 +3,7 @@
       <div class="item">
         <div class="row clearfix" v-for="result in results" :key="result">
           <div class="col-md-3 column">
-            <img alt="140x140" src="../assets/logo.png" width="140" height="140"/>
+            <img alt="140x140" v-bind:src="result.imgpath" width="140" height="140"/>
           </div>
           <div class="col-md-9 column">
             <h2 class="heading">
@@ -38,6 +38,12 @@
           this.results = this.responseResult
           // console.log(this.responseResult)
           // console.log(this.results)
+          for (var i = 0; i < this.results.length; i++) {
+            this.results[i].imgpath = '/api/img/itemid' + this.results[i].goods_id + '.jpg'
+            // eslint-disable-next-line no-undef
+            console.log(this.results[i].goods_id)
+            console.log(this.results[i].imgpath)
+          }
         })
         .catch(failResponse => {
         })
